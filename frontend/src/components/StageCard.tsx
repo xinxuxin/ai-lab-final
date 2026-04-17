@@ -4,7 +4,7 @@ import { ArtifactBadge } from "./ArtifactBadge";
 type StageCardProps = {
   title: string;
   description: string;
-  status: "Ready" | "Pending" | "Cached";
+  status: "Ready" | "Pending" | "Cached" | "Running";
   chips: string[];
 };
 
@@ -12,6 +12,7 @@ const statusClasses: Record<StageCardProps["status"], string> = {
   Ready: "bg-lime/70 text-ink",
   Pending: "bg-slate-200 text-slate-700",
   Cached: "bg-glow/70 text-ink",
+  Running: "bg-coral/70 text-ink",
 };
 
 export function StageCard({ title, description, status, chips }: StageCardProps) {
@@ -38,4 +39,3 @@ export function StageCard({ title, description, status, chips }: StageCardProps)
     </motion.article>
   );
 }
-

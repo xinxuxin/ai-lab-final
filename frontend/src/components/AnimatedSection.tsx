@@ -5,12 +5,14 @@ type AnimatedSectionProps = PropsWithChildren<{
   title: string;
   eyebrow?: string;
   description?: string;
+  className?: string;
 }>;
 
 export function AnimatedSection({
   title,
   eyebrow,
   description,
+  className = "",
   children,
 }: AnimatedSectionProps) {
   return (
@@ -18,7 +20,7 @@ export function AnimatedSection({
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45 }}
-      className="rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-float backdrop-blur"
+      className={`rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-float backdrop-blur ${className}`}
     >
       <div className="mb-6">
         {eyebrow ? (
@@ -33,4 +35,3 @@ export function AnimatedSection({
     </motion.section>
   );
 }
-

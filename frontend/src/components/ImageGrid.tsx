@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
+import { ArtifactBadge } from "./ArtifactBadge";
 
 type ImageGridItem = {
   title: string;
   subtitle: string;
+  status?: string;
+  tint?: string;
 };
 
 type ImageGridProps = {
@@ -19,16 +22,20 @@ export function ImageGrid({ items }: ImageGridProps) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: index * 0.08 }}
           whileHover={{ y: -6 }}
-          className="overflow-hidden rounded-[1.5rem] border border-white/70 bg-gradient-to-br from-slate-100 to-slate-200 p-4 shadow-float"
+          className={`overflow-hidden rounded-[1.5rem] border border-white/70 bg-gradient-to-br p-4 shadow-float ${item.tint ?? "from-slate-100 to-slate-200"}`}
         >
           <div className="flex h-48 items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white/60">
             <span className="font-display text-lg text-slate-400">Image Placeholder</span>
           </div>
-          <p className="mt-4 font-semibold text-ink">{item.title}</p>
-          <p className="text-sm text-slate-500">{item.subtitle}</p>
+          <div className="mt-4 flex items-start justify-between gap-3">
+            <div>
+              <p className="font-semibold text-ink">{item.title}</p>
+              <p className="text-sm text-slate-500">{item.subtitle}</p>
+            </div>
+            {item.status ? <ArtifactBadge label={item.status} tone="sky" /> : null}
+          </div>
         </motion.div>
       ))}
     </div>
   );
 }
-

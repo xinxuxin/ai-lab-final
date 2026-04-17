@@ -16,6 +16,10 @@
 body {
   margin: 0;
   min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 197, 255, 0.32), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 138, 114, 0.18), transparent 24%),
+    #f7f1e8;
 }
 
 a {
@@ -25,4 +29,18 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(142, 197, 255, 0.45);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.35);
 }

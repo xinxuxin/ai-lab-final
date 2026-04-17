@@ -11,14 +11,28 @@ This repository is structured to support all four required questions:
 - `Q3`: generate 3 to 5 images per product with at least two API-only image models, iterate prompts, and compare outputs against reference product imagery.
 - `Q4`: orchestrate the whole pipeline with an agentic workflow that preserves traces, artifacts, and rerun controls.
 
-## Stage 1 Progress
+## Stage Progress
 
-Initial full-stack skeleton is complete in this stage.
+### Stage 1: Repository Skeleton
 
 - Backend FastAPI app, Typer CLI, pydantic settings, schema layer, workflow placeholders, and smoke tests are in place.
 - Frontend Vite + React + TypeScript + Tailwind + Framer Motion dashboard shell is in place with the required demo routes.
 - Shared `artifacts/`, `docs/`, `prompts/`, and `reports/` folders are created for durable project outputs.
 - Repository-level install, run, lint, and test commands are documented and available through `Makefile`.
+
+### Stage 2: Presentation Frontend
+
+- The frontend now includes a complete animated demo UI for all assignment-aligned routes:
+  - Home / Overview
+  - Product Selection
+  - Review Explorer
+  - Visual Profile
+  - Image Generation
+  - Comparison Dashboard
+  - Agentic Workflow
+- Mock artifact data now lives under `frontend/src/mock/` and is structured to resemble future real pipeline outputs.
+- Home page includes animated hero content, four Q1-Q4 pipeline panels, and a rubric-focused presentation section.
+- The remaining pages now provide polished, responsive, presentation-ready placeholder visualizations for charts, evidence panels, prompt versions, image grids, and workflow traces.
 
 ## Repository Structure
 
@@ -57,8 +71,8 @@ Initial full-stack skeleton is complete in this stage.
 │   ├── postcss.config.cjs
 │   ├── src/
 │   │   ├── components/
-│   │   ├── data/
 │   │   ├── layouts/
+│   │   ├── mock/
 │   │   ├── pages/
 │   │   └── styles/
 │   ├── tailwind.config.cjs
@@ -113,6 +127,10 @@ Reusable UI components:
 - `AnimatedSection`
 - `ImageGrid`
 - `Timeline`
+- `PageHeader`
+- `ConfidenceChip`
+- `FlowDiagram`
+- `PromptCard`
 
 ## Local Setup
 
@@ -184,6 +202,7 @@ npm run build
 - Product discovery, scraping, retrieval, prompt execution, image generation, and evaluation are scaffolded but not yet implemented.
 - Frontend currently uses presentation-friendly mock data only and does not call backend APIs yet.
 - Artifact manifests, workflow traces, and report exports are placeholders awaiting real stage outputs.
+- Comparison and generation pages currently use styled placeholders rather than real saved image thumbnails.
 
 ## Next Recommended Stage
 
@@ -193,4 +212,3 @@ Implement `Q1` end-to-end:
 - manual/traceable final selection of exactly three products
 - durable scrape artifacts for descriptions and public reviews
 - crawl logs, manifests, and reproducibility notes
-
