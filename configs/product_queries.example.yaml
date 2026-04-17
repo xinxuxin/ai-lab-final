@@ -1,0 +1,13 @@
+version: 1
+marketplaces:
+  - bestbuy
+queries:
+  - query: insulated tumbler
+    category_guess: drinkware
+  - query: over-ear wireless headphones
+    category_guess: audio
+  - query: air purifier
+    category_guess: home-appliance
+  - query: desk lamp
+    category_guess: lighting
+

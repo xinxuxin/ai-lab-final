@@ -19,6 +19,60 @@ class ProductSeed(BaseModel):
     rationale: str | None = None
 
 
+class DiscoveryQuerySeed(BaseModel):
+    """One configured product search seed."""
+
+    query: str
+    category_guess: str
+    marketplaces: list[str] = Field(default_factory=list)
+
+
+class DiscoveryConfig(BaseModel):
+    """Discovery configuration loaded from YAML."""
+
+    version: int = 1
+    marketplaces: list[str] = Field(default_factory=lambda: ["bestbuy"])
+    queries: list[DiscoveryQuerySeed]
+
+
+class DiscoveryCandidate(BaseModel):
+    """Candidate product discovered from a marketplace search page."""
+
+    title: str
+    canonical_url: str
+    marketplace: str
+    query: str
+    category_guess: str
+    price: float | None = None
+    rating: float | None = None
+    visible_review_count: int | None = None
+    thumbnail_url: str | None = None
+    ranking_score: float = 0.0
+    is_product_page: bool = True
+    raw_html_path: str | None = None
+    matched_queries: list[str] = Field(default_factory=list)
+    discovered_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class DiscoveryManifest(BaseModel):
+    """Summary metadata for a discovery run."""
+
+    stage: str = "discover-products"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    config_path: str
+    output_dir: str
+    candidate_queries_path: str
+    candidates_path: str
+    raw_html_dir: str
+    total_queries: int
+    total_candidates_raw: int
+    total_candidates_saved: int
+    failure_counts: dict[str, int]
+    marketplaces: list[str]
+    reused_existing: bool = False
+    notes: list[str] = Field(default_factory=list)
+
+
 class ProductRecord(BaseModel):
     """Durable product artifact used across the workflow."""
 

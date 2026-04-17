@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "marketplaces": [
+    "bestbuy"
+  ],
+  "queries": [
+    {
+      "query": "insulated tumbler",
+      "category_guess": "drinkware",
+      "marketplaces": []
+    },
+    {
+      "query": "over-ear wireless headphones",
+      "category_guess": "audio",
+      "marketplaces": []
+    },
+    {
+      "query": "air purifier",
+      "category_guess": "home-appliance",
+      "marketplaces": []
+    },
+    {
+      "query": "desk lamp",
+      "category_guess": "lighting",
+      "marketplaces": []
+    }
+  ]
+}

@@ -7,7 +7,9 @@ from pathlib import Path
 
 import typer
 
+from app.collectors.discovery import run_discovery
 from app.config.settings import get_settings
+from app.utils.logging import configure_logging
 from app.workflow.orchestrator import plan_workflow
 
 app = typer.Typer(help="CLI for the CMU product image generation project.")
@@ -29,13 +31,53 @@ def _print_placeholder(stage: str, refresh: bool = False) -> None:
 
 @app.command("discover-products")
 def discover_products(
+    config: str = typer.Option(
+        "../configs/product_queries.yaml",
+        help="Path to the discovery query config YAML.",
+    ),
     refresh: bool = typer.Option(
         False,
         help="Re-run discovery instead of using cached artifacts.",
-    )
+    ),
+    reuse_existing: bool = typer.Option(
+        True,
+        "--reuse-existing/--no-reuse-existing",
+        help="Reuse on-disk discovery artifacts if they already exist.",
+    ),
 ) -> None:
     """Discover candidate product links and save durable artifacts."""
-    _print_placeholder("discover-products", refresh=refresh)
+    configure_logging()
+    result = run_discovery(
+        config_path=Path(config).resolve(),
+        refresh=refresh,
+        reuse_existing=reuse_existing,
+    )
+    summary = {
+        "stage": "discover-products",
+        "reused_existing": result.manifest.reused_existing,
+        "total_queries": result.manifest.total_queries,
+        "total_candidates_raw": result.manifest.total_candidates_raw,
+        "total_candidates_saved": result.manifest.total_candidates_saved,
+        "failure_counts": result.manifest.failure_counts,
+    }
+    typer.echo("Discovery summary:")
+    typer.echo(json.dumps(summary, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.manifest.output_dir}")
+    typer.echo(f"- {result.candidate_queries_path}")
+    typer.echo(f"- {result.candidates_path}")
+    typer.echo(f"- {result.raw_html_dir}")
+    typer.echo("")
+    typer.echo("Manual review for final 3 products:")
+    typer.echo("1. Open data/discovery/candidates.jsonl and sort candidates by ranking_score.")
+    typer.echo(
+        "2. Visit top canonical_url entries and verify category diversity "
+        "and public review quality."
+    )
+    typer.echo(
+        "3. Record the final three selected products and rationale in your report artifacts."
+    )
 
 
 @app.command("scrape-product")
@@ -104,7 +146,7 @@ def run_workflow() -> None:
 @app.command("verify-artifacts")
 def verify_artifacts(
     path: str = typer.Option(
-        "../../artifacts",
+        "../artifacts",
         help="Artifacts root to validate.",
     )
 ) -> None:
@@ -132,8 +174,7 @@ def serve_api() -> None:
                 "stage": "serve-api",
                 "api_base_url": settings.frontend_api_base_url,
                 "message": (
-                    "Run `uvicorn app.main:app --reload --port 8000` "
-                    "to start the API server."
+                    "Run `uvicorn app.main:app --reload --port 8000` " "to start the API server."
                 ),
             },
             indent=2,

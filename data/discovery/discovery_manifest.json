@@ -1,0 +1,26 @@
+{
+  "stage": "discover-products",
+  "created_at": "2026-04-17T04:39:11.509172",
+  "config_path": "/Users/macbook/Desktop/ai-lab-final/configs/product_queries.yaml",
+  "output_dir": "/Users/macbook/Desktop/ai-lab-final/data/discovery",
+  "candidate_queries_path": "/Users/macbook/Desktop/ai-lab-final/data/discovery/candidate_queries.json",
+  "candidates_path": "/Users/macbook/Desktop/ai-lab-final/data/discovery/candidates.jsonl",
+  "raw_html_dir": "/Users/macbook/Desktop/ai-lab-final/data/discovery/raw_html",
+  "total_queries": 4,
+  "total_candidates_raw": 30,
+  "total_candidates_saved": 25,
+  "failure_counts": {
+    "blocked": 0,
+    "parse_failed": 0,
+    "no_results": 1,
+    "duplicate_removed": 0
+  },
+  "marketplaces": [
+    "bestbuy"
+  ],
+  "reused_existing": false,
+  "notes": [
+    "Results are deduplicated by canonical URL.",
+    "Ranking prioritizes visible review count and product-page likelihood."
+  ]
+}

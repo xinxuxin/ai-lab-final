@@ -22,6 +22,14 @@ class Settings(BaseSettings):
     stability_api_key: str = Field(default="", alias="STABILITY_API_KEY")
     discovery_max_products: int = Field(default=25, alias="DISCOVERY_MAX_PRODUCTS")
     discovery_timeout_seconds: int = Field(default=20, alias="DISCOVERY_TIMEOUT_SECONDS")
+    discovery_request_delay_seconds: float = Field(
+        default=1.0,
+        alias="DISCOVERY_REQUEST_DELAY_SECONDS",
+    )
+    discovery_user_agent: str = Field(
+        default="ai-lab-final-research-bot/0.1",
+        alias="DISCOVERY_USER_AGENT",
+    )
     scraping_request_delay_seconds: float = Field(
         default=1.5, alias="SCRAPING_REQUEST_DELAY_SECONDS"
     )

@@ -34,6 +34,18 @@ This repository is structured to support all four required questions:
 - Home page includes animated hero content, four Q1-Q4 pipeline panels, and a rubric-focused presentation section.
 - The remaining pages now provide polished, responsive, presentation-ready placeholder visualizations for charts, evidence panels, prompt versions, image grids, and workflow traces.
 
+### Stage 3: Automated Product Discovery
+
+- Added a marketplace discovery adapter architecture under `backend/src/app/collectors/discovery/`.
+- Implemented a public search-page adapter for Best Buy with straightforward HTML parsing.
+- Added one-time artifact output under `data/discovery/`:
+  - `candidate_queries.json`
+  - `candidates.jsonl`
+  - `discovery_manifest.json`
+  - `raw_html/`
+- Discovery now supports caching, `--refresh`, deduplication by canonical URL, ranking by review visibility and product relevance, and failure-category reporting.
+- Added parser fixtures, parser tests, documentation, and example discovery configs.
+
 ## Repository Structure
 
 ```text
@@ -65,6 +77,9 @@ This repository is structured to support all four required questions:
 │   └── tests/
 ├── docs/
 │   └── README.md
+├── configs/
+│   ├── product_queries.example.yaml
+│   └── product_queries.yaml
 ├── frontend/
 │   ├── index.html
 │   ├── package.json
@@ -106,6 +121,16 @@ Implemented CLI placeholders:
 - `run-workflow`
 - `verify-artifacts`
 - `serve-api`
+
+Discovery command now supports:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml
+PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml --refresh
+```
 
 ## Frontend Overview
 
@@ -166,8 +191,8 @@ uvicorn app.main:app --reload --app-dir src --port 8000
 ```bash
 source .venv/bin/activate
 cd backend
-python -m cli.main discover-products
-python -m cli.main run-workflow
+PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml
+PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow
 ```
 
 ### Frontend
@@ -200,6 +225,7 @@ npm run build
 ## Current Limitations
 
 - Product discovery, scraping, retrieval, prompt execution, image generation, and evaluation are scaffolded but not yet implemented.
+- Discovery is currently implemented for Best Buy search pages only.
 - Frontend currently uses presentation-friendly mock data only and does not call backend APIs yet.
 - Artifact manifests, workflow traces, and report exports are placeholders awaiting real stage outputs.
 - Comparison and generation pages currently use styled placeholders rather than real saved image thumbnails.
