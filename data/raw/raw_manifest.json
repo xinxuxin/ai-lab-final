@@ -1,0 +1,82 @@
+{
+  "stage": "scrape-all",
+  "created_at": "2026-04-17T05:09:57.974277",
+  "input_path": "/Users/macbook/Desktop/ai-lab-final/data/selected_products.jsonl",
+  "output_dir": "/Users/macbook/Desktop/ai-lab-final/data/raw",
+  "product_count": 3,
+  "reused_existing": true,
+  "entries": [
+    {
+      "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "product_id": "89301002",
+      "source_url": "https://www.target.com/p/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black/-/A-89301002",
+      "category": "audio",
+      "scrape_timestamp": "2026-04-17T05:09:10.208196",
+      "artifact_completeness": {
+        "product_meta": true,
+        "description": true,
+        "reviews": true,
+        "images": true,
+        "raw_html": true,
+        "scrape_report": true
+      },
+      "pages_fetched": 2,
+      "review_count": 8,
+      "image_count": 10,
+      "status": "partial_success",
+      "reused_existing": true,
+      "notes": [
+        "Only the publicly exposed most_recent review block was available from Target's PDP JSON.",
+        "Collected fewer reviews than the visible public count because only the exposed most_recent block was available."
+      ]
+    },
+    {
+      "product_slug": "levoit-core-300-air-purifier-white-81910071",
+      "product_id": "81910071",
+      "source_url": "https://www.target.com/p/levoit-core-300-air-purifier-white/-/A-81910071",
+      "category": "home-appliance",
+      "scrape_timestamp": "2026-04-17T05:09:34.765900",
+      "artifact_completeness": {
+        "product_meta": true,
+        "description": true,
+        "reviews": true,
+        "images": true,
+        "raw_html": true,
+        "scrape_report": true
+      },
+      "pages_fetched": 2,
+      "review_count": 8,
+      "image_count": 14,
+      "status": "partial_success",
+      "reused_existing": true,
+      "notes": [
+        "Only the publicly exposed most_recent review block was available from Target's PDP JSON.",
+        "Collected fewer reviews than the visible public count because only the exposed most_recent block was available."
+      ]
+    },
+    {
+      "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "product_id": "80705997",
+      "source_url": "https://www.target.com/p/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482/-/A-80705997",
+      "category": "lighting",
+      "scrape_timestamp": "2026-04-17T05:09:43.575279",
+      "artifact_completeness": {
+        "product_meta": true,
+        "description": true,
+        "reviews": true,
+        "images": true,
+        "raw_html": true,
+        "scrape_report": true
+      },
+      "pages_fetched": 2,
+      "review_count": 7,
+      "image_count": 4,
+      "status": "partial_success",
+      "reused_existing": true,
+      "notes": [
+        "Only the publicly exposed most_recent review block was available from Target's PDP JSON.",
+        "Collected fewer reviews than the visible public count because only the exposed most_recent block was available."
+      ]
+    }
+  ]
+}

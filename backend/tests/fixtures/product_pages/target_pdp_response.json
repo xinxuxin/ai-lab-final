@@ -1,0 +1,115 @@
+{
+  "data": {
+    "product": {
+      "__typename": "Product",
+      "tcin": "81910071",
+      "category": {
+        "name": "Air Purifiers",
+        "breadcrumbs": [
+          {
+            "name": "target",
+            "category_id": "root"
+          },
+          {
+            "name": "Home & Decor",
+            "category_id": "5xtvd"
+          },
+          {
+            "name": "Air Purifiers",
+            "category_id": "5xtus"
+          }
+        ]
+      },
+      "item": {
+        "product_description": {
+          "title": "Levoit Core 300 Air Purifier White",
+          "downstream_description": "Refresh your home's air with a three-stage filtration system.",
+          "bullet_descriptions": [
+            "<B>Dimensions:</B> 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)",
+            "<B>Filter Type:</B> Carbon"
+          ]
+        },
+        "product_classification": {
+          "item_type": {
+            "name": "Air Purifiers",
+            "type": "49062876"
+          }
+        },
+        "enrichment": {
+          "buy_url": "https://www.target.com/p/levoit-core-300-air-purifier-white/-/A-81910071",
+          "image_info": {
+            "primary_image": {
+              "url": "https://target.scene7.com/is/image/Target/GUEST_primary"
+            },
+            "alternate_images": [
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_alt_1",
+                "alt_text": "Front angle view"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_alt_2",
+                "alt_text": "Top-down view"
+              }
+            ]
+          }
+        }
+      },
+      "ratings_and_reviews": {
+        "statistics": {
+          "review_count": 210,
+          "rating": {
+            "average": 4.64,
+            "count": 541
+          }
+        },
+        "most_recent": [
+          {
+            "id": "review-1",
+            "text": "This purifier noticeably improved the air quality in my bedroom after only a few hours.",
+            "title": "Works fast",
+            "author": {
+              "nickname": "Amber"
+            },
+            "rating": {
+              "value": 5,
+              "submitted_at": "2026-04-13T03:10:30.445Z"
+            }
+          },
+          {
+            "id": "review-2",
+            "text": "Sleep mode is very quiet and the display can be turned off completely overnight.",
+            "author": {
+              "nickname": "Kathryn"
+            },
+            "rating": {
+              "value": 5,
+              "submitted_at": "2026-04-11T19:08:22.361Z"
+            }
+          },
+          {
+            "id": "review-2",
+            "text": "Sleep mode is very quiet and the display can be turned off completely overnight.",
+            "author": {
+              "nickname": "Kathryn"
+            },
+            "rating": {
+              "value": 5,
+              "submitted_at": "2026-04-11T19:08:22.361Z"
+            }
+          },
+          {
+            "id": "review-short",
+            "text": "Bad",
+            "author": {
+              "nickname": "Ngan"
+            },
+            "rating": {
+              "value": 1,
+              "submitted_at": "2026-04-10T00:01:37.513Z"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -99,7 +99,69 @@ class ReviewRecord(BaseModel):
     body: str
     posted_at: datetime | None = None
     helpful_votes: int | None = None
+    verified: bool | None = None
     source_url: HttpUrl
+
+
+class ArtifactCompleteness(BaseModel):
+    """Per-product raw artifact completeness flags."""
+
+    product_meta: bool = False
+    description: bool = False
+    reviews: bool = False
+    images: bool = False
+    raw_html: bool = False
+    scrape_report: bool = False
+
+
+class RawManifestEntry(BaseModel):
+    """Manifest entry for one scraped product."""
+
+    product_slug: str
+    product_id: str
+    source_url: HttpUrl
+    category: str
+    scrape_timestamp: datetime = Field(default_factory=datetime.utcnow)
+    artifact_completeness: ArtifactCompleteness
+    pages_fetched: int = 0
+    review_count: int = 0
+    image_count: int = 0
+    status: Literal["completed", "partial_success", "failed"]
+    reused_existing: bool = False
+    notes: list[str] = Field(default_factory=list)
+
+
+class RawManifest(BaseModel):
+    """Top-level manifest for all durable raw scrape artifacts."""
+
+    stage: str = "scrape-all"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    input_path: str
+    output_dir: str
+    product_count: int
+    reused_existing: bool = False
+    entries: list[RawManifestEntry] = Field(default_factory=list)
+
+
+class ScrapeReport(BaseModel):
+    """Detailed report for one product scrape run."""
+
+    product_slug: str
+    product_id: str
+    source_url: HttpUrl
+    category: str
+    marketplace: str
+    title: str
+    status: Literal["completed", "partial_success", "failed"]
+    reused_existing: bool = False
+    scrape_timestamp: datetime = Field(default_factory=datetime.utcnow)
+    pages_fetched: int = 0
+    visible_review_count: int | None = None
+    collected_review_count: int = 0
+    image_count: int = 0
+    failure_counts: dict[str, int] = Field(default_factory=dict)
+    artifact_completeness: ArtifactCompleteness
+    notes: list[str] = Field(default_factory=list)
 
 
 class ImageAsset(BaseModel):

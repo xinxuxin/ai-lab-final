@@ -2,13 +2,22 @@
 
 from pathlib import Path
 
+from pydantic import HttpUrl, TypeAdapter
 from pytest import MonkeyPatch
 from typer.testing import CliRunner
 
-from app.models.schemas import DiscoveryManifest
+from app.collectors.product_pages.service import ProductScrapeRunResult, ScrapeAllRunResult
+from app.models.schemas import (
+    ArtifactCompleteness,
+    DiscoveryManifest,
+    RawManifest,
+    RawManifestEntry,
+    ScrapeReport,
+)
 from cli.main import app
 
 runner = CliRunner()
+HTTP_URL_ADAPTER = TypeAdapter(HttpUrl)
 
 
 def test_cli_discover_products_smoke(
@@ -86,3 +95,88 @@ def test_cli_discover_products_smoke(
     )
     assert result.exit_code == 0
     assert "Discovery summary:" in result.stdout
+
+
+def test_cli_scrape_all_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Scrape-all command should print a durable artifact summary."""
+    manifest_path = tmp_path / "data" / "raw" / "raw_manifest.json"
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+
+    def fake_run_scrape_all(
+        *,
+        input_path: Path,
+        max_reviews: int = 100,
+        refresh: bool = False,
+        reuse_existing: bool = True,
+        output_dir: Path | None = None,
+        settings: object | None = None,
+    ) -> ScrapeAllRunResult:
+        del input_path, max_reviews, refresh, reuse_existing, output_dir, settings
+        report = ScrapeReport(
+            product_slug="sample-product-1",
+            product_id="123",
+            source_url=HTTP_URL_ADAPTER.validate_python("https://www.target.com/p/sample/-/A-123"),
+            category="lighting",
+            marketplace="target",
+            title="Sample Product",
+            status="completed",
+            artifact_completeness=ArtifactCompleteness(
+                product_meta=True,
+                description=True,
+                reviews=True,
+                images=True,
+                raw_html=True,
+                scrape_report=True,
+            ),
+        )
+        return ScrapeAllRunResult(
+            manifest=RawManifest(
+                input_path=str(tmp_path / "data" / "selected_products.jsonl"),
+                output_dir=str(tmp_path / "data" / "raw"),
+                product_count=1,
+                reused_existing=False,
+                entries=[
+                    RawManifestEntry(
+                        product_slug="sample-product-1",
+                        product_id="123",
+                        source_url=HTTP_URL_ADAPTER.validate_python(
+                            "https://www.target.com/p/sample/-/A-123"
+                        ),
+                        category="lighting",
+                        artifact_completeness=report.artifact_completeness,
+                        pages_fetched=2,
+                        review_count=8,
+                        image_count=3,
+                        status="completed",
+                    )
+                ],
+            ),
+            manifest_path=manifest_path,
+            product_results=[
+                ProductScrapeRunResult(
+                    manifest_entry=RawManifestEntry(
+                        product_slug="sample-product-1",
+                        product_id="123",
+                        source_url=HTTP_URL_ADAPTER.validate_python(
+                            "https://www.target.com/p/sample/-/A-123"
+                        ),
+                        category="lighting",
+                        artifact_completeness=report.artifact_completeness,
+                        pages_fetched=2,
+                        review_count=8,
+                        image_count=3,
+                        status="completed",
+                    ),
+                    report=report,
+                    output_dir=tmp_path / "data" / "raw" / "sample-product-1",
+                )
+            ],
+        )
+
+    monkeypatch.setattr("cli.main.run_scrape_all", fake_run_scrape_all)
+    result = runner.invoke(
+        app,
+        ["scrape-all", "--input", str(tmp_path / "selected_products.jsonl")],
+    )
+    assert result.exit_code == 0
+    assert "Scrape summary:" in result.stdout

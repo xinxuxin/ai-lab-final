@@ -1,0 +1,498 @@
+{
+  "data": {
+    "product": {
+      "__typename": "Product",
+      "tcin": "89301002",
+      "category": {
+        "parent_category_id": "5xteg",
+        "name": "Wireless Headphones",
+        "breadcrumbs": [
+          {
+            "canonical_url": "/",
+            "category_id": "root",
+            "name": "target"
+          },
+          {
+            "canonical_url": "/c/electronics/-/N-5xtg6",
+            "category_id": "5xtg6",
+            "name": "Electronics"
+          },
+          {
+            "canonical_url": "/c/headphones-electronics/-/N-5xteg",
+            "category_id": "5xteg",
+            "name": "Headphones"
+          },
+          {
+            "canonical_url": "/c/wireless-headphones-electronics/-/N-oq7is",
+            "category_id": "oq7is",
+            "name": "Wireless Headphones"
+          }
+        ]
+      },
+      "sales_classification_nodes": {
+        "node_ids": [
+          "oq7is",
+          "5aazn",
+          "y6he0",
+          "wt4hy",
+          "f7726",
+          "ftglp",
+          "sbb2f",
+          "azx0b",
+          "n180j"
+        ]
+      },
+      "ratings_and_reviews": {
+        "has_verified": false,
+        "statistics": {
+          "not_recommended_count": 0,
+          "question_count": 0,
+          "rating": {
+            "average": 4.31,
+            "count": 133,
+            "distribution": {
+              "rating1": 13,
+              "rating2": 4,
+              "rating3": 4,
+              "rating4": 20,
+              "rating5": 92
+            }
+          },
+          "recommended_count": 0,
+          "recommended_percentage": 0,
+          "review_count": 130
+        },
+        "most_recent": [
+          {
+            "id": "376332e9-f206-4b54-bd51-21ad7a6195e1",
+            "text": "Love them. Expected my spouse's Beats Pro Studio to sound better, BUT... theses headphones surpass the Beats in sound quality. The rich bass and highs clarity are as impressive as my JBL M-Pro audio speakers.",
+            "author": {
+              "nickname": "NRG Gus",
+              "external_id": "46f03fdd-8851-5fe2-b1d6-d03f9937a55b"
+            },
+            "title": "Beats don't even compare th the JBLs",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-03-15T15:46:03.000Z"
+            }
+          },
+          {
+            "id": "6f358c3c-a6b0-494d-8bc5-2465c9d0dc11",
+            "text": "I have owned headphones from four different, highly rated companies, I just bought a second pair of JBL Tour One M2 headphones (first pair for the living room; second pair for the master bedroom). Headphones from other companies had serious problems: Ear covers falling apart, failure to remain connected, etc. My JBL headphones connect every time, are comfortable, are well built, and produce great sound.",
+            "author": {
+              "nickname": "jackpinoh",
+              "external_id": "7222b2ae-74b4-5c67-938f-dfa5a53bdc1d"
+            },
+            "title": "JBL Headphones Are the Best",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-01-22T18:55:30.000Z"
+            }
+          },
+          {
+            "id": "7026f752-6ef5-4c7d-bd17-b93a255e1b8e",
+            "text": "The JBL headphones are an awesome addition to my television system. As my wife teaches piano in the adjacent room, these headphones cut out all external noise and allows me to hear my audiobooks easily. They are light in weight and the battery lasts a lot longer than my previous set.",
+            "author": {
+              "nickname": "Jabta",
+              "external_id": "aa669987-f53a-553c-a0f5-a9083121825a"
+            },
+            "title": "Great Quality",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-01-06T21:47:39.000Z"
+            }
+          },
+          {
+            "id": "21b16878-8b7d-47a8-a5c1-b86b142edaf3",
+            "text": "These Headphones are awesome i've had a few pairs. The sound is good, however there are a few things that drive me nuts. If you wear glasses and are working-out they DO NOT seal all the noise when in \"noise canceling\" mode, because there are air spaces when headphones make contact with glasses arms.",
+            "author": {
+              "external_id": "90b8260f-c197-5e8e-89c7-4479eba2c03d"
+            },
+            "title": "Good Sound and comfortable",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-01-05T21:37:14.000Z"
+            }
+          },
+          {
+            "id": "a6342aed-4ee0-494b-842e-d0990d45292f",
+            "text": "Great sound great and great functionality!! The best headphones ever!!",
+            "author": {
+              "nickname": "Randyshark7",
+              "external_id": "73005d55-3f8d-58c5-b347-8068719779c0"
+            },
+            "title": "Super headphones",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2025-12-28T13:17:16.000Z"
+            }
+          },
+          {
+            "id": "11789809-9298-4cf0-9eb1-3750cb923c91",
+            "text": "Love my other JBL products. These are fine, expected more for the price. May return for a less expensive version or a different brand.",
+            "author": {
+              "nickname": "BenAL",
+              "external_id": "fe963ff3-404b-5039-a7d2-44f4a41b1373"
+            },
+            "title": "Underwhelmed",
+            "rating": {
+              "value": 2.0,
+              "submitted_at": "2025-12-20T21:04:28.000Z"
+            }
+          },
+          {
+            "id": "6c1b387f-071e-41ec-b39e-21341b326faa",
+            "text": "super comfy headphones, my old jbls were a few years old thought it might sound better but it sounded the same",
+            "author": {
+              "nickname": "big pimpin",
+              "external_id": "0dcd7f48-456f-5ce9-a52a-cd9e321a49e1"
+            },
+            "title": "\ud83d\udd25\ud83d\udd25\ud83d\udd25\ud83d\udd25\ud83d\udd25",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2025-10-28T15:08:06.000Z"
+            }
+          },
+          {
+            "id": "f43e8e35-9d42-4019-80f1-c9e15275d492",
+            "text": "After charging for several hours the expensive Tour One M2 don't seem to work. It is frustrating when you purchase a product from the vendor and they arrive faulty.",
+            "author": {
+              "nickname": "Matthew76",
+              "external_id": "272c7b47-59f4-5a99-8926-4aaef28b4352"
+            },
+            "title": "Poor Quality?",
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2025-10-22T15:43:21.000Z"
+            }
+          }
+        ],
+        "photos": [
+          "https://target.scene7.com/is/image/Target/GUEST_29ef31d6-37e1-486e-b315-0222effe249c",
+          "https://target.scene7.com/is/image/Target/GUEST_0cfcd945-02de-4fa7-bf39-626ffa76af68",
+          "https://target.scene7.com/is/image/Target/GUEST_a3ab8c04-0bb2-4d52-aba0-55a4b1e50c81",
+          "https://target.scene7.com/is/image/Target/GUEST_cd902794-4cea-45bb-b2da-c68586a5ccd4",
+          "https://target.scene7.com/is/image/Target/GUEST_d2d85c6a-731d-496d-a713-9099c6265772",
+          "https://target.scene7.com/is/image/Target/GUEST_f267da53-c1e4-4ddf-9486-7658f4efa49d",
+          "https://target.scene7.com/is/image/Target/GUEST_df9f44e3-05fb-45bf-8438-6389f7c44f22",
+          "https://target.scene7.com/is/image/Target/GUEST_477dbf9e-f37c-4209-8342-27939484a2b6",
+          "https://target.scene7.com/is/image/Target/GUEST_a535eeeb-ca8f-4963-aa25-7c629c2efb54",
+          "https://target.scene7.com/is/image/Target/GUEST_528d40df-237c-4f9f-a2b7-4cdee8375e3f",
+          "https://target.scene7.com/is/image/Target/GUEST_72ea5d55-2185-4a8b-9535-401e19c2f42f",
+          "https://target.scene7.com/is/image/Target/GUEST_1376657f-b2a0-412b-a927-a83230306166"
+        ]
+      },
+      "esp": {
+        "tcin": "51514135",
+        "enrichment": {
+          "images": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image_url": "https://target.scene7.com/is/image/Target/GUEST_ef592db1-f8fd-4f7f-8b8a-13b27b740f6e",
+            "primary_image": "GUEST_ef592db1-f8fd-4f7f-8b8a-13b27b740f6e"
+          }
+        },
+        "price": {
+          "formatted_current_price": "$55.00",
+          "formatted_current_price_type": "reg"
+        },
+        "product_description": {
+          "title": "2 Year Headphones &#38; Speakers Protection Plan with Accidents Coverage ($300-$349.99) - Allstate",
+          "bullet_descriptions": [
+            "<B>Benefits:</B> Free 2-Way Shipping, 24/7 Support, No Deductible, No Additional Cost",
+            "<B>Support:</B> Online, Phone",
+            "<B>Includes:</B> Failures Due to Drops, Accidental Damage From Handling Coverage, Mechanical Defects, Normal Wear and Tear Coverage, Screen Repair, Failures Due to Spills, Electrical Defects",
+            "<B>Minimum Qualifying Item Price:</B> 300",
+            "<B>Maximum Qualifying Item Price:</B> 349.99",
+            "<B>Service plan type:</B> Allstate - Headphones Speakers",
+            "<B>Number of years protected:</B> 2 years"
+          ]
+        }
+      },
+      "free_shipping": {
+        "enabled": true
+      },
+      "item": {
+        "product_classification": {
+          "item_type": {
+            "name": "Headphones",
+            "type": "59911919"
+          },
+          "product_type": 542,
+          "product_type_name": "ELECTRONICS",
+          "purchase_behavior": "Discretionary"
+        },
+        "compliance": {},
+        "enrichment": {
+          "buy_url": "https://www.target.com/p/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black/-/A-89301002",
+          "image_info": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image": {
+              "image_name": "GUEST_094b4bc2-6704-4223-bf80-58f514a56a46",
+              "url": "https://target.scene7.com/is/image/Target/GUEST_094b4bc2-6704-4223-bf80-58f514a56a46"
+            },
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_094b4bc2-6704-4223-bf80-58f514a56a46"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_259deddf-475d-45c3-9909-b0fb89f4f107"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fa2300df-2dba-42e9-a492-9d06730aa917"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_1eb615c3-14c7-46ef-a93e-8c4733d6afcd"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_f528e3ce-0c4f-48d5-aa0d-b2755695085b"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_0d939fe9-9ccd-466f-a9b3-8f8d2747f255"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_007727b0-bf94-41b1-8712-e4afc993124e"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_33cd55cc-e0cf-43fa-8430-a1f84d1d1aa4"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_565ee5e5-aa81-4b6f-ba16-99f472b76c27"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_5647de93-324f-468d-8146-50a866a002da"
+              }
+            ],
+            "alternate_images": [
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_259deddf-475d-45c3-9909-b0fb89f4f107",
+                "image_name": "GUEST_259deddf-475d-45c3-9909-b0fb89f4f107"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_fa2300df-2dba-42e9-a492-9d06730aa917",
+                "image_name": "GUEST_fa2300df-2dba-42e9-a492-9d06730aa917"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_1eb615c3-14c7-46ef-a93e-8c4733d6afcd",
+                "image_name": "GUEST_1eb615c3-14c7-46ef-a93e-8c4733d6afcd"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_f528e3ce-0c4f-48d5-aa0d-b2755695085b",
+                "image_name": "GUEST_f528e3ce-0c4f-48d5-aa0d-b2755695085b"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_0d939fe9-9ccd-466f-a9b3-8f8d2747f255",
+                "image_name": "GUEST_0d939fe9-9ccd-466f-a9b3-8f8d2747f255"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_007727b0-bf94-41b1-8712-e4afc993124e",
+                "image_name": "GUEST_007727b0-bf94-41b1-8712-e4afc993124e"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_33cd55cc-e0cf-43fa-8430-a1f84d1d1aa4",
+                "image_name": "GUEST_33cd55cc-e0cf-43fa-8430-a1f84d1d1aa4"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_565ee5e5-aa81-4b6f-ba16-99f472b76c27",
+                "image_name": "GUEST_565ee5e5-aa81-4b6f-ba16-99f472b76c27"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_5647de93-324f-468d-8146-50a866a002da",
+                "image_name": "GUEST_5647de93-324f-468d-8146-50a866a002da"
+              }
+            ],
+            "swatch_image": {}
+          },
+          "images": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image_url": "https://target.scene7.com/is/image/Target/GUEST_094b4bc2-6704-4223-bf80-58f514a56a46",
+            "primary_image": "GUEST_094b4bc2-6704-4223-bf80-58f514a56a46",
+            "alternate_images": [
+              "GUEST_259deddf-475d-45c3-9909-b0fb89f4f107",
+              "GUEST_fa2300df-2dba-42e9-a492-9d06730aa917",
+              "GUEST_1eb615c3-14c7-46ef-a93e-8c4733d6afcd",
+              "GUEST_f528e3ce-0c4f-48d5-aa0d-b2755695085b",
+              "GUEST_0d939fe9-9ccd-466f-a9b3-8f8d2747f255",
+              "GUEST_007727b0-bf94-41b1-8712-e4afc993124e",
+              "GUEST_33cd55cc-e0cf-43fa-8430-a1f84d1d1aa4",
+              "GUEST_565ee5e5-aa81-4b6f-ba16-99f472b76c27",
+              "GUEST_5647de93-324f-468d-8146-50a866a002da"
+            ],
+            "alternate_image_urls": [
+              "https://target.scene7.com/is/image/Target/GUEST_259deddf-475d-45c3-9909-b0fb89f4f107",
+              "https://target.scene7.com/is/image/Target/GUEST_fa2300df-2dba-42e9-a492-9d06730aa917",
+              "https://target.scene7.com/is/image/Target/GUEST_1eb615c3-14c7-46ef-a93e-8c4733d6afcd",
+              "https://target.scene7.com/is/image/Target/GUEST_f528e3ce-0c4f-48d5-aa0d-b2755695085b",
+              "https://target.scene7.com/is/image/Target/GUEST_0d939fe9-9ccd-466f-a9b3-8f8d2747f255",
+              "https://target.scene7.com/is/image/Target/GUEST_007727b0-bf94-41b1-8712-e4afc993124e",
+              "https://target.scene7.com/is/image/Target/GUEST_33cd55cc-e0cf-43fa-8430-a1f84d1d1aa4",
+              "https://target.scene7.com/is/image/Target/GUEST_565ee5e5-aa81-4b6f-ba16-99f472b76c27",
+              "https://target.scene7.com/is/image/Target/GUEST_5647de93-324f-468d-8146-50a866a002da"
+            ],
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_094b4bc2-6704-4223-bf80-58f514a56a46"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_259deddf-475d-45c3-9909-b0fb89f4f107"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fa2300df-2dba-42e9-a492-9d06730aa917"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_1eb615c3-14c7-46ef-a93e-8c4733d6afcd"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_f528e3ce-0c4f-48d5-aa0d-b2755695085b"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_0d939fe9-9ccd-466f-a9b3-8f8d2747f255"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_007727b0-bf94-41b1-8712-e4afc993124e"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_33cd55cc-e0cf-43fa-8430-a1f84d1d1aa4"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_565ee5e5-aa81-4b6f-ba16-99f472b76c27"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_5647de93-324f-468d-8146-50a866a002da"
+              }
+            ]
+          },
+          "return_policies": [
+            {
+              "user_type": "regular_guest",
+              "day_count": 30
+            },
+            {
+              "user_type": "best_guest",
+              "day_count": 60
+            }
+          ]
+        },
+        "environmental_segmentation": {
+          "is_hazardous_material": false
+        },
+        "formatted_return_method": "This item must be returned to any Target store.",
+        "fulfillment": {
+          "is_marketplace": true,
+          "po_box_prohibited_message": "We regret that this item cannot be shipped to PO Boxes.",
+          "shipping_exclusion_codes": [
+            "American Samoa (see also separate entry under AS)",
+            "Guam (see also separate entry under GU)",
+            "Northern Mariana Islands",
+            "Puerto Rico (see also separate entry under PR)",
+            "United States Minor Outlying Islands",
+            "Virgin Islands, U.S.",
+            "APO/FPO",
+            "Alaska",
+            "Hawaii"
+          ],
+          "purchase_limit": 10
+        },
+        "package_dimensions": {
+          "depth": 3.0,
+          "dimension_unit_of_measure": "INCH",
+          "weight": 1.9,
+          "weight_unit_of_measure": "POUND",
+          "height": 9.0,
+          "width": 8.0
+        },
+        "product_description": {
+          "bullet_descriptions": [
+            "<B>Weight:</B> .6 pounds",
+            "<B>Water Resistance:</B> No Water Resistance Rating",
+            "<B>Ear Cushion Material:</B> Leatherette",
+            "<B>Electronics Condition:</B> New",
+            "<B>Electronics Features:</B> Adjustable Headband, Lightweight Design",
+            "<B>Connection Type:</B> No Wired Connection Ports",
+            "<B>Compatible With:</B> Android, Apple iOS",
+            "<B>Wireless Technology:</B> Wireless",
+            "<B>Noise Canceling:</B> Noise Canceling",
+            "<B>Microphone:</B> Built-In Microphone",
+            "<B>Package Quantity:</B> 1",
+            "<B>Battery:</B> 1 Non-Universal Lithium Ion, Required, Included",
+            "<B>Warranty:</B> 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869"
+          ],
+          "downstream_description": "Built for comfort designed for inspiration.JBL Tour One M2s True Adaptive Noise Cancelling technology tunes out distractions so you can enjoy your favorite playlistsor even the sound of silenceall powered by legendary Hi-Res certified JBL Pro Sound. Immerse yourself in superb spatial audio on the go for up to 50 hours or enjoy the clarity of the 4-mic technology while having phone conversations. The integrated mics even recognize your voice so you can have quick conversations with your headphones on thanks to the Smart Talk function. Or turn on the Personal Sound Amplification to boost yours and others voice volume without ever removing your headphones.<br /><br />Features<br />\u2022True Adaptive Noise Cancelling with Smart Ambient<br />\u20224-mic superior calls with voice control<br />\u2022Smart Ambient technology<br />\u2022Smart Talk for seamless chats<br />\u2022Legendary Pro Sound<br />\u2022Immersive JBL Spatial Sound<br />\u2022Personi-Fi 2.0 customization tools<br />\u2022Hands free voice control<br />\u2022Fast Pair enabled by Google and Microsoft swift pair<br />\u2022Stay in control with the JBL Headphones app<br />\u2022Bluetooth 5.3 LE audio (*)<br /><br />True Adaptive Noise Cancelling with Smart AmbientEnjoy the soundtrack of your life no matter where you are. True Adaptive Noise Cancelling technology automatically uses 4 noise sensing mics to adjust to your surroundings in real-time minimizing distractions when you need to focus optimizing the JBL Tour One M2s performance for a superior audio experience all while you adjust ANC mode control with the JBL Headphones app.<br /><br />4-mic superior calls with voice controlThe 4-mic crystal call algorithm of the JBL Tour One M2 allows you to have better conversations even in loud or windy environments or to get help from your preferred voice assistant. And with VoiceAware you can choose how much of your own voice to hear by controlling the amount of mic input routed back into your headphones.<br /><br />Smart Ambient technologyStay alert to the sounds of the world around you while enjoying your music with Smart Ambient controlling the ambient sound levels and turning the Personal Sound Amplification button on through the JBL Headphones App to boost the conversations volume with +15-20dB and adjust the L/R balance.<br /><br />Smart Talk for seamless chatsThanks to the Smart Talk feature you dont need to pause the music to have a quick conversation: its advanced voice recognition technology reacts to your voice pausing the music and enabling TalkThru.<br /><br />Legendary Pro SoundThanks to extensive global research and testing the superior JBL sound curve delivers precise accurate audio and less distortion with all the music you love at any frequency or volume. The Tour One M2 40mm drivers let you experience the ultimate sound performance from rich punchy bass to thrilling top notes.<br /><br />Immersive JBL Spatial SoundImmerse yourself in JBL Spatial Sound and feel like being in a theatre at a concert or in the studio with your favorite artist. Thanks to this proprietary technology sound comes from virtually anywhere around you no matter the source or the device you are playing from.<br /><br />Personi-Fi 2.0Hear and feel every note of your playlist. Shape your audio to match your personal listening profile with interactive customization tools that use precise information about you and your preferences to provide the exact sound curve that suits you best.<br /><br />Hands free voice controlStay connected to your digital world anywhere. Just say Hey Google or Alexa to speak to your preferred Voice Assistant and control your headphones with vo",
+          "soft_bullets": {
+            "bullets": [
+              "The JBL Tour One M2 Wireless Adaptive Noise Cancelling technology allow you to immerse yourself in superb spatial audio",
+              "Featuring Smart Talk which allows you to pause and automatically resume your music through advanced voice recognition technology",
+              "Enjoy JBL Pro Sound for up to 50 hours on a single charge thanks to the innovative Bluetooth-enabled smart charging case",
+              "Use your preferred voice assistant (Google or Alexa) and control your headphones with voice prompts in multiple languages",
+              "Featuring Personal Sound Amplification to boost yours and others\u2019 voice volume without ever removing your earbuds"
+            ],
+            "title": "highlights"
+          },
+          "title": "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)",
+          "soft_bullet_description": "&bull; The JBL Tour One M2 Wireless Adaptive Noise Cancelling technology allow you to immerse yourself in superb spatial audio<br>&bull; Featuring Smart Talk which allows you to pause and automatically resume your music through advanced voice recognition technology<br>&bull; Enjoy JBL Pro Sound for up to 50 hours on a single charge thanks to the innovative Bluetooth-enabled smart charging case<br>&bull; Use your preferred voice assistant (Google or Alexa) and control your headphones with voice prompts in multiple languages<br>&bull; Featuring Personal Sound Amplification to boost yours and others\u2019 voice volume without ever removing your earbuds"
+        },
+        "product_vendors": [
+          {
+            "vendor_name": "WORLD WIDE STEREO",
+            "id": "10001060",
+            "uri": "www.target.com/sp/world-wide-stereo/-/N-10001060"
+          }
+        ],
+        "relationship_type_code": "SA",
+        "return_policies_guest_message": "This item must be returned within 30 days of the date it was purchased in store, delivered to the guest, delivered by a Shipt shopper, or picked up by the guest.",
+        "return_policy_url": "https://www.target.com/help/articles/returns-exchanges/returns",
+        "wellness_merchandise_attributes": [
+          {
+            "badge_url": "https://target.scene7.com/is/image/Target/GUEST_494b0063-e6e8-416a-b116-b56a566d1659",
+            "parent_id": "108257",
+            "value_id": "831489",
+            "value_name": "Wireless",
+            "wellness_description": "Designed without the need for wires or cables"
+          },
+          {
+            "badge_url": "https://target.scene7.com/is/image/Target/GUEST_97642833-da6d-4c8e-9860-d4a6cda62970",
+            "parent_id": "1219979864",
+            "value_id": "844088",
+            "value_name": "Noise Canceling",
+            "wellness_description": "Reduces unwanted sounds using active noise control."
+          },
+          {
+            "badge_url": "https://target.scene7.com/is/image/Target/GUEST_69e6bc10-ff55-4e62-9c7d-737e2c21b3b1",
+            "parent_id": "1225338992",
+            "value_id": "843709",
+            "value_name": "Built-In Microphone",
+            "wellness_description": "Comes with a microphone that is used for recording"
+          }
+        ],
+        "cart_add_on_threshold": 35.0,
+        "handling": {
+          "import_designation_description": "made in the USA or imported"
+        },
+        "merchandise_classification": {
+          "class_id": 1,
+          "department_id": 57,
+          "department_name": "PORTABLE ELECTRONICS"
+        },
+        "primary_barcode": "050036394901",
+        "primary_brand": {
+          "canonical_url": "/b/jbl/-/N-5y5me",
+          "linking_id": "5y5me",
+          "name": "JBL"
+        },
+        "return_method": "Store Only"
+      },
+      "price": {
+        "current_retail": 329.95,
+        "display_was_now": false,
+        "formatted_current_price": "$329.95",
+        "formatted_current_price_type": "reg",
+        "reg_retail": 329.95,
+        "location_id": 3991,
+        "external_system_id": "89301002-3991-R-202508211902"
+      },
+      "promotions": [],
+      "predictive_search": {
+        "search_term": "jbl headphones"
+      }
+    }
+  }
+}

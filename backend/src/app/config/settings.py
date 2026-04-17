@@ -34,6 +34,17 @@ class Settings(BaseSettings):
         default=1.5, alias="SCRAPING_REQUEST_DELAY_SECONDS"
     )
     scraping_max_retries: int = Field(default=3, alias="SCRAPING_MAX_RETRIES")
+    scraping_timeout_seconds: int = Field(default=30, alias="SCRAPING_TIMEOUT_SECONDS")
+    scraping_user_agent: str = Field(
+        default="ai-lab-final-research-bot/0.1",
+        alias="SCRAPING_USER_AGENT",
+    )
+    scraping_min_review_chars: int = Field(default=25, alias="SCRAPING_MIN_REVIEW_CHARS")
+    target_api_key: str = Field(
+        default="9f36aeafbe60771e321a7cc95a78140772ab3e96",
+        alias="TARGET_API_KEY",
+    )
+    target_pricing_store_id: str = Field(default="2077", alias="TARGET_PRICING_STORE_ID")
     frontend_api_base_url: str = Field(
         default="http://localhost:8000",
         alias="FRONTEND_API_BASE_URL",

@@ -1,0 +1,588 @@
+{
+  "data": {
+    "product": {
+      "__typename": "Product",
+      "tcin": "81910071",
+      "category": {
+        "parent_category_id": "cpdjs",
+        "name": "Air Purifiers",
+        "breadcrumbs": [
+          {
+            "canonical_url": "/",
+            "category_id": "root",
+            "name": "target"
+          },
+          {
+            "canonical_url": "/c/home/-/N-5xtvd",
+            "category_id": "5xtvd",
+            "name": "Home & D\u00e9cor"
+          },
+          {
+            "canonical_url": "/c/heating-cooling-air-quality-home/-/N-cpdjs",
+            "category_id": "cpdjs",
+            "name": "Heating, Cooling & Air Quality"
+          },
+          {
+            "canonical_url": "/c/air-purifiers-home-appliances/-/N-5xtus",
+            "category_id": "5xtus",
+            "name": "Air Purifiers"
+          }
+        ]
+      },
+      "sales_classification_nodes": {
+        "node_ids": [
+          "5xtus",
+          "5q0g0",
+          "klijb",
+          "4yi3j",
+          "uzzaj",
+          "22jn8",
+          "uqsgf",
+          "wwy37",
+          "a8imv",
+          "btldv"
+        ]
+      },
+      "ratings_and_reviews": {
+        "has_verified": true,
+        "statistics": {
+          "not_recommended_count": 17,
+          "question_count": 54,
+          "rating": {
+            "average": 4.64,
+            "count": 541,
+            "distribution": {
+              "rating1": 22,
+              "rating2": 11,
+              "rating3": 17,
+              "rating4": 43,
+              "rating5": 448
+            },
+            "secondary_averages": [
+              {
+                "id": "quality",
+                "label": "quality",
+                "range": 5,
+                "type": "RATING",
+                "value": 4.46
+              },
+              {
+                "id": "value",
+                "label": "value",
+                "range": 5,
+                "type": "RATING",
+                "value": 4.35
+              }
+            ]
+          },
+          "recommended_count": 103,
+          "recommended_percentage": 85,
+          "review_count": 210
+        },
+        "most_recent": [
+          {
+            "id": "283e380b-76d1-45e1-85a0-33997708ef13",
+            "text": "I had bought this and came to my purchase history to buy a filter replacement. I then saw that they updated the listing to include that there is a cancer and reproductive harm warning for this purifier, and my return window has closed. I would not have purchased this item had this been posted before as I took my time comparing similar items. Do not buy, you will be exposing you or/ and your family to harmful chemicals.",
+            "author": {
+              "nickname": "Amber",
+              "external_id": "10095965139"
+            },
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-04-13T03:10:30.445Z"
+            }
+          },
+          {
+            "id": "47e9944d-5d7b-4a15-a16d-bf8719ba71d0",
+            "text": "I've had this in my bedroom for 5 months, and it seems like it helps with my allergies. I like that there is a sleep mode that is very quite (almost can't hear that it is on from 10 feet away). You can also turn off all the light completely on the display for sleeping, which I think is a very important feature.",
+            "author": {
+              "nickname": "Kathryn",
+              "external_id": "1070785294"
+            },
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-04-11T19:08:22.361Z"
+            }
+          },
+          {
+            "id": "046c1f38-c9b9-4e74-a561-0dc31e8b6ab0",
+            "text": "Received used item, very disappointed",
+            "author": {
+              "nickname": "Ngan",
+              "external_id": "10125756288"
+            },
+            "title": "I received a used item instead of a new one. The screen is heavily scratched, and the filter was dusty. Very disappointed with the condition. I will be returning this product.",
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-04-10T00:01:37.513Z"
+            }
+          },
+          {
+            "id": "07f9616f-07a9-465b-b796-a0427b4ab33b",
+            "text": "I\u2019ve used this for about 5 months now in my one bedroom apartment about 600 square feet. In any room I use it works really well and very soon after turning it on I notice a significance difference in air quality. I struggle with allergies all the time, and this has helped so much. I definitely recommend it.",
+            "author": {
+              "nickname": "Wendy",
+              "external_id": "8002125126"
+            },
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-04-08T01:54:28.516Z"
+            }
+          },
+          {
+            "id": "e4b076b0-9ded-4038-8c79-0956f84c122b",
+            "text": "Chat GPT recommended this air purifier.",
+            "author": {
+              "nickname": "Shelly",
+              "external_id": "8103130482"
+            },
+            "title": "Best pick according to chat GPT.",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-04-07T17:43:16.065Z"
+            }
+          },
+          {
+            "id": "3ab025f7-c13d-4731-a296-3a4edb1e019c",
+            "text": "This air purifier is incredible. Even after just three hours, I could sense a noticeable improvement in the air quality. I\u2019m already planning to buy another one for the living room as well!",
+            "author": {
+              "nickname": "Buffy P",
+              "external_id": "1720602065"
+            },
+            "title": "Amazing air purifier",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-03-23T20:07:15.047Z"
+            }
+          },
+          {
+            "id": "fbb5f7b5-b496-43b2-a273-257fff05ff4d",
+            "text": "I received the Core 300 and a Core 200, not (2) Core 300's. Please adjust price. Isn't it a little premature to ask for a specific product review right after it's received?",
+            "author": {
+              "nickname": "William",
+              "external_id": "20061901233"
+            },
+            "title": "Substitution? Please adjust price.",
+            "rating": {
+              "value": 2.0,
+              "submitted_at": "2026-03-11T23:56:08.206Z"
+            }
+          },
+          {
+            "id": "7cfc99b2-b421-434c-a060-672bf09feb28",
+            "text": "Love this air purifier. Helps with pet dander in master bedroom.",
+            "author": {
+              "nickname": "MrsRaci",
+              "external_id": "57195576"
+            },
+            "title": "Powerful Air Purifier",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-02-05T18:06:30.253Z"
+            }
+          }
+        ],
+        "photos": [
+          "https://target.scene7.com/is/image/Target/GUEST_2921bd71-4c3d-41a4-b80e-db7dcc499ac6",
+          "https://target.scene7.com/is/image/Target/GUEST_97e3a3f4-20db-48f8-ac6d-6dbbd5d9b15f",
+          "https://target.scene7.com/is/image/Target/GUEST_e7d47c57-4ac8-406d-9cf5-bd202098d6a4",
+          "https://target.scene7.com/is/image/Target/GUEST_a5cfe534-6b91-4b89-86d0-e69a151ebbab",
+          "https://target.scene7.com/is/image/Target/GUEST_d86d9ea3-bb0f-4026-8d09-90b0d190db02",
+          "https://target.scene7.com/is/image/Target/GUEST_0c5ce656-3675-48c6-86de-a9c2a7779dd6",
+          "https://target.scene7.com/is/image/Target/GUEST_c2ee1987-ff53-4aef-b9d5-7688032e4207",
+          "https://target.scene7.com/is/image/Target/GUEST_3c22b779-55d9-494a-b8cf-13ad90575c88",
+          "https://target.scene7.com/is/image/Target/GUEST_719ee2d5-673d-4723-a94b-bb0a9f0260a0",
+          "https://target.scene7.com/is/image/Target/GUEST_88a4e329-7f97-4ae4-ae60-3e66ceb3450d",
+          "https://target.scene7.com/is/image/Target/GUEST_0de5d0db-20cb-43d9-9485-051dbe6b198c",
+          "https://target.scene7.com/is/image/Target/GUEST_c170416d-9746-4a85-bbf6-716e3d92deac"
+        ]
+      },
+      "esp": {
+        "tcin": "51514010",
+        "enrichment": {
+          "images": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image_url": "https://target.scene7.com/is/image/Target/GUEST_946f5a25-d67b-4f88-8a6a-d5e10f3422e6",
+            "primary_image": "GUEST_946f5a25-d67b-4f88-8a6a-d5e10f3422e6"
+          }
+        },
+        "price": {
+          "formatted_current_price": "$11.00",
+          "formatted_current_price_type": "reg"
+        },
+        "product_description": {
+          "title": "2 Year Electronics Protection Plan ($75-$99.99) - Allstate",
+          "bullet_descriptions": [
+            "<B>Benefits:</B> Free 2-Way Shipping, 24/7 Support, No Deductible, No Additional Cost",
+            "<B>Support:</B> Online, Phone",
+            "<B>Includes:</B> Mechanical Defects, Normal Wear and Tear Coverage",
+            "<B>Minimum Qualifying Item Price:</B> 75",
+            "<B>Maximum Qualifying Item Price:</B> 99.99",
+            "<B>Service plan type:</B> Allstate - Electronics",
+            "<B>Number of years protected:</B> 2 years"
+          ]
+        }
+      },
+      "free_shipping": {
+        "enabled": true
+      },
+      "desirability_cues": [
+        {
+          "code": "bestseller",
+          "display": "Bestseller",
+          "long_description": "Based on sales and guest views of this item within the last 30 days."
+        }
+      ],
+      "ornaments": [
+        {
+          "ornament": "bestseller",
+          "display": "Bestseller",
+          "long_description": "Based on sales and guest views of this item within the last 30 days.",
+          "ornament_type": "guest",
+          "template_type": "dark_marker_with_trophy"
+        },
+        {
+          "ornament": "low_returns",
+          "display": "Kept by most",
+          "ornament_type": "enterprise",
+          "template_type": "green_heart_with_bold_text",
+          "metadata": "{\"experiments\":[{\"factor\":\"low_returns_ornament\",\"value\":\"treatment_2\",\"default\":false}]}"
+        },
+        {
+          "ornament": "low_returns_thumbs_up",
+          "display": "Rarely Returned",
+          "ornament_type": "enterprise",
+          "template_type": "thumbs_up_with_bold_text",
+          "metadata": "{\"experiments\":[{\"factor\":\"low_returns_ornament\",\"value\":\"treatment_1\",\"default\":false}]}"
+        }
+      ],
+      "item": {
+        "product_classification": {
+          "item_type": {
+            "name": "Air Purifiers",
+            "type": "49062876"
+          },
+          "product_type": 106030,
+          "product_type_name": "GARAGE & HARDWARE",
+          "purchase_behavior": "Discretionary"
+        },
+        "compliance": {
+          "disclosures": [
+            {
+              "name": "prop65",
+              "disclosure": "WARNING:Cancer and Reproductive Harm - www.P65Warnings.ca.gov For more information, go to <a href='https://www.p65warnings.ca.gov/'>https://www.p65warnings.ca.gov/</a>",
+              "icon": "warning"
+            }
+          ]
+        },
+        "enrichment": {
+          "buy_url": "https://www.target.com/p/levoit-core-300-air-purifier-white/-/A-81910071",
+          "image_info": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image": {
+              "image_name": "GUEST_095a473f-b8ae-4443-98e7-39a1525abb72",
+              "url": "https://target.scene7.com/is/image/Target/GUEST_095a473f-b8ae-4443-98e7-39a1525abb72"
+            },
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_35bf6e7a-a798-4c82-a5dd-15a22b69f451"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_26a8b0b0-4175-460f-8cf1-b08d15e6569c"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_45da78f2-7634-4a9b-9caf-8034c9837519"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_095a473f-b8ae-4443-98e7-39a1525abb72"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_abcbf132-8929-4ae6-9059-039b0b8161ab"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_35864675-154a-4ff6-9e0c-a80732785fea"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_b4279173-23df-450c-bd06-fab559d8e22b"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_30626895-f7b3-4f74-90a8-09ac06877fcf"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fa7e7531-de89-4299-97bf-4e8da67b3442"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_5258316c-6ac1-4b87-9f65-4649b1c2b961"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_c3dc1de8-9618-40bb-ab80-a66a6a7c5c7f"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_278fcfa4-7433-4e52-9165-31607ed1ccef"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_088ba7d8-96c0-4530-8e18-dd93b06a6668"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_727af939-f67b-4715-a17e-d73d720f8344"
+              }
+            ],
+            "alternate_images": [
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_45da78f2-7634-4a9b-9caf-8034c9837519",
+                "image_name": "GUEST_45da78f2-7634-4a9b-9caf-8034c9837519"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_26a8b0b0-4175-460f-8cf1-b08d15e6569c",
+                "image_name": "GUEST_26a8b0b0-4175-460f-8cf1-b08d15e6569c"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_abcbf132-8929-4ae6-9059-039b0b8161ab",
+                "image_name": "GUEST_abcbf132-8929-4ae6-9059-039b0b8161ab"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_35864675-154a-4ff6-9e0c-a80732785fea",
+                "image_name": "GUEST_35864675-154a-4ff6-9e0c-a80732785fea"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_35bf6e7a-a798-4c82-a5dd-15a22b69f451",
+                "image_name": "GUEST_35bf6e7a-a798-4c82-a5dd-15a22b69f451"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_fa7e7531-de89-4299-97bf-4e8da67b3442",
+                "image_name": "GUEST_fa7e7531-de89-4299-97bf-4e8da67b3442"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_b4279173-23df-450c-bd06-fab559d8e22b",
+                "image_name": "GUEST_b4279173-23df-450c-bd06-fab559d8e22b"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_30626895-f7b3-4f74-90a8-09ac06877fcf",
+                "image_name": "GUEST_30626895-f7b3-4f74-90a8-09ac06877fcf"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_727af939-f67b-4715-a17e-d73d720f8344",
+                "image_name": "GUEST_727af939-f67b-4715-a17e-d73d720f8344"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_5258316c-6ac1-4b87-9f65-4649b1c2b961",
+                "image_name": "GUEST_5258316c-6ac1-4b87-9f65-4649b1c2b961"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_088ba7d8-96c0-4530-8e18-dd93b06a6668",
+                "image_name": "GUEST_088ba7d8-96c0-4530-8e18-dd93b06a6668"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_c3dc1de8-9618-40bb-ab80-a66a6a7c5c7f",
+                "image_name": "GUEST_c3dc1de8-9618-40bb-ab80-a66a6a7c5c7f"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_86577d0c-e46d-422e-b24d-ef535131bf91",
+                "image_name": "GUEST_86577d0c-e46d-422e-b24d-ef535131bf91"
+              }
+            ],
+            "swatch_image": {}
+          },
+          "images": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image_url": "https://target.scene7.com/is/image/Target/GUEST_095a473f-b8ae-4443-98e7-39a1525abb72",
+            "primary_image": "GUEST_095a473f-b8ae-4443-98e7-39a1525abb72",
+            "alternate_images": [
+              "GUEST_45da78f2-7634-4a9b-9caf-8034c9837519",
+              "GUEST_26a8b0b0-4175-460f-8cf1-b08d15e6569c",
+              "GUEST_abcbf132-8929-4ae6-9059-039b0b8161ab",
+              "GUEST_35864675-154a-4ff6-9e0c-a80732785fea",
+              "GUEST_35bf6e7a-a798-4c82-a5dd-15a22b69f451",
+              "GUEST_fa7e7531-de89-4299-97bf-4e8da67b3442",
+              "GUEST_b4279173-23df-450c-bd06-fab559d8e22b",
+              "GUEST_30626895-f7b3-4f74-90a8-09ac06877fcf",
+              "GUEST_727af939-f67b-4715-a17e-d73d720f8344",
+              "GUEST_5258316c-6ac1-4b87-9f65-4649b1c2b961",
+              "GUEST_088ba7d8-96c0-4530-8e18-dd93b06a6668",
+              "GUEST_c3dc1de8-9618-40bb-ab80-a66a6a7c5c7f",
+              "GUEST_86577d0c-e46d-422e-b24d-ef535131bf91"
+            ],
+            "alternate_image_urls": [
+              "https://target.scene7.com/is/image/Target/GUEST_45da78f2-7634-4a9b-9caf-8034c9837519",
+              "https://target.scene7.com/is/image/Target/GUEST_26a8b0b0-4175-460f-8cf1-b08d15e6569c",
+              "https://target.scene7.com/is/image/Target/GUEST_abcbf132-8929-4ae6-9059-039b0b8161ab",
+              "https://target.scene7.com/is/image/Target/GUEST_35864675-154a-4ff6-9e0c-a80732785fea",
+              "https://target.scene7.com/is/image/Target/GUEST_35bf6e7a-a798-4c82-a5dd-15a22b69f451",
+              "https://target.scene7.com/is/image/Target/GUEST_fa7e7531-de89-4299-97bf-4e8da67b3442",
+              "https://target.scene7.com/is/image/Target/GUEST_b4279173-23df-450c-bd06-fab559d8e22b",
+              "https://target.scene7.com/is/image/Target/GUEST_30626895-f7b3-4f74-90a8-09ac06877fcf",
+              "https://target.scene7.com/is/image/Target/GUEST_727af939-f67b-4715-a17e-d73d720f8344",
+              "https://target.scene7.com/is/image/Target/GUEST_5258316c-6ac1-4b87-9f65-4649b1c2b961",
+              "https://target.scene7.com/is/image/Target/GUEST_088ba7d8-96c0-4530-8e18-dd93b06a6668",
+              "https://target.scene7.com/is/image/Target/GUEST_c3dc1de8-9618-40bb-ab80-a66a6a7c5c7f",
+              "https://target.scene7.com/is/image/Target/GUEST_86577d0c-e46d-422e-b24d-ef535131bf91"
+            ],
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_35bf6e7a-a798-4c82-a5dd-15a22b69f451"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_26a8b0b0-4175-460f-8cf1-b08d15e6569c"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_45da78f2-7634-4a9b-9caf-8034c9837519"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_095a473f-b8ae-4443-98e7-39a1525abb72"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_abcbf132-8929-4ae6-9059-039b0b8161ab"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_35864675-154a-4ff6-9e0c-a80732785fea"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_b4279173-23df-450c-bd06-fab559d8e22b"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_30626895-f7b3-4f74-90a8-09ac06877fcf"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fa7e7531-de89-4299-97bf-4e8da67b3442"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_5258316c-6ac1-4b87-9f65-4649b1c2b961"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_c3dc1de8-9618-40bb-ab80-a66a6a7c5c7f"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_278fcfa4-7433-4e52-9165-31607ed1ccef"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_088ba7d8-96c0-4530-8e18-dd93b06a6668"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_727af939-f67b-4715-a17e-d73d720f8344"
+              }
+            ]
+          },
+          "return_policies": [
+            {
+              "user_type": "best_guest",
+              "day_count": 120
+            },
+            {
+              "user_type": "regular_guest",
+              "day_count": 90
+            }
+          ]
+        },
+        "environmental_segmentation": {
+          "is_hazardous_material": false
+        },
+        "formatted_return_method": "This item can be returned to any Target store or Target.com.",
+        "fulfillment": {
+          "is_gift_wrap_eligible": true,
+          "purchase_limit": 5
+        },
+        "package_dimensions": {
+          "depth": 10.13,
+          "dimension_unit_of_measure": "INCH",
+          "weight": 9.06,
+          "weight_unit_of_measure": "POUND",
+          "height": 16.13,
+          "width": 10.13
+        },
+        "product_description": {
+          "bullet_descriptions": [
+            "<B>Dimensions (Overall):</B> 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)",
+            "<B>Weight:</B> 7.5 Pounds",
+            "<B>Number of Settings:</B> 3",
+            "<B>Wattage Required:</B> 45 Watts",
+            "<B>Filter Type:</B> Carbon",
+            "<B>Industry or Government Certifications:</B> ETL Listed, CARB Certified",
+            "<B>Room Size Range:</B> Range Not Specified",
+            "<B>Allergens Captured:</B> Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust",
+            "<B>Maximum Filter Life:</B> 12 Months",
+            "<B>Power Source:</B> Electric",
+            "<B>Battery:</B> No Battery Used",
+            "<B>Warranty:</B> 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869"
+          ],
+          "downstream_description": "Refresh your home\u2019s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft\u00b2 with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home. ",
+          "soft_bullets": {
+            "bullets": [
+              "3-Stage Filtration: Filters at least 99.97% of airborne particles down to 0.3 microns and helps remove smoke, odors, and VOCs.",
+              "Ideal Room Size: Perfect for living rooms and larger rooms, the air purifier works for rooms up to 1073 sq ft (1 ACH) and is very efficient for rooms 222 sq ft (4.84 ACH).",
+              "Air Changes Per Hour (ACH): This number means how many times per hour your air purifier will filter the entire volume of air in a specific room.",
+              "AHAM Verifide\u00ae Air Purifier Performance: Room air cleaners certified through the AHAM Verifide program have been tested by an independent laboratory to ensure the product will perform to the manufacturer\u2019s product claims for the suggested room size to reduce tobacco smoke, dust and pollen.",
+              "HEPA Sleep Mode: HEPA-grade filtration while operating in Sleep Mode, as tested by an independent lab.",
+              "Timer: Set a timer 2, 4, 6, or 8 hours.",
+              "3 Fan Speeds: Cycle through low, medium, or high fan speeds with the touch of a button.",
+              "Check Filter Indicator: The Check Filter Indicator will light up when it\u2019s time to check and/or replace the filter.",
+              "Sleep Mode: Uses a fan speed that\u2019s quieter than low speed and turns off display lights.",
+              "Independently certified CADR: All air cleaners in the AHAM Verifide\u00ae program are re-tested periodically to ensure that the performance stays the same over time."
+            ],
+            "title": "highlights"
+          },
+          "title": "Levoit Core 300 Air Purifier White",
+          "soft_bullet_description": "&bull;3-Stage Filtration: Filters at least 99.97% of airborne particles down to 0.3 microns and helps remove smoke, odors, and VOCs. <br>&bull;Ideal Room Size: Perfect for living rooms and larger rooms, the air purifier works for rooms up to 1073 sq ft (1 ACH) and is very efficient for rooms 222 sq ft (4.84 ACH). <br>&bull;Air Changes Per Hour (ACH): This number means how many times per hour your air purifier will filter the entire volume of air in a specific room. <br>&bull;AHAM Verifide\u00ae Air Purifier Performance: Room air cleaners certified through the AHAM Verifide program have been tested by an independent laboratory to ensure the product will perform to the manufacturer\u2019s product claims for the suggested room size to reduce tobacco smoke, dust and pollen. <br>&bull;HEPA Sleep Mode: HEPA-grade filtration while operating in Sleep Mode, as tested by an independent lab. <br>&bull;Timer: Set a timer 2, 4, 6, or 8 hours. <br>&bull;3 Fan Speeds: Cycle through low, medium, or high fan speeds with the touch of a button. <br>&bull;Check Filter Indicator: The Check Filter Indicator will light up when it\u2019s time to check and/or replace the filter. <br>&bull;Sleep Mode: Uses a fan speed that\u2019s quieter than low speed and turns off display lights. <br>&bull;Independently certified CADR: All air cleaners in the AHAM Verifide\u00ae program are re-tested periodically to ensure that the performance stays the same over time. "
+        },
+        "relationship_type_code": "SA",
+        "return_policies_guest_message": "This item must be returned within 90 days of the date it was purchased in store, delivered to the guest, delivered by a Shipt shopper, or picked up by the guest.",
+        "return_policy_url": "https://www.target.com/help/articles/returns-exchanges/returns",
+        "wellness_merchandise_attributes": [
+          {
+            "badge_url": "https://target.scene7.com/is/image/Target/GUEST_8eda2bc9-3448-4b9c-b7cb-6002382600e4",
+            "parent_id": "107941",
+            "value_id": "233564",
+            "value_name": "Electrical Plug Power Source",
+            "wellness_description": "Product is powered by electrical outlet"
+          }
+        ],
+        "cart_add_on_threshold": 35.0,
+        "dpci": "085-00-0137",
+        "eligibility_rules": {
+          "hold": {
+            "is_active": true
+          },
+          "scheduled_delivery": {
+            "is_active": true
+          },
+          "ship_to_guest": {
+            "is_active": true
+          }
+        },
+        "handling": {
+          "import_designation_description": "Imported"
+        },
+        "is_limited_time_offer": false,
+        "merchandise_classification": {
+          "class_id": 0,
+          "department_id": 85,
+          "department_name": "HARDWARE"
+        },
+        "primary_barcode": "817915027684",
+        "primary_brand": {
+          "canonical_url": "/b/levoit/-/N-qbig2",
+          "linking_id": "qbig2",
+          "name": "Levoit"
+        },
+        "return_method": "Mail In or Store",
+        "will_be_shipped_in_original_package": true
+      },
+      "price": {
+        "current_retail": 84.99,
+        "display_was_now": false,
+        "formatted_comparison_price": "$99.99",
+        "formatted_comparison_price_type": "reg",
+        "formatted_current_price": "$84.99",
+        "formatted_current_price_type": "sale",
+        "reg_retail": 99.99,
+        "save_dollar": 15.0,
+        "save_percent": 15.0,
+        "location_id": 3991,
+        "external_system_id": "336070406"
+      },
+      "promotions": [],
+      "predictive_search": {
+        "search_term": "air purifier"
+      }
+    }
+  }
+}

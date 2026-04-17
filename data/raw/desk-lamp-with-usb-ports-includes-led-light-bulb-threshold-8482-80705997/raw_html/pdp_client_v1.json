@@ -1,0 +1,603 @@
+{
+  "data": {
+    "product": {
+      "__typename": "Product",
+      "tcin": "80705997",
+      "category": {
+        "parent_category_id": "5xttm",
+        "name": "Desk Lamps",
+        "breadcrumbs": [
+          {
+            "canonical_url": "/",
+            "category_id": "root",
+            "name": "target"
+          },
+          {
+            "canonical_url": "/c/home/-/N-5xtvd",
+            "category_id": "5xtvd",
+            "name": "Home & D\u00e9cor"
+          },
+          {
+            "canonical_url": "/c/home-decor/-/N-5xtub",
+            "category_id": "5xtub",
+            "name": "Home Decor"
+          },
+          {
+            "canonical_url": "/c/lamps-lighting-home-decor/-/N-5xttm",
+            "category_id": "5xttm",
+            "name": "Lamps & Lighting"
+          },
+          {
+            "canonical_url": "/c/desk-lamps-lighting-home-decor/-/N-56duu",
+            "category_id": "56duu",
+            "name": "Desk Lamps"
+          }
+        ]
+      },
+      "sales_classification_nodes": {
+        "node_ids": [
+          "56duu",
+          "56d7t",
+          "5xtyp",
+          "5q0g0",
+          "557yu",
+          "5tf7e",
+          "9n4m5",
+          "oy4n0",
+          "btldv",
+          "9ciy7"
+        ]
+      },
+      "ratings_and_reviews": {
+        "has_verified": true,
+        "statistics": {
+          "not_recommended_count": 38,
+          "question_count": 25,
+          "rating": {
+            "average": 3.74,
+            "count": 216,
+            "distribution": {
+              "rating1": 41,
+              "rating2": 14,
+              "rating3": 19,
+              "rating4": 29,
+              "rating5": 113
+            },
+            "secondary_averages": [
+              {
+                "id": "quality",
+                "label": "quality",
+                "range": 5,
+                "type": "RATING",
+                "value": 3.58
+              },
+              {
+                "id": "value",
+                "label": "value",
+                "range": 5,
+                "type": "RATING",
+                "value": 3.49
+              }
+            ]
+          },
+          "recommended_count": 59,
+          "recommended_percentage": 60,
+          "review_count": 117
+        },
+        "most_recent": [
+          {
+            "id": "ec9c8256-950b-4756-9c38-6c9c63242c68",
+            "text": "I love it, small but brightens the room well.",
+            "author": {
+              "nickname": "natasha",
+              "external_id": "7920365306"
+            },
+            "title": "Little light of mine",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-03-31T16:26:37.290Z"
+            }
+          },
+          {
+            "id": "eb05a2a0-cab9-44bb-a366-44b63496ae81",
+            "text": "Don\u2019t bother with this junk. You can\u2019t replace the bulb when it goes out, so it needs to be trashed!!!! So basically, it\u2019s a disposable lamp. So wasteful!",
+            "author": {
+              "nickname": "mvillarreal",
+              "external_id": "7996465884"
+            },
+            "title": "Landfillcore",
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-02-19T01:08:12.214Z"
+            }
+          },
+          {
+            "id": "46bd09ac-c770-48d1-8e34-220d68e729c5",
+            "text": "This light worked well for about 2 years before it started very aggresivly flickering when you turn it on. it also turned on once in the middle of the light while it was fully off. And they dont have any way for you to access the light bulb or fix it.",
+            "author": {
+              "nickname": "Not really worth it",
+              "external_id": "7975777104"
+            },
+            "title": "Does Not Last",
+            "rating": {
+              "value": 2.0,
+              "submitted_at": "2026-02-02T01:34:41.961Z"
+            }
+          },
+          {
+            "id": "c18396e1-c2f5-4b16-8728-bf331d2be078",
+            "text": "USB charger doesn't work",
+            "author": {
+              "nickname": "Wendy",
+              "external_id": "10014495311"
+            },
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-01-24T19:54:49.025Z"
+            }
+          },
+          {
+            "id": "a29e09e0-ea17-4afa-8064-1cedd1be9a4b",
+            "text": "I thought this was cordless. Wrong! Be aware that it isn't. Still, it looked nice in my space and while I didn't think it's worth 40 bucks I kept it. Then I knocked it over. It shattered easily. 40 bucks for a week of lighting. Oh well.",
+            "author": {
+              "nickname": "Jr",
+              "external_id": "7977773332"
+            },
+            "rating": {
+              "value": 2.0,
+              "submitted_at": "2025-11-21T23:33:41.568Z"
+            }
+          },
+          {
+            "id": "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5",
+            "text": "Good function and pretty small size lamp. I wish the color of the light was more on the warm side. Going to try it out as part of newborn\u2019s middle of the night chang up set up. However, majority suggests using red light or warm light so I am hesitant to say this is a good option for this set up.",
+            "author": {
+              "nickname": "Jackie",
+              "external_id": "20002296745"
+            },
+            "title": "Good lamp but wish it's warmer light",
+            "rating": {
+              "value": 4.0,
+              "submitted_at": "2025-11-09T17:37:53.970Z"
+            }
+          },
+          {
+            "id": "39fee327-8192-44ae-ae11-d13e5046964f",
+            "text": "cute little lamp. love the brightness for the size and the dimming function",
+            "author": {
+              "nickname": "tabetha",
+              "external_id": "20066393319"
+            },
+            "rating": {
+              "value": 4.0,
+              "submitted_at": "2025-10-28T14:03:00.728Z"
+            }
+          },
+          {
+            "id": "279e71ef-c05d-4312-8a3f-1b3067524ea5",
+            "text": "Very warm light so great for reading.",
+            "author": {
+              "nickname": "Julia",
+              "external_id": "7804978507"
+            },
+            "title": "Night light",
+            "rating": {
+              "value": 4.0,
+              "submitted_at": "2025-09-30T16:51:07.663Z"
+            }
+          }
+        ],
+        "photos": [
+          "https://target.scene7.com/is/image/Target/GUEST_df010eb4-9a3a-4cba-bd5a-b83d6195e14f",
+          "https://target.scene7.com/is/image/Target/GUEST_3805ff30-1b09-42da-9835-1506a3ff4915",
+          "https://target.scene7.com/is/image/Target/GUEST_8c44d787-6ed3-4b00-9683-0d660dc8e6ba",
+          "https://target.scene7.com/is/image/Target/GUEST_f584f2c8-0fb9-48b0-869e-b1a6760ad0ac",
+          "https://target.scene7.com/is/image/Target/GUEST_250c4390-2f79-4ef5-8281-a7b88868205e",
+          "https://target.scene7.com/is/image/Target/GUEST_285217db-e494-49b9-b206-a6a51c2b6033",
+          "https://target.scene7.com/is/image/Target/GUEST_5cbe0336-36d1-4d47-b547-718cf389737d",
+          "https://target.scene7.com/is/image/Target/GUEST_a665d989-8df4-4446-a5f0-a72075b92205",
+          "https://target.scene7.com/is/image/Target/GUEST_25b2b8d8-ddb6-412f-99db-a89fce4417be",
+          "https://target.scene7.com/is/image/Target/GUEST_065de956-ed1b-4290-a832-c1f7497922d0",
+          "https://target.scene7.com/is/image/Target/GUEST_4e0d3f49-dc06-47d7-902b-410bbe09c28e",
+          "https://target.scene7.com/is/image/Target/GUEST_fe4fa54a-a1e6-42d1-97fc-47e99e58d5cf"
+        ]
+      },
+      "esp": {
+        "tcin": "54573673",
+        "enrichment": {
+          "images": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image_url": "https://target.scene7.com/is/image/Target/GUEST_30a4c84d-25b7-4639-b669-bfc82d42d21d",
+            "primary_image": "GUEST_30a4c84d-25b7-4639-b669-bfc82d42d21d"
+          }
+        },
+        "price": {
+          "formatted_current_price": "$6.00",
+          "formatted_current_price_type": "reg"
+        },
+        "product_description": {
+          "title": "2 Year Furniture Protection Plan ($18-$49.99) - Allstate",
+          "bullet_descriptions": [
+            "<B>Benefits:</B> Free 2-Way Shipping, 24/7 Support, No Deductible, No Additional Cost",
+            "<B>Support:</B> Online, Phone",
+            "<B>Includes:</B> Mechanical Defects, Normal Wear and Tear Coverage, Electrical Defects",
+            "<B>Minimum Qualifying Item Price:</B> 18",
+            "<B>Maximum Qualifying Item Price:</B> 49.99",
+            "<B>Service plan type:</B> Allstate - Furniture",
+            "<B>Number of years protected:</B> 2 years"
+          ]
+        }
+      },
+      "free_shipping": {
+        "enabled": true
+      },
+      "desirability_cues": [
+        {
+          "code": "social_proofing",
+          "display": "500+ bought in last month",
+          "long_description": "This item was bought over 500 times this month."
+        }
+      ],
+      "ornaments": [
+        {
+          "ornament": "social_proofing",
+          "display": "500+ bought in last month",
+          "long_description": "This item was bought over 500 times this month.",
+          "ornament_type": "guest",
+          "template_type": "bold_prefix_with_text"
+        }
+      ],
+      "item": {
+        "product_classification": {
+          "item_type": {
+            "name": "Table Lamps",
+            "type": "256086"
+          },
+          "product_type": 535,
+          "product_type_name": "HOME",
+          "purchase_behavior": "Discretionary"
+        },
+        "compliance": {},
+        "enrichment": {
+          "buy_url": "https://www.target.com/p/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482/-/A-80705997",
+          "image_info": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image": {
+              "alt_text": "A white colored oval lamp with a wooden base and a round gold colored knob.",
+              "image_name": "GUEST_2f10a2b0-4bf4-4ef9-b186-8da0d64a2ab2",
+              "url": "https://target.scene7.com/is/image/Target/GUEST_2f10a2b0-4bf4-4ef9-b186-8da0d64a2ab2"
+            },
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_2f10a2b0-4bf4-4ef9-b186-8da0d64a2ab2"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fe984df0-d39a-4562-948b-96fa94d2a382"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fc406434-3c53-466c-8639-439fa6c49382"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_8323f203-efee-4098-a095-d1536c0459d2"
+              }
+            ],
+            "alternate_images": [
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_fe984df0-d39a-4562-948b-96fa94d2a382",
+                "image_name": "GUEST_fe984df0-d39a-4562-948b-96fa94d2a382",
+                "alt_text": "A white colored table lamp with a wooden base is placed next to an hourglass with blue sand and several binder clips."
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_8323f203-efee-4098-a095-d1536c0459d2",
+                "image_name": "GUEST_8323f203-efee-4098-a095-d1536c0459d2",
+                "alt_text": "A round white colored table lamp with a wooden base is placed next to an hourglass with blue sand and several binder clips."
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_fc406434-3c53-466c-8639-439fa6c49382",
+                "image_name": "GUEST_fc406434-3c53-466c-8639-439fa6c49382",
+                "alt_text": "A white colored table lamp with a round base featuring two USB ports and a power cord plugged in."
+              }
+            ],
+            "swatch_image": {}
+          },
+          "images": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image_url": "https://target.scene7.com/is/image/Target/GUEST_2f10a2b0-4bf4-4ef9-b186-8da0d64a2ab2",
+            "primary_image": "GUEST_2f10a2b0-4bf4-4ef9-b186-8da0d64a2ab2",
+            "alternate_images": [
+              "GUEST_fe984df0-d39a-4562-948b-96fa94d2a382",
+              "GUEST_8323f203-efee-4098-a095-d1536c0459d2",
+              "GUEST_fc406434-3c53-466c-8639-439fa6c49382"
+            ],
+            "alternate_image_urls": [
+              "https://target.scene7.com/is/image/Target/GUEST_fe984df0-d39a-4562-948b-96fa94d2a382",
+              "https://target.scene7.com/is/image/Target/GUEST_8323f203-efee-4098-a095-d1536c0459d2",
+              "https://target.scene7.com/is/image/Target/GUEST_fc406434-3c53-466c-8639-439fa6c49382"
+            ],
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_2f10a2b0-4bf4-4ef9-b186-8da0d64a2ab2",
+                "shoppable_in_image": [
+                  {
+                    "tcin": "80705997"
+                  }
+                ]
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fe984df0-d39a-4562-948b-96fa94d2a382",
+                "shoppable_in_image": [
+                  {
+                    "tcin": "80705997"
+                  }
+                ]
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_fc406434-3c53-466c-8639-439fa6c49382",
+                "shoppable_in_image": [
+                  {
+                    "tcin": "80705997"
+                  }
+                ]
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_8323f203-efee-4098-a095-d1536c0459d2",
+                "shoppable_in_image": [
+                  {
+                    "tcin": "80705997"
+                  }
+                ]
+              }
+            ]
+          },
+          "videos": [
+            {
+              "video_captions": [
+                {
+                  "caption_url": "https://target.scene7.com/is/content/Target/GUEST_ee57da2a-162c-47b4-b474-648eebb45506",
+                  "language": "EN"
+                }
+              ],
+              "video_files": [
+                {
+                  "mime_type": "video/mp4",
+                  "video_height_pixels": "720",
+                  "video_url": "https://target.scene7.com/is/content/Target/GUEST_e1b359e9-aa1d-4dc1-931e-1d499fe009aa"
+                }
+              ],
+              "video_length_seconds": "31",
+              "video_poster_image": "https://target.scene7.com/is/image/Target/GUEST_70b7c88c-3f28-4cee-bcfb-80a2b0acb434",
+              "video_title": "Threshold\u2122 Desk Lamp with USB Ports"
+            }
+          ],
+          "return_policies": [
+            {
+              "user_type": "best_guest",
+              "day_count": 365
+            },
+            {
+              "user_type": "regular_guest",
+              "day_count": 365
+            }
+          ]
+        },
+        "environmental_segmentation": {
+          "is_hazardous_material": false
+        },
+        "formatted_return_method": "This item can be returned to any Target store or Target.com.",
+        "fulfillment": {
+          "is_gift_wrap_eligible": true,
+          "purchase_limit": 20
+        },
+        "package_dimensions": {
+          "depth": 5.74,
+          "dimension_unit_of_measure": "INCH",
+          "weight": 1.25,
+          "weight_unit_of_measure": "POUND",
+          "height": 6.73,
+          "width": 5.76
+        },
+        "product_description": {
+          "bullet_descriptions": [
+            "<B>Includes:</B> 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)",
+            "<B>Weight:</B> 2.5 Pounds",
+            "<B>Shade Shape:</B> Oval",
+            "<B>Lighting Shade Material:</B> Glass",
+            "<B>Bulb Base Size:</B> Non-Removable Integrated Bulb",
+            "<B>Features:</B> USB Port(s)",
+            "<B>Lighting Body Material:</B> Wood",
+            "<B>Light Appearance:</B> Temperature Not Specified",
+            "<B>Assembly Details:</B> Adult Assembly Required, Tools Provided",
+            "<B>Number of Light Bulb Sockets:</B> 1",
+            "<B>Cord Covering:</B> Plastic",
+            "<B>Assembled Dimensions:</B> 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)",
+            "<B>Base Dimensions:</B> 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)",
+            "<B>Cable/Cord Length:</B> 6 Feet",
+            "<B>Shade Dimensions:</B> 4.94 Inches (H)",
+            "<B>Maximum Light Bulb Wattage:</B> 5 Watts",
+            "<B>Lighting Switch Type:</B> Base Turn Knob Rotary Switch",
+            "<B>Number of Lighting Shades:</B> 1",
+            "<B>Color rendering index:</B> 0",
+            "<B>Light settings:</B> Dimmable (Full Range)",
+            "<B>Battery:</B> No Battery Used",
+            "<B>Warranty:</B> 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869"
+          ],
+          "downstream_description": "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold\u2122. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices.<br /><br />Threshold\u2122: Looks like home, feels like you.",
+          "soft_bullets": {
+            "bullets": [
+              "Oval desk lamp updates your decor with a touch of natural appeal",
+              "Base turn knob rotary switch offers easy function",
+              "Oval glass shade offers a crisp, modern finish",
+              "Integrated LED lightbulb creates the perfect ambiance in your home"
+            ],
+            "title": "highlights"
+          },
+          "title": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold&#8482;",
+          "soft_bullet_description": "&bull;Oval desk lamp updates your decor with a touch of natural appeal<br>&bull;Base turn knob rotary switch offers easy function<br>&bull;Oval glass shade offers a crisp, modern finish<br>&bull;Integrated LED lightbulb creates the perfect ambiance in your home"
+        },
+        "relationship_type_code": "SA",
+        "return_policies_guest_message": "This item must be returned within 365 days of the date it was purchased in store, delivered to the guest, delivered by a Shipt shopper, or picked up by the guest.",
+        "return_policy_url": "https://www.target.com/help/articles/returns-exchanges/returns",
+        "ribbons": [
+          "Only At Target"
+        ],
+        "wellness_merchandise_attributes": [
+          {
+            "badge_url": "https://target.scene7.com/is/image/Target/GUEST_3a5a31a0-b1d9-4eb6-bc29-4244a40b808b",
+            "parent_id": "127450",
+            "value_id": "252217",
+            "value_name": "Forest Stewardship Council\u00ae Certified",
+            "wellness_description": "We\u2019re committed to making products better for you, and the world. This product and/or packaging is certified by the Forest Stewardship Council, which promotes environmentally appropriate, socially beneficial, and economically viable management of the world\u2019s forests. To learn more, visit www.fsc.org. FSC-N003198"
+          },
+          {
+            "badge_url": "https://target.scene7.com/is/image/Target/GUEST_22a89182-2e6c-40a5-902c-9c49c0789c7b",
+            "parent_id": "304268",
+            "value_id": "825143",
+            "value_name": "Dimmable",
+            "wellness_description": "Dimmable (Full Range)"
+          }
+        ],
+        "cart_add_on_threshold": 35.0,
+        "dpci": "081-08-9938",
+        "eligibility_rules": {
+          "hold": {
+            "is_active": true
+          },
+          "scheduled_delivery": {
+            "is_active": true
+          },
+          "ship_to_guest": {
+            "is_active": true
+          }
+        },
+        "handling": {
+          "import_designation_description": "Imported"
+        },
+        "is_limited_time_offer": false,
+        "merchandise_classification": {
+          "class_id": 8,
+          "department_id": 81,
+          "department_name": "SCHOOL/OFFICE SUPPLIES"
+        },
+        "primary_barcode": "810125110061",
+        "primary_brand": {
+          "canonical_url": "/b/threshold/-/N-56dig",
+          "linking_id": "56dig",
+          "name": "Threshold"
+        },
+        "return_method": "Mail in or Store"
+      },
+      "finds_stories": [
+        {
+          "id": "ideas-clean-dorm-room-aesthetic",
+          "channel_id": "finds",
+          "description": "Achieve a minimalistic look with storage & organization hacks to keep you on track.",
+          "display_date": "June 23",
+          "highlight_color": "#fda9b5",
+          "image": {
+            "url": "https://target.scene7.com/is/image/Target/GUEST_c8cc6264-f4a0-440d-83ba-0a1bdc86f29b",
+            "alt_text": "Clean aesthetic inspo straight from Pinterest to your college space.",
+            "height": 0,
+            "width": 0,
+            "aspect_ratio": "1:1"
+          },
+          "images": [
+            {
+              "url": "https://target.scene7.com/is/image/Target/GUEST_c8cc6264-f4a0-440d-83ba-0a1bdc86f29b",
+              "alt_text": "Clean aesthetic inspo straight from Pinterest to your college space.",
+              "height": 0,
+              "width": 0,
+              "aspect_ratio": "1:1"
+            }
+          ],
+          "label": "Ideas",
+          "name": "ideas-clean-dorm-room-aesthetic",
+          "short_title": "College clean aesthetic",
+          "title": "Clean aesthetic inspo straight from Pinterest to your college space.",
+          "url": "https://www.target.com/finds/stories/ideas-clean-dorm-room-aesthetic"
+        },
+        {
+          "id": "ideas-dorm-room-popular-aesthetic",
+          "channel_id": "finds",
+          "description": "From light pink to crisp white, lean into a hue that feels just right with bedding, decor & more dorm-friendly finds.",
+          "display_date": "June 23",
+          "highlight_color": "#fda9b5",
+          "image": {
+            "url": "https://target.scene7.com/is/image/Target/GUEST_138880c6-caf7-4663-960c-b7dc1fe4689c",
+            "alt_text": "Pinterest-inspired color aesthetics for stylish school living.",
+            "height": 0,
+            "width": 0,
+            "aspect_ratio": "1:1"
+          },
+          "images": [
+            {
+              "url": "https://target.scene7.com/is/image/Target/GUEST_138880c6-caf7-4663-960c-b7dc1fe4689c",
+              "alt_text": "Pinterest-inspired color aesthetics for stylish school living.",
+              "height": 0,
+              "width": 0,
+              "aspect_ratio": "1:1"
+            }
+          ],
+          "label": "Ideas",
+          "name": "ideas-dorm-room-popular-aesthetic",
+          "short_title": "College color aesthetics",
+          "title": "Pinterest-inspired color aesthetics for stylish school living.",
+          "url": "https://www.target.com/finds/stories/ideas-dorm-room-popular-aesthetic"
+        }
+      ],
+      "finds_posts": [
+        {
+          "id": "2NRfpCNrHh3HVcM6HrwDCs",
+          "caption": "Happy hump day everyone! \ud83d\udc2b\n\nI just wanted to share my current desk setup one last time before I transition it to a more fall, cozy & warm vibe!\ud83c\udf41\ud83c\udf42\n\nI loved the green temporarily, but I cant wait for the beiges and browns! \ud83e\udd0e\n\nI have been super busy these days, organizing my new phone, creating new content and alot of school work. \n\n------------\n\n#desksetup #desk #setup #desksetups #deskgram #deskinspo #deskspace #setupinspo #setupinspiration #deskinspiration #cozydesk #cozydesksetup #cozyaesthetic #deskgoals #minimalsetups #minimalsetups #cozyathome #cozy #homeoffice #bedroom #japandistyle #japandi #aesthetic #minimal #orchids #homedecor #interiordecor  #zen #homedesign #interiordesign",
+          "url": "https://www.target.com",
+          "placeholder_color": "#f9e9ce",
+          "is_video": false,
+          "user": {
+            "display_name": "@btoiiptimist",
+            "image_alt_text": "@btoiiptimist",
+            "image_url": "https://edge.curalate.com/v1/img/NBhuquSqA95xCTwMOglawt_gXL8qjzd_8MKeYq-PY0U=/b/200",
+            "url": "https://www.target.com/finds/targetstyle?usernames=btoiiptimist",
+            "username": "btoiiptimist"
+          },
+          "image": {
+            "url": "https://edge.curalate.com/v1/img/5gqFHUuVzye0qWkefLe9FS1-t_aaDxXWPlYuF386tTI=",
+            "alt_text": "user image by @btoiiptimist, Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold&#8482;",
+            "height": 1799,
+            "width": 1440,
+            "aspect_ratio": "4:5"
+          }
+        }
+      ],
+      "price": {
+        "current_retail": 37.0,
+        "display_was_now": true,
+        "formatted_comparison_price": "$40.00",
+        "formatted_comparison_price_type": "reg",
+        "formatted_current_price": "$37.00",
+        "formatted_current_price_type": "reg",
+        "reg_retail": 37.0,
+        "save_dollar": 3.0,
+        "save_percent": 8.0,
+        "location_id": 3991,
+        "external_system_id": "80705997-3991-37.00-2026041511"
+      },
+      "promotions": [],
+      "cgi_asset": {
+        "experiences": [
+          "android",
+          "see_it_in_your_space",
+          "spinner",
+          "ios",
+          "ios_quicklook"
+        ],
+        "formats": {
+          "glb": "https://digitalcontent.target.com/vault/1650758400/CLOUD_65cba3a7-fbe0-4fea-b1b0-83d7aab682b1.glb",
+          "gltf": "https://digitalcontent.target.com/vault/1651017600/CLOUD_6b03fa32-f912-43e4-b702-35a85a500617.gltf",
+          "usdz": "https://digitalcontent.target.com/vault/1650758400/CLOUD_f3c8e31e-d84a-4d3a-b1d9-f119ce6cb730.usdz"
+        }
+      },
+      "predictive_search": {
+        "search_term": "desk lamp"
+      }
+    }
+  }
+}

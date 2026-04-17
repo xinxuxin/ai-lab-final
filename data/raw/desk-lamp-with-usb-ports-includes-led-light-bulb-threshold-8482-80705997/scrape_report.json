@@ -1,0 +1,34 @@
+{
+  "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+  "product_id": "80705997",
+  "source_url": "https://www.target.com/p/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482/-/A-80705997",
+  "category": "lighting",
+  "marketplace": "target",
+  "title": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™",
+  "status": "partial_success",
+  "reused_existing": false,
+  "scrape_timestamp": "2026-04-17T05:09:43.575279",
+  "pages_fetched": 2,
+  "visible_review_count": 117,
+  "collected_review_count": 7,
+  "image_count": 4,
+  "failure_counts": {
+    "blocked": 0,
+    "parse_failed": 0,
+    "no_reviews_accessible": 0,
+    "image_download_failed": 0,
+    "partial_success": 1
+  },
+  "artifact_completeness": {
+    "product_meta": true,
+    "description": true,
+    "reviews": true,
+    "images": true,
+    "raw_html": true,
+    "scrape_report": true
+  },
+  "notes": [
+    "Only the publicly exposed most_recent review block was available from Target's PDP JSON.",
+    "Collected fewer reviews than the visible public count because only the exposed most_recent block was available."
+  ]
+}

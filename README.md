@@ -46,6 +46,25 @@ This repository is structured to support all four required questions:
 - Discovery now supports caching, `--refresh`, deduplication by canonical URL, ranking by review visibility and product relevance, and failure-category reporting.
 - Added parser fixtures, parser tests, documentation, and example discovery configs.
 
+### Stage 4: One-Time Product Scraping
+
+- Added a product-page scraper adapter architecture under `backend/src/app/collectors/product_pages/`.
+- Implemented a public Target adapter that:
+  - fetches product page HTML
+  - fetches public `pdp_client_v1` JSON
+  - extracts product title, category, description, bullets, visible rating/review count, recent public reviews, and real product image URLs
+- Added strict durable artifact output under `data/raw/<product_slug>/`:
+  - `product_meta.json`
+  - `description.json`
+  - `reviews.jsonl`
+  - `images/`
+  - `raw_html/`
+  - `scrape_report.json`
+- Added `data/raw/raw_manifest.json` with per-product completeness, counts, status, and timestamps.
+- Scraping now reuses complete on-disk artifacts by default and only re-fetches when `--refresh` is passed.
+- Added selected-product input tracking in `data/selected_products.jsonl` with exactly three products across distinct categories.
+- Added fixture-based parser tests and mocked-network persistence tests for the scraping stage.
+
 ## Repository Structure
 
 ```text
@@ -80,6 +99,10 @@ This repository is structured to support all four required questions:
 ├── configs/
 │   ├── product_queries.example.yaml
 │   └── product_queries.yaml
+├── data/
+│   ├── discovery/
+│   ├── raw/
+│   └── selected_products.jsonl
 ├── frontend/
 │   ├── index.html
 │   ├── package.json
@@ -130,6 +153,17 @@ source .venv/bin/activate
 cd backend
 PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml
 PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml --refresh
+```
+
+Scraping commands now support:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100
+PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100 --refresh
+PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-product --url https://www.target.com/p/levoit-core-300-air-purifier-white/-/A-81910071 --max-reviews 100
 ```
 
 ## Frontend Overview
@@ -192,6 +226,7 @@ uvicorn app.main:app --reload --app-dir src --port 8000
 source .venv/bin/activate
 cd backend
 PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml
+PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100
 PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow
 ```
 
@@ -224,17 +259,19 @@ npm run build
 
 ## Current Limitations
 
-- Product discovery, scraping, retrieval, prompt execution, image generation, and evaluation are scaffolded but not yet implemented.
+- Product discovery and one-time product scraping are implemented; retrieval, prompt execution, image generation, and evaluation are still pending.
 - Discovery is currently implemented for Best Buy search pages only.
+- Product scraping is currently implemented for Target public product pages only.
+- Target's public PDP payload exposes only a recent-review block, so the current scraper captures a truthful subset of public reviews and marks those products as `partial_success`.
 - Frontend currently uses presentation-friendly mock data only and does not call backend APIs yet.
-- Artifact manifests, workflow traces, and report exports are placeholders awaiting real stage outputs.
+- Workflow traces and downstream report exports are still placeholders awaiting later stages.
 - Comparison and generation pages currently use styled placeholders rather than real saved image thumbnails.
 
 ## Next Recommended Stage
 
 Implement `Q1` end-to-end:
 
-- automated candidate discovery for public product links
-- manual/traceable final selection of exactly three products
-- durable scrape artifacts for descriptions and public reviews
-- crawl logs, manifests, and reproducibility notes
+- build the durable text corpus from saved descriptions and reviews
+- add chunking and retrieval artifacts for Q2
+- connect the frontend Product Selection and Review Explorer pages to saved real artifacts
+- preserve evidence traces for visual-profile extraction

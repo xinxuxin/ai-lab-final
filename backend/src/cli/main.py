@@ -8,6 +8,7 @@ from pathlib import Path
 import typer
 
 from app.collectors.discovery import run_discovery
+from app.collectors.product_pages import run_scrape_all, run_scrape_product
 from app.config.settings import get_settings
 from app.utils.logging import configure_logging
 from app.workflow.orchestrator import plan_workflow
@@ -82,34 +83,115 @@ def discover_products(
 
 @app.command("scrape-product")
 def scrape_product(
-    product_url: str,
+    url: str = typer.Option(..., "--url", help="Public product page URL to scrape."),
+    max_reviews: int = typer.Option(
+        100,
+        help="Maximum number of public reviews to retain.",
+    ),
     refresh: bool = typer.Option(
         False,
         help="Re-scrape the product page and reviews.",
     ),
+    reuse_existing: bool = typer.Option(
+        True,
+        "--reuse-existing/--no-reuse-existing",
+        help="Reuse existing raw artifacts when they are already complete.",
+    ),
 ) -> None:
     """Scrape one public product page and its reviews."""
-    typer.echo(
-        json.dumps(
-            {
-                "stage": "scrape-product",
-                "product_url": product_url,
-                "refresh": refresh,
-            },
-            indent=2,
-        )
+    configure_logging()
+    result = run_scrape_product(
+        url=url,
+        max_reviews=max_reviews,
+        refresh=refresh,
+        reuse_existing=reuse_existing,
     )
+    summary = {
+        "stage": "scrape-product",
+        "product_slug": result.report.product_slug,
+        "title": result.report.title,
+        "status": result.report.status,
+        "reused_existing": result.report.reused_existing,
+        "pages_fetched": result.report.pages_fetched,
+        "collected_review_count": result.report.collected_review_count,
+        "visible_review_count": result.report.visible_review_count,
+        "image_count": result.report.image_count,
+        "failure_counts": result.report.failure_counts,
+    }
+    typer.echo("Scrape summary:")
+    typer.echo(json.dumps(summary, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.output_dir}")
+    typer.echo(f"- {result.output_dir / 'product_meta.json'}")
+    typer.echo(f"- {result.output_dir / 'description.json'}")
+    typer.echo(f"- {result.output_dir / 'reviews.jsonl'}")
+    typer.echo(f"- {result.output_dir / 'images'}")
+    typer.echo(f"- {result.output_dir / 'raw_html'}")
+    typer.echo(f"- {result.output_dir / 'scrape_report.json'}")
 
 
 @app.command("scrape-all")
 def scrape_all(
+    input: str = typer.Option(
+        "../data/selected_products.jsonl",
+        help="Path to the selected products JSONL file.",
+    ),
+    max_reviews: int = typer.Option(
+        100,
+        help="Maximum number of public reviews to retain per product.",
+    ),
     refresh: bool = typer.Option(
         False,
         help="Re-scrape all previously selected products.",
-    )
+    ),
+    reuse_existing: bool = typer.Option(
+        True,
+        "--reuse-existing/--no-reuse-existing",
+        help="Reuse existing raw artifacts when they are already complete.",
+    ),
 ) -> None:
     """Scrape all selected products and reviews."""
-    _print_placeholder("scrape-all", refresh=refresh)
+    configure_logging()
+    result = run_scrape_all(
+        input_path=Path(input).resolve(),
+        max_reviews=max_reviews,
+        refresh=refresh,
+        reuse_existing=reuse_existing,
+    )
+    summary = {
+        "stage": "scrape-all",
+        "product_count": result.manifest.product_count,
+        "reused_existing": result.manifest.reused_existing,
+        "statuses": {
+            entry.product_slug: {
+                "status": entry.status,
+                "review_count": entry.review_count,
+                "image_count": entry.image_count,
+            }
+            for entry in result.manifest.entries
+        },
+    }
+    typer.echo("Scrape summary:")
+    typer.echo(json.dumps(summary, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.manifest.output_dir}")
+    typer.echo(f"- {result.manifest_path}")
+    typer.echo("")
+    typer.echo("Manual review for final 3 products:")
+    typer.echo(
+        "1. Open data/raw/raw_manifest.json to compare completeness, review counts, "
+        "and image counts."
+    )
+    typer.echo(
+        "2. Inspect each product folder under data/raw/<product_slug>/ for raw HTML, "
+        "images, and scrape reports."
+    )
+    typer.echo(
+        "3. Use product_meta.json and reviews.jsonl as the default downstream inputs "
+        "unless you pass --refresh."
+    )
 
 
 @app.command("build-corpus")
