@@ -1,0 +1,86 @@
+[
+  {
+    "filename": "reference_01.jpg",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_01.jpg",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_02.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_02.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_03.jpg",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_03.jpg",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_04.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_04.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_05.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_05.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_06.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_06.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_07.jpg",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_07.jpg",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_08.jpg",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_08.jpg",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_09.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_09.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_10.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_10.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_11.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_11.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_12.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_12.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_13.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_13.avif",
+    "source": "reference",
+    "valid": true
+  },
+  {
+    "filename": "reference_14.avif",
+    "local_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/levoit-core-300-air-purifier-white-81910071/images/reference_14.avif",
+    "source": "reference",
+    "valid": true
+  }
+]

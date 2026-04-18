@@ -40,6 +40,8 @@ class Settings(BaseSettings):
         alias="SCRAPING_USER_AGENT",
     )
     scraping_min_review_chars: int = Field(default=25, alias="SCRAPING_MIN_REVIEW_CHARS")
+    q1_min_review_count: int = Field(default=5, alias="Q1_MIN_REVIEW_COUNT")
+    corpus_min_review_chars: int = Field(default=25, alias="CORPUS_MIN_REVIEW_CHARS")
     target_api_key: str = Field(
         default="9f36aeafbe60771e321a7cc95a78140772ab3e96",
         alias="TARGET_API_KEY",

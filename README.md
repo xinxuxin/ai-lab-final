@@ -65,6 +65,29 @@ This repository is structured to support all four required questions:
 - Added selected-product input tracking in `data/selected_products.jsonl` with exactly three products across distinct categories.
 - Added fixture-based parser tests and mocked-network persistence tests for the scraping stage.
 
+### Stage 5: Processed Corpus and Q1 Validation
+
+- Added a processed corpus pipeline under `backend/src/app/services/corpus.py`.
+- Raw scrape artifacts are now transformed into cleaned reusable corpora under `data/processed/<product_slug>/`:
+  - `product.json`
+  - `description_clean.txt`
+  - `reviews_clean.jsonl`
+  - `review_stats.json`
+  - `image_manifest.json`
+- Added `data/processed/manifest.json` for reporting-friendly global corpus metadata.
+- Cleaning now normalizes whitespace, removes duplicate reviews, filters extremely short reviews, and drops low-information reviews while preserving review metadata.
+- Added strict Q1 validation for:
+  - exactly 3 selected products
+  - 3 distinct categories
+  - non-empty cleaned descriptions
+  - configurable minimum cleaned review count
+  - at least 1 valid real image per product
+- Added generated reporting support docs:
+  - `docs/q1_summary.md`
+  - `docs/q1_selection_rationale_template.md`
+- Added `verify-artifacts --stage q1` with human-readable and machine-readable output.
+- Added tests for duplicate removal, category uniqueness, empty description failure, and minimum review threshold failure.
+
 ## Repository Structure
 
 ```text
@@ -166,6 +189,16 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/select
 PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-product --url https://www.target.com/p/levoit-core-300-air-purifier-white/-/A-81910071 --max-reviews 100
 ```
 
+Processed corpus and Q1 verification now support:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main build-corpus --raw-dir ../data/raw --output-dir ../data/processed --input ../data/selected_products.jsonl
+PYTHONPATH=src ../.venv/bin/python -m cli.main verify-artifacts --stage q1 --processed-dir ../data/processed --input ../data/selected_products.jsonl
+```
+
 ## Frontend Overview
 
 Implemented routes:
@@ -227,6 +260,8 @@ source .venv/bin/activate
 cd backend
 PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml
 PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100
+PYTHONPATH=src ../.venv/bin/python -m cli.main build-corpus --raw-dir ../data/raw --output-dir ../data/processed --input ../data/selected_products.jsonl
+PYTHONPATH=src ../.venv/bin/python -m cli.main verify-artifacts --stage q1 --processed-dir ../data/processed --input ../data/selected_products.jsonl
 PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow
 ```
 
@@ -259,7 +294,7 @@ npm run build
 
 ## Current Limitations
 
-- Product discovery and one-time product scraping are implemented; retrieval, prompt execution, image generation, and evaluation are still pending.
+- Product discovery, one-time product scraping, and Q1 processed-corpus validation are implemented; retrieval, prompt execution, image generation, and evaluation are still pending.
 - Discovery is currently implemented for Best Buy search pages only.
 - Product scraping is currently implemented for Target public product pages only.
 - Target's public PDP payload exposes only a recent-review block, so the current scraper captures a truthful subset of public reviews and marks those products as `partial_success`.
@@ -269,9 +304,9 @@ npm run build
 
 ## Next Recommended Stage
 
-Implement `Q1` end-to-end:
+Implement `Q2` end-to-end:
 
-- build the durable text corpus from saved descriptions and reviews
-- add chunking and retrieval artifacts for Q2
-- connect the frontend Product Selection and Review Explorer pages to saved real artifacts
-- preserve evidence traces for visual-profile extraction
+- build chunked textual corpora from `data/processed/`
+- add retrieval artifacts and evidence selection for prompt construction
+- extract structured visual profiles from cleaned descriptions and reviews
+- connect the frontend Product Selection and Review Explorer pages to real processed artifacts

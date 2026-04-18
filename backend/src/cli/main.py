@@ -10,6 +10,8 @@ import typer
 from app.collectors.discovery import run_discovery
 from app.collectors.product_pages import run_scrape_all, run_scrape_product
 from app.config.settings import get_settings
+from app.services import build_processed_corpus, validate_q1_from_disk
+from app.utils.artifacts import DOCS_DIR
 from app.utils.logging import configure_logging
 from app.workflow.orchestrator import plan_workflow
 
@@ -195,9 +197,61 @@ def scrape_all(
 
 
 @app.command("build-corpus")
-def build_corpus() -> None:
+def build_corpus(
+    raw_dir: str = typer.Option(
+        "../data/raw",
+        help="Directory containing durable raw scrape artifacts.",
+    ),
+    output_dir: str = typer.Option(
+        "../data/processed",
+        help="Directory where cleaned reusable corpora should be written.",
+    ),
+    input: str = typer.Option(
+        "../data/selected_products.jsonl",
+        help="Path to the selected products JSONL file.",
+    ),
+    min_review_count: int | None = typer.Option(
+        None,
+        help="Minimum cleaned review count required per product for Q1.",
+    ),
+) -> None:
     """Build the durable textual corpus used by downstream stages."""
-    _print_placeholder("build-corpus")
+    configure_logging()
+    result = build_processed_corpus(
+        raw_dir=Path(raw_dir).resolve(),
+        output_dir=Path(output_dir).resolve(),
+        selected_products_path=Path(input).resolve(),
+        min_review_count=min_review_count,
+    )
+    summary = {
+        "stage": "build-corpus",
+        "processed_products": result.manifest.product_count,
+        "min_review_count_threshold": result.manifest.min_review_count_threshold,
+        "q1_passed": result.q1_validation.passed,
+        "entries": {
+            entry.product_slug: {
+                "cleaned_review_count": entry.cleaned_review_count,
+                "valid_image_count": entry.valid_image_count,
+                "description_char_count": entry.description_char_count,
+                "passes_q1": entry.passes_q1,
+            }
+            for entry in result.manifest.entries
+        },
+    }
+    typer.echo("Processed corpus summary:")
+    typer.echo(json.dumps(summary, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.manifest.output_dir}")
+    typer.echo(f"- {result.manifest_path}")
+    typer.echo(f"- {result.q1_summary_path}")
+    typer.echo(f"- {DOCS_DIR / 'q1_selection_rationale_template.md'}")
+    if not result.q1_validation.passed:
+        typer.echo("")
+        typer.echo("Q1 validation issues:")
+        for issue in result.q1_validation.issues:
+            typer.echo(f"- {issue}")
+        raise typer.Exit(code=1)
 
 
 @app.command("extract-visual-profile")
@@ -227,12 +281,58 @@ def run_workflow() -> None:
 
 @app.command("verify-artifacts")
 def verify_artifacts(
+    stage: str = typer.Option(
+        "filesystem",
+        help="Validation stage to run. Use `q1` for assignment checks.",
+    ),
     path: str = typer.Option(
         "../artifacts",
-        help="Artifacts root to validate.",
-    )
+        help="Artifacts root to validate for generic filesystem checks.",
+    ),
+    processed_dir: str = typer.Option(
+        "../data/processed",
+        help="Processed artifact root used for Q1 validation.",
+    ),
+    input: str = typer.Option(
+        "../data/selected_products.jsonl",
+        help="Selected products JSONL path used for Q1 validation.",
+    ),
+    min_review_count: int | None = typer.Option(
+        None,
+        help="Minimum cleaned review count required per product for Q1.",
+    ),
 ) -> None:
     """Verify that expected artifact directories exist."""
+    if stage == "q1":
+        validation = validate_q1_from_disk(
+            processed_dir=Path(processed_dir).resolve(),
+            selected_products_path=Path(input).resolve(),
+            min_review_count=min_review_count,
+        )
+        typer.echo("Q1 verification summary:")
+        typer.echo(f"- Status: {'PASS' if validation.passed else 'FAIL'}")
+        typer.echo(f"- Selected products: {validation.selected_products_count}")
+        typer.echo(f"- Distinct categories: {validation.distinct_categories_count}")
+        typer.echo(
+            f"- Minimum cleaned review threshold: {validation.min_review_count_threshold}"
+        )
+        typer.echo("- Review counts:")
+        for product_slug, count in validation.per_product_review_counts.items():
+            typer.echo(f"  - {product_slug}: {count}")
+        typer.echo("- Valid image counts:")
+        for product_slug, count in validation.per_product_image_counts.items():
+            typer.echo(f"  - {product_slug}: {count}")
+        if validation.issues:
+            typer.echo("- Issues:")
+            for issue in validation.issues:
+                typer.echo(f"  - {issue}")
+        typer.echo("")
+        typer.echo("Machine-readable JSON:")
+        typer.echo(json.dumps(validation.model_dump(mode='json'), indent=2))
+        if not validation.passed:
+            raise typer.Exit(code=1)
+        return
+
     artifact_root = Path(path).resolve()
     typer.echo(
         json.dumps(

@@ -1,0 +1,31 @@
+{
+  "product_slug": "levoit-core-300-air-purifier-white-81910071",
+  "product_id": "81910071",
+  "title": "Levoit Core 300 Air Purifier White",
+  "category": "Air Purifiers",
+  "selected_category": "home-appliance",
+  "marketplace": "target",
+  "source_url": "https://www.target.com/p/levoit-core-300-air-purifier-white/-/A-81910071",
+  "description_char_count": 475,
+  "spec_bullets": [
+    "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)",
+    "Weight: 7.5 Pounds",
+    "Number of Settings: 3",
+    "Wattage Required: 45 Watts",
+    "Filter Type: Carbon",
+    "Industry or Government Certifications: ETL Listed, CARB Certified",
+    "Room Size Range: Range Not Specified",
+    "Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust",
+    "Maximum Filter Life: 12 Months",
+    "Power Source: Electric",
+    "Battery: No Battery Used",
+    "Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869"
+  ],
+  "visible_review_count": 210,
+  "cleaned_review_count": 8,
+  "valid_image_count": 14,
+  "stats_path": "/Users/macbook/Desktop/ai-lab-final/data/processed/levoit-core-300-air-purifier-white-81910071/review_stats.json",
+  "image_manifest_path": "/Users/macbook/Desktop/ai-lab-final/data/processed/levoit-core-300-air-purifier-white-81910071/image_manifest.json",
+  "reviews_path": "/Users/macbook/Desktop/ai-lab-final/data/processed/levoit-core-300-air-purifier-white-81910071/reviews_clean.jsonl",
+  "description_path": "/Users/macbook/Desktop/ai-lab-final/data/processed/levoit-core-300-air-purifier-white-81910071/description_clean.txt"
+}

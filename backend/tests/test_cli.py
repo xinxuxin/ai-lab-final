@@ -10,10 +10,14 @@ from app.collectors.product_pages.service import ProductScrapeRunResult, ScrapeA
 from app.models.schemas import (
     ArtifactCompleteness,
     DiscoveryManifest,
+    ProcessedManifest,
+    ProcessedManifestEntry,
+    Q1ValidationResult,
     RawManifest,
     RawManifestEntry,
     ScrapeReport,
 )
+from app.services.corpus import BuildCorpusResult
 from cli.main import app
 
 runner = CliRunner()
@@ -180,3 +184,87 @@ def test_cli_scrape_all_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
     )
     assert result.exit_code == 0
     assert "Scrape summary:" in result.stdout
+
+
+def test_cli_build_corpus_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Build-corpus command should print processed summary output."""
+    manifest_path = tmp_path / "data" / "processed" / "manifest.json"
+    q1_summary_path = tmp_path / "docs" / "q1_summary.md"
+
+    def fake_build_processed_corpus(
+        *,
+        raw_dir: Path | None = None,
+        output_dir: Path | None = None,
+        selected_products_path: Path | None = None,
+        min_review_count: int | None = None,
+        settings: object | None = None,
+    ) -> BuildCorpusResult:
+        del raw_dir, output_dir, selected_products_path, min_review_count, settings
+        return BuildCorpusResult(
+            manifest=ProcessedManifest(
+                raw_manifest_path=str(tmp_path / "data" / "raw" / "raw_manifest.json"),
+                selected_products_path=str(tmp_path / "data" / "selected_products.jsonl"),
+                output_dir=str(tmp_path / "data" / "processed"),
+                product_count=3,
+                min_review_count_threshold=5,
+                entries=[
+                    ProcessedManifestEntry(
+                        product_slug="sample-product-1",
+                        product_id="123",
+                        title="Sample Product",
+                        category="lighting",
+                        source_url=HTTP_URL_ADAPTER.validate_python(
+                            "https://www.target.com/p/sample/-/A-123"
+                        ),
+                        processed_dir=str(tmp_path / "data" / "processed" / "sample-product-1"),
+                        cleaned_review_count=8,
+                        valid_image_count=3,
+                        description_char_count=120,
+                        passes_q1=True,
+                    )
+                ],
+            ),
+            manifest_path=manifest_path,
+            q1_validation=Q1ValidationResult(
+                passed=True,
+                selected_products_count=3,
+                distinct_categories_count=3,
+                min_review_count_threshold=5,
+                per_product_review_counts={"sample-product-1": 8},
+                per_product_image_counts={"sample-product-1": 3},
+            ),
+            q1_summary_path=q1_summary_path,
+        )
+
+    monkeypatch.setattr("cli.main.build_processed_corpus", fake_build_processed_corpus)
+    result = runner.invoke(app, ["build-corpus"])
+    assert result.exit_code == 0
+    assert "Processed corpus summary:" in result.stdout
+
+
+def test_cli_verify_artifacts_q1_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Q1 verification command should print human and machine-readable output."""
+
+    def fake_validate_q1_from_disk(
+        *,
+        processed_dir: Path | None = None,
+        selected_products_path: Path | None = None,
+        min_review_count: int | None = None,
+        settings: object | None = None,
+    ) -> Q1ValidationResult:
+        del processed_dir, selected_products_path, min_review_count, settings
+        return Q1ValidationResult(
+            passed=True,
+            selected_products_count=3,
+            distinct_categories_count=3,
+            min_review_count_threshold=5,
+            per_product_review_counts={"sample-product-1": 8},
+            per_product_image_counts={"sample-product-1": 3},
+            notes=["All strict Q1 checks passed."],
+        )
+
+    monkeypatch.setattr("cli.main.validate_q1_from_disk", fake_validate_q1_from_disk)
+    result = runner.invoke(app, ["verify-artifacts", "--stage", "q1"])
+    assert result.exit_code == 0
+    assert "Q1 verification summary:" in result.stdout
+    assert "Machine-readable JSON:" in result.stdout

@@ -143,6 +143,90 @@ class RawManifest(BaseModel):
     entries: list[RawManifestEntry] = Field(default_factory=list)
 
 
+class ReviewCleaningStats(BaseModel):
+    """Review cleaning counters preserved for reporting."""
+
+    raw_review_count: int = 0
+    cleaned_review_count: int = 0
+    duplicates_removed: int = 0
+    short_reviews_removed: int = 0
+    low_information_removed: int = 0
+
+
+class ImageManifestEntry(BaseModel):
+    """One reference image tracked in the processed artifact layer."""
+
+    filename: str
+    local_path: str
+    source: str = "reference"
+    valid: bool = True
+
+
+class ProcessedProductRecord(BaseModel):
+    """Cleaned product artifact ready for downstream reuse."""
+
+    product_slug: str
+    product_id: str
+    title: str
+    category: str
+    selected_category: str
+    marketplace: str
+    source_url: HttpUrl
+    description_char_count: int
+    spec_bullets: list[str] = Field(default_factory=list)
+    visible_review_count: int | None = None
+    cleaned_review_count: int = 0
+    valid_image_count: int = 0
+    stats_path: str
+    image_manifest_path: str
+    reviews_path: str
+    description_path: str
+
+
+class ProcessedManifestEntry(BaseModel):
+    """Global processed-manifest entry for one product."""
+
+    product_slug: str
+    product_id: str
+    title: str
+    category: str
+    source_url: HttpUrl
+    processed_dir: str
+    cleaned_review_count: int
+    valid_image_count: int
+    description_char_count: int
+    passes_q1: bool = False
+    issues: list[str] = Field(default_factory=list)
+
+
+class ProcessedManifest(BaseModel):
+    """Top-level processed corpus manifest."""
+
+    stage: str = "build-corpus"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    raw_manifest_path: str
+    selected_products_path: str
+    output_dir: str
+    product_count: int
+    min_review_count_threshold: int
+    entries: list[ProcessedManifestEntry] = Field(default_factory=list)
+
+
+class Q1ValidationResult(BaseModel):
+    """Machine-readable Q1 verification result."""
+
+    stage: str = "q1"
+    passed: bool
+    checked_at: datetime = Field(default_factory=datetime.utcnow)
+    selected_products_count: int
+    distinct_categories_count: int
+    min_review_count_threshold: int
+    per_product_review_counts: dict[str, int] = Field(default_factory=dict)
+    per_product_image_counts: dict[str, int] = Field(default_factory=dict)
+    issues: list[str] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+
+
 class ScrapeReport(BaseModel):
     """Detailed report for one product scrape run."""
 
