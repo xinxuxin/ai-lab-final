@@ -122,6 +122,49 @@ This repository is structured to support all four required questions:
   - mocked LLM pipeline execution
   - retrieval ranking and cache behavior
 
+### Stage 7: Q3 Image Generation Pipeline
+
+- Added API-only image generation adapters under `backend/src/app/imagegen/`:
+  - `base.py`
+  - `openai_adapter.py`
+  - `stability_adapter.py`
+- Added a full Q3 generation service under `backend/src/app/services/image_generation.py`.
+- The pipeline now consumes both saved Q2 inputs:
+  - `outputs/visual_profiles/<product_slug>/baseline_description_only.json`
+  - `outputs/visual_profiles/<product_slug>/review_informed_rag.json`
+- Prompt flow now preserves inspectable iteration history:
+  - one pilot prompt from `baseline_description_only`
+  - one pilot image
+  - one refined final prompt from `review_informed_rag`
+  - four final images by default
+- Added durable output layout under `outputs/generated_images/<product_slug>/<model_name>/`:
+  - `prompt_versions.json`
+  - `pilot/prompt.json`
+  - `pilot/image_01.png`
+  - `final/prompt.json`
+  - `final/image_01.png` to `image_04.png`
+  - `generation_manifest.json`
+- Prompt construction now enforces:
+  - single product only
+  - centered composition
+  - neutral or studio background
+  - realistic product photography
+  - no unsupported accessories
+  - negative constraints when supported by the provider
+- Generation metadata now preserves:
+  - prompt text
+  - prompt source mode
+  - timestamps
+  - image dimensions
+  - content type
+  - file hashes
+- Added image integrity validation with Pillow before declaring success.
+- Added tests for:
+  - adapter behavior
+  - mocked OpenAI and Stability API calls
+  - manifest writing
+  - image file integrity failures
+
 ## Repository Structure
 
 ```text
@@ -189,7 +232,7 @@ This repository is structured to support all four required questions:
 - Schemas: [backend/src/app/models/schemas.py](/Users/macbook/Desktop/ai-lab-final/backend/src/app/models/schemas.py)
 - CLI: [backend/src/cli/main.py](/Users/macbook/Desktop/ai-lab-final/backend/src/cli/main.py)
 
-Implemented CLI placeholders:
+Implemented CLI commands:
 
 - `discover-products`
 - `scrape-product`
@@ -241,6 +284,17 @@ source .venv/bin/activate
 cd backend
 PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product levoit-core-300-air-purifier-white-81910071 --mode baseline_description_only
 PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product levoit-core-300-air-purifier-white-81910071 --mode review_informed_rag
+```
+
+Q3 image generation now supports:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main generate-images --product levoit-core-300-air-purifier-white-81910071 --model openai --count 4
+PYTHONPATH=src ../.venv/bin/python -m cli.main generate-images --product levoit-core-300-air-purifier-white-81910071 --model stability --count 4
+PYTHONPATH=src ../.venv/bin/python -m cli.main generate-images --all --count 4
 ```
 
 ## Frontend Overview

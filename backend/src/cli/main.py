@@ -13,6 +13,8 @@ from app.config.settings import get_settings
 from app.services import (
     build_processed_corpus,
     extract_visual_profile,
+    generate_images_for_product,
+    list_generation_ready_products,
     validate_q1_from_disk,
 )
 from app.utils.artifacts import DOCS_DIR
@@ -279,9 +281,7 @@ def extract_visual_profile_command(
         "mode": result.mode,
         "high_confidence_count": len(result.profile.high_confidence_visual_attributes),
         "low_confidence_count": len(result.profile.low_confidence_or_conflicting_attributes),
-        "mismatch_count": len(
-            result.profile.common_mismatches_between_expectation_and_reality
-        ),
+        "mismatch_count": len(result.profile.common_mismatches_between_expectation_and_reality),
         "negative_constraint_count": len(result.profile.negative_constraints),
     }
     typer.echo("Visual profile summary:")
@@ -294,9 +294,83 @@ def extract_visual_profile_command(
 
 
 @app.command("generate-images")
-def generate_images() -> None:
+def generate_images(
+    product: str | None = typer.Option(
+        None,
+        "--product",
+        help="Processed product slug to generate images for.",
+    ),
+    model: str | None = typer.Option(
+        None,
+        "--model",
+        help="Image model to use: openai or stability. Defaults to both.",
+    ),
+    all_products: bool = typer.Option(
+        False,
+        "--all",
+        help="Generate images for every product that has both required visual profiles.",
+    ),
+    count: int = typer.Option(
+        4,
+        "--count",
+        help="Number of final images to generate per product/model.",
+    ),
+    refresh: bool = typer.Option(
+        False,
+        help="Re-generate images even if a complete manifest already exists.",
+    ),
+    reuse_existing: bool = typer.Option(
+        True,
+        "--reuse-existing/--no-reuse-existing",
+        help="Reuse complete on-disk generation artifacts by default.",
+    ),
+) -> None:
     """Generate comparison-ready images with API-only models."""
-    _print_placeholder("generate-images")
+    configure_logging()
+    if bool(product) == bool(all_products):
+        raise typer.BadParameter("Choose exactly one of --product or --all.")
+
+    products = [product] if product else list_generation_ready_products()
+    if not products:
+        raise typer.BadParameter(
+            "No generation-ready products were found under outputs/visual_profiles."
+        )
+
+    models = [model] if model else ["openai", "stability"]
+    summaries: list[dict[str, object]] = []
+    saved_paths: list[str] = []
+    for product_slug in products:
+        for model_name in models:
+            result = generate_images_for_product(
+                product_slug=product_slug,
+                model_name=model_name,
+                count=count,
+                refresh=refresh,
+                reuse_existing=reuse_existing,
+            )
+            summaries.append(
+                {
+                    "product_slug": product_slug,
+                    "model_name": model_name,
+                    "status": result.manifest.status,
+                    "reused_existing": result.manifest.reused_existing,
+                    "pilot_count": len(result.manifest.pilot_generation.images),
+                    "final_count": len(result.manifest.final_generation.images),
+                }
+            )
+            saved_paths.extend(
+                [
+                    str(result.manifest_path),
+                    str(result.prompt_versions_path),
+                ]
+            )
+
+    typer.echo("Image generation summary:")
+    typer.echo(json.dumps({"runs": summaries}, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    for path in saved_paths:
+        typer.echo(f"- {path}")
 
 
 @app.command("evaluate-images")
@@ -346,9 +420,7 @@ def verify_artifacts(
         typer.echo(f"- Status: {'PASS' if validation.passed else 'FAIL'}")
         typer.echo(f"- Selected products: {validation.selected_products_count}")
         typer.echo(f"- Distinct categories: {validation.distinct_categories_count}")
-        typer.echo(
-            f"- Minimum cleaned review threshold: {validation.min_review_count_threshold}"
-        )
+        typer.echo(f"- Minimum cleaned review threshold: {validation.min_review_count_threshold}")
         typer.echo("- Review counts:")
         for product_slug, count in validation.per_product_review_counts.items():
             typer.echo(f"  - {product_slug}: {count}")
@@ -361,7 +433,7 @@ def verify_artifacts(
                 typer.echo(f"  - {issue}")
         typer.echo("")
         typer.echo("Machine-readable JSON:")
-        typer.echo(json.dumps(validation.model_dump(mode='json'), indent=2))
+        typer.echo(json.dumps(validation.model_dump(mode="json"), indent=2))
         if not validation.passed:
             raise typer.Exit(code=1)
         return

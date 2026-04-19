@@ -10,8 +10,12 @@ from app.collectors.product_pages.service import ProductScrapeRunResult, ScrapeA
 from app.models.schemas import (
     ArtifactCompleteness,
     DiscoveryManifest,
+    GeneratedImageFile,
+    GenerationManifest,
+    GenerationRecord,
     ProcessedManifest,
     ProcessedManifestEntry,
+    PromptVersion,
     Q1ValidationResult,
     RawManifest,
     RawManifestEntry,
@@ -19,6 +23,7 @@ from app.models.schemas import (
     VisualProfile,
 )
 from app.services.corpus import BuildCorpusResult
+from app.services.image_generation import GenerateImagesResult
 from app.services.visual_profiles import ExtractVisualProfileResult
 from cli.main import app
 
@@ -319,3 +324,120 @@ def test_cli_extract_visual_profile_smoke(tmp_path: Path, monkeypatch: MonkeyPat
     )
     assert result.exit_code == 0
     assert "Visual profile summary:" in result.stdout
+
+
+def test_cli_generate_images_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Generate-images command should print manifest and prompt-version paths."""
+    output_dir = tmp_path / "outputs" / "generated_images" / "sample-product" / "openai"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    def fake_generate_images_for_product(
+        *,
+        product_slug: str,
+        model_name: str,
+        count: int = 4,
+        processed_root: Path | None = None,
+        profiles_root: Path | None = None,
+        outputs_root: Path | None = None,
+        settings: object | None = None,
+        adapter: object | None = None,
+        refresh: bool = False,
+        reuse_existing: bool = True,
+    ) -> GenerateImagesResult:
+        del (
+            count,
+            processed_root,
+            profiles_root,
+            outputs_root,
+            settings,
+            adapter,
+            refresh,
+            reuse_existing,
+        )
+        prompt_version = PromptVersion(
+            prompt_version_id="sample-prompt",
+            product_id="123",
+            provider=model_name,
+            model_name=model_name,
+            strategy="pilot",
+            prompt_source_mode="baseline_description_only",
+            prompt_text="A grounded product prompt.",
+        )
+        pilot_generation = GenerationRecord(
+            generation_id="pilot-1",
+            product_id="123",
+            provider=model_name,
+            model_name=model_name,
+            stage="pilot",
+            prompt_version_id=prompt_version.prompt_version_id,
+            prompt_source_mode=prompt_version.prompt_source_mode,
+            output_paths=[str(output_dir / "pilot" / "image_01.png")],
+            images=[
+                GeneratedImageFile(
+                    filename="image_01.png",
+                    local_path=str(output_dir / "pilot" / "image_01.png"),
+                    sha256="abc",
+                    width=512,
+                    height=512,
+                    byte_size=128,
+                    content_type="image/png",
+                )
+            ],
+            status="completed",
+        )
+        final_generation = GenerationRecord(
+            generation_id="final-1",
+            product_id="123",
+            provider=model_name,
+            model_name=model_name,
+            stage="final",
+            prompt_version_id="sample-final",
+            prompt_source_mode="review_informed_rag",
+            output_paths=[str(output_dir / "final" / "image_01.png")],
+            images=[
+                GeneratedImageFile(
+                    filename="image_01.png",
+                    local_path=str(output_dir / "final" / "image_01.png"),
+                    sha256="def",
+                    width=512,
+                    height=512,
+                    byte_size=128,
+                    content_type="image/png",
+                )
+            ],
+            status="completed",
+        )
+        return GenerateImagesResult(
+            product_slug=product_slug,
+            model_name=model_name,
+            manifest=GenerationManifest(
+                product_slug=product_slug,
+                product_id="123",
+                product_name="Sample Product",
+                provider=model_name,
+                model_name=model_name,
+                output_dir=str(output_dir),
+                prompt_versions_path=str(output_dir / "prompt_versions.json"),
+                pilot_generation=pilot_generation,
+                final_generation=final_generation,
+                status="completed",
+            ),
+            manifest_path=output_dir / "generation_manifest.json",
+            prompt_versions_path=output_dir / "prompt_versions.json",
+        )
+
+    monkeypatch.setattr("cli.main.generate_images_for_product", fake_generate_images_for_product)
+    result = runner.invoke(
+        app,
+        [
+            "generate-images",
+            "--product",
+            "sample-product",
+            "--model",
+            "openai",
+            "--count",
+            "4",
+        ],
+    )
+    assert result.exit_code == 0
+    assert "Image generation summary:" in result.stdout

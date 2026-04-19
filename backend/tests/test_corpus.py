@@ -174,9 +174,7 @@ def _write_raw_fixture(
             "id": "2",
             "category": "lighting",
             "description": (
-                ""
-                if empty_description_slug == "product-two-2"
-                else "Useful lamp description."
+                "" if empty_description_slug == "product-two-2" else "Useful lamp description."
             ),
             "review_count": 3,
         },

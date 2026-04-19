@@ -7,6 +7,12 @@ from app.services.corpus import (
     validate_q1_artifacts,
     validate_q1_from_disk,
 )
+from app.services.image_generation import (
+    GenerateImagesResult,
+    ImageGenerationPipelineError,
+    generate_images_for_product,
+    list_generation_ready_products,
+)
 from app.services.visual_profiles import (
     ExtractVisualProfileResult,
     VisualProfileError,
@@ -18,10 +24,14 @@ __all__ = [
     "BuildCorpusResult",
     "CorpusBuildError",
     "ExtractVisualProfileResult",
+    "GenerateImagesResult",
+    "ImageGenerationPipelineError",
     "VisualProfileError",
     "build_processed_corpus",
     "chunk_reviews",
     "extract_visual_profile",
+    "generate_images_for_product",
+    "list_generation_ready_products",
     "validate_q1_artifacts",
     "validate_q1_from_disk",
 ]

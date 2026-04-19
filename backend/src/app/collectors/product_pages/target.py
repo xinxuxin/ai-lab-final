@@ -39,11 +39,7 @@ class TargetProductPageAdapter(ProductPageAdapter):
         tcin = extract_tcin(canonical_url) or "unknown"
         path_parts = [part for part in urlsplit(canonical_url).path.split("/") if part]
         readable = next(
-            (
-                part
-                for part in path_parts
-                if part not in {"p", "-"} and not part.startswith("A-")
-            ),
+            (part for part in path_parts if part not in {"p", "-"} and not part.startswith("A-")),
             f"target-product-{tcin}",
         )
         return f"{slugify(readable)}-{tcin}"
@@ -105,9 +101,7 @@ class TargetProductPageAdapter(ProductPageAdapter):
         title = normalize_text(description.get("title", snapshot.product_id))
         category = normalize_text(
             product.get("category", {}).get("name")
-            or item.get("product_classification", {})
-            .get("item_type", {})
-            .get("name", "unknown")
+            or item.get("product_classification", {}).get("item_type", {}).get("name", "unknown")
         )
         description_text = normalize_text(description.get("downstream_description", ""))
         bullet_text = [
@@ -191,9 +185,7 @@ class TargetProductPageAdapter(ProductPageAdapter):
                 ReviewRecord(
                     review_id=review_id,
                     product_id=product_id,
-                    author=normalize_text(
-                        str(raw_review.get("author", {}).get("nickname", ""))
-                    )
+                    author=normalize_text(str(raw_review.get("author", {}).get("nickname", "")))
                     or None,
                     rating=_coerce_float(raw_review.get("rating", {}).get("value")),
                     title=title,

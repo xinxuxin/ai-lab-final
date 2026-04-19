@@ -156,9 +156,7 @@ def validate_q1_artifacts(
     notes: list[str] = []
 
     if len(selected_products) != 3:
-        issues.append(
-            f"Expected exactly 3 selected products, found {len(selected_products)}."
-        )
+        issues.append(f"Expected exactly 3 selected products, found {len(selected_products)}.")
 
     distinct_categories = {
         entry["category"].strip().lower()
@@ -406,9 +404,7 @@ def clean_description_payload(payload: dict[str, object]) -> tuple[str, list[str
     description_text = normalize_text(str(payload.get("description_text", "")))
     bullet_entries = cast(list[object], payload.get("bullet_text", []))
     bullet_text = [
-        normalize_text(str(entry))
-        for entry in bullet_entries
-        if normalize_text(str(entry))
+        normalize_text(str(entry)) for entry in bullet_entries if normalize_text(str(entry))
     ]
     return description_text.strip(), bullet_text
 

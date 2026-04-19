@@ -48,6 +48,28 @@ class Settings(BaseSettings):
         default="text-embedding-3-small",
         alias="EMBEDDING_MODEL",
     )
+    openai_image_model: str = Field(default="gpt-image-1", alias="OPENAI_IMAGE_MODEL")
+    openai_image_size: str = Field(default="1024x1024", alias="OPENAI_IMAGE_SIZE")
+    stability_base_url: str = Field(
+        default="https://api.stability.ai",
+        alias="STABILITY_BASE_URL",
+    )
+    stability_image_model: str = Field(
+        default="stable-image-core",
+        alias="STABILITY_IMAGE_MODEL",
+    )
+    stability_aspect_ratio: str = Field(
+        default="1:1",
+        alias="STABILITY_ASPECT_RATIO",
+    )
+    stability_output_format: str = Field(
+        default="png",
+        alias="STABILITY_OUTPUT_FORMAT",
+    )
+    image_generation_timeout_seconds: int = Field(
+        default=120,
+        alias="IMAGE_GENERATION_TIMEOUT_SECONDS",
+    )
     retrieval_top_k: int = Field(default=4, alias="RETRIEVAL_TOP_K")
     review_chunk_max_chars: int = Field(default=1200, alias="REVIEW_CHUNK_MAX_CHARS")
     llm_max_retries: int = Field(default=3, alias="LLM_MAX_RETRIES")

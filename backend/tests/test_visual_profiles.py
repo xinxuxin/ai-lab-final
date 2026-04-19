@@ -311,14 +311,18 @@ def _write_processed_fixture(*, processed_dir: Path, product_slug: str) -> None:
             product_id="1",
             title="Comfortable fit",
             body="comfortable over-ear fit with matte black earcups and a full-size look",
-            source_url=HTTP_URL_ADAPTER.validate_python("https://www.target.com/p/sample-headphones/-/A-1"),
+            source_url=HTTP_URL_ADAPTER.validate_python(
+                "https://www.target.com/p/sample-headphones/-/A-1"
+            ),
         ),
         ReviewRecord(
             review_id="review-2",
             product_id="1",
             title="Good indoors",
             body="soft leatherette pads are nice, but ANC is weaker outdoors in wind",
-            source_url=HTTP_URL_ADAPTER.validate_python("https://www.target.com/p/sample-headphones/-/A-1"),
+            source_url=HTTP_URL_ADAPTER.validate_python(
+                "https://www.target.com/p/sample-headphones/-/A-1"
+            ),
         ),
     ]
     (processed_dir / "reviews_clean.jsonl").write_text(

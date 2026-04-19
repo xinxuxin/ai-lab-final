@@ -308,9 +308,7 @@ class VisualProfile(BaseModel):
 
     product_name: str
     category: str
-    high_confidence_visual_attributes: list[VisualAttributeEvidence] = Field(
-        default_factory=list
-    )
+    high_confidence_visual_attributes: list[VisualAttributeEvidence] = Field(default_factory=list)
     low_confidence_or_conflicting_attributes: list[VisualAttributeEvidence] = Field(
         default_factory=list
     )
@@ -326,18 +324,14 @@ class AspectEvidenceResult(BaseModel):
 
     aspect_key: str
     supported_attributes: list[VisualAttributeEvidence] = Field(default_factory=list)
-    conflicting_or_uncertain_attributes: list[VisualAttributeEvidence] = Field(
-        default_factory=list
-    )
+    conflicting_or_uncertain_attributes: list[VisualAttributeEvidence] = Field(default_factory=list)
     expectation_reality_mismatches: list[VisualMismatchEvidence] = Field(default_factory=list)
 
 
 class ConflictResolutionResult(BaseModel):
     """Cross-aspect conflict resolution result before final synthesis."""
 
-    resolved_high_confidence_attributes: list[VisualAttributeEvidence] = Field(
-        default_factory=list
-    )
+    resolved_high_confidence_attributes: list[VisualAttributeEvidence] = Field(default_factory=list)
     low_confidence_or_conflicting_attributes: list[VisualAttributeEvidence] = Field(
         default_factory=list
     )
@@ -367,11 +361,27 @@ class PromptVersion(BaseModel):
     prompt_version_id: str
     product_id: str
     provider: str
-    strategy: str
+    model_name: str
+    strategy: Literal["pilot", "final"]
+    prompt_source_mode: Literal["baseline_description_only", "review_informed_rag"]
     prompt_text: str
     negative_prompt: str | None = None
+    negative_constraints: list[str] = Field(default_factory=list)
     notes: str | None = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class GeneratedImageFile(BaseModel):
+    """One generated image plus durable file metadata."""
+
+    filename: str
+    local_path: str
+    sha256: str
+    width: int
+    height: int
+    byte_size: int
+    content_type: str
+    metadata: dict[str, str | int | float | bool] = Field(default_factory=dict)
 
 
 class GenerationRecord(BaseModel):
@@ -381,11 +391,33 @@ class GenerationRecord(BaseModel):
     product_id: str
     provider: str
     model_name: str
+    stage: Literal["pilot", "final"]
     prompt_version_id: str
+    prompt_source_mode: Literal["baseline_description_only", "review_informed_rag"]
     output_paths: list[str]
+    images: list[GeneratedImageFile] = Field(default_factory=list)
     status: Literal["pending", "completed", "failed"]
-    metadata: dict[str, str | int | float] = Field(default_factory=dict)
+    metadata: dict[str, str | int | float | bool] = Field(default_factory=dict)
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class GenerationManifest(BaseModel):
+    """Top-level manifest for one product/model generation run."""
+
+    stage: str = "generate-images"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    product_slug: str
+    product_id: str
+    product_name: str
+    provider: str
+    model_name: str
+    output_dir: str
+    prompt_versions_path: str
+    pilot_generation: GenerationRecord
+    final_generation: GenerationRecord
+    status: Literal["completed", "partial_success", "failed"]
+    reused_existing: bool = False
+    notes: list[str] = Field(default_factory=list)
 
 
 class EvaluationRecord(BaseModel):
