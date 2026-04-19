@@ -123,6 +123,7 @@ def test_build_processed_corpus_flags_empty_description(tmp_path: Path) -> None:
         raw_dir=raw_dir,
         output_dir=tmp_path / "processed",
         selected_products_path=selected_path,
+        docs_root=tmp_path / "docs",
         min_review_count=2,
     )
 
@@ -141,6 +142,7 @@ def test_build_processed_corpus_flags_min_review_threshold(tmp_path: Path) -> No
         raw_dir=raw_dir,
         output_dir=tmp_path / "processed",
         selected_products_path=selected_path,
+        docs_root=tmp_path / "docs",
         min_review_count=3,
     )
 

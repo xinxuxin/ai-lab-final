@@ -10,7 +10,11 @@ import typer
 from app.collectors.discovery import run_discovery
 from app.collectors.product_pages import run_scrape_all, run_scrape_product
 from app.config.settings import get_settings
-from app.services import build_processed_corpus, validate_q1_from_disk
+from app.services import (
+    build_processed_corpus,
+    extract_visual_profile,
+    validate_q1_from_disk,
+)
 from app.utils.artifacts import DOCS_DIR
 from app.utils.logging import configure_logging
 from app.workflow.orchestrator import plan_workflow
@@ -255,9 +259,38 @@ def build_corpus(
 
 
 @app.command("extract-visual-profile")
-def extract_visual_profile() -> None:
+def extract_visual_profile_command(
+    product: str = typer.Option(..., "--product", help="Processed product slug to analyze."),
+    mode: str = typer.Option(
+        ...,
+        "--mode",
+        help="Analysis mode: baseline_description_only or review_informed_rag.",
+    ),
+) -> None:
     """Extract visual profiles from saved descriptions and reviews."""
-    _print_placeholder("extract-visual-profile")
+    configure_logging()
+    result = extract_visual_profile(
+        product_slug=product,
+        mode=mode,
+    )
+    summary = {
+        "stage": "extract-visual-profile",
+        "product_slug": result.product_slug,
+        "mode": result.mode,
+        "high_confidence_count": len(result.profile.high_confidence_visual_attributes),
+        "low_confidence_count": len(result.profile.low_confidence_or_conflicting_attributes),
+        "mismatch_count": len(
+            result.profile.common_mismatches_between_expectation_and_reality
+        ),
+        "negative_constraint_count": len(result.profile.negative_constraints),
+    }
+    typer.echo("Visual profile summary:")
+    typer.echo(json.dumps(summary, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.profile_path}")
+    typer.echo(f"- {result.retrieval_evidence_path}")
+    typer.echo(f"- {result.llm_trace_path}")
 
 
 @app.command("generate-images")

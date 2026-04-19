@@ -16,8 +16,10 @@ from app.models.schemas import (
     RawManifest,
     RawManifestEntry,
     ScrapeReport,
+    VisualProfile,
 )
 from app.services.corpus import BuildCorpusResult
+from app.services.visual_profiles import ExtractVisualProfileResult
 from cli.main import app
 
 runner = CliRunner()
@@ -196,10 +198,11 @@ def test_cli_build_corpus_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> Non
         raw_dir: Path | None = None,
         output_dir: Path | None = None,
         selected_products_path: Path | None = None,
+        docs_root: Path | None = None,
         min_review_count: int | None = None,
         settings: object | None = None,
     ) -> BuildCorpusResult:
-        del raw_dir, output_dir, selected_products_path, min_review_count, settings
+        del raw_dir, output_dir, selected_products_path, docs_root, min_review_count, settings
         return BuildCorpusResult(
             manifest=ProcessedManifest(
                 raw_manifest_path=str(tmp_path / "data" / "raw" / "raw_manifest.json"),
@@ -268,3 +271,51 @@ def test_cli_verify_artifacts_q1_smoke(tmp_path: Path, monkeypatch: MonkeyPatch)
     assert result.exit_code == 0
     assert "Q1 verification summary:" in result.stdout
     assert "Machine-readable JSON:" in result.stdout
+
+
+def test_cli_extract_visual_profile_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Extract-visual-profile command should print saved output paths."""
+    output_dir = tmp_path / "outputs" / "visual_profiles" / "sample-product"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    def fake_extract_visual_profile(
+        *,
+        product_slug: str,
+        mode: str,
+        processed_root: Path | None = None,
+        outputs_root: Path | None = None,
+        llm_client: object | None = None,
+        settings: object | None = None,
+    ) -> ExtractVisualProfileResult:
+        del processed_root, outputs_root, llm_client, settings
+        return ExtractVisualProfileResult(
+            product_slug=product_slug,
+            mode=mode,
+            profile=VisualProfile(
+                product_name="Sample Product",
+                category="lighting",
+                high_confidence_visual_attributes=[],
+                low_confidence_or_conflicting_attributes=[],
+                common_mismatches_between_expectation_and_reality=[],
+                prompt_ready_description="A grounded sample prompt.",
+                negative_constraints=[],
+            ),
+            profile_path=output_dir / f"{mode}.json",
+            retrieval_evidence_path=output_dir / "retrieval_evidence.json",
+            llm_trace_path=output_dir / "llm_trace.json",
+            trace_steps=[],
+        )
+
+    monkeypatch.setattr("cli.main.extract_visual_profile", fake_extract_visual_profile)
+    result = runner.invoke(
+        app,
+        [
+            "extract-visual-profile",
+            "--product",
+            "sample-product",
+            "--mode",
+            "baseline_description_only",
+        ],
+    )
+    assert result.exit_code == 0
+    assert "Visual profile summary:" in result.stdout

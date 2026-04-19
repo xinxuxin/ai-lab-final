@@ -1,0 +1,108 @@
+{
+  "product_name": "Levoit Core 300 Air Purifier White",
+  "category": "Air Purifiers",
+  "high_confidence_visual_attributes": [
+    {
+      "attribute": "size dimensions",
+      "rationale": "The overall dimensions of the purifier are explicitly stated in the specifications.",
+      "evidence_snippets": [
+        "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "weight",
+      "rationale": "The weight of the product is directly provided in the specifications.",
+      "evidence_snippets": [
+        "Weight: 7.5 Pounds"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "room size capacity",
+      "rationale": "The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.",
+      "evidence_snippets": [
+        "This air purifier cleans the air in a room up to 1,073 ft²"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "effectiveness in air purification",
+      "rationale": "The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.",
+      "evidence_snippets": [
+        "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    }
+  ],
+  "low_confidence_or_conflicting_attributes": [
+    {
+      "attribute": "specific color or finish",
+      "rationale": "The product description does not specify any color or finish details.",
+      "evidence_snippets": [
+        "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "filter materials",
+      "rationale": "The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.",
+      "evidence_snippets": [
+        "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "room size specifications",
+      "rationale": "While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.",
+      "evidence_snippets": [
+        "This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB",
+        "Room Size Range: Range Not Specified"
+      ],
+      "source_chunk_ids": [
+        "description_context",
+        "spec_bullets"
+      ],
+      "source_review_ids": [
+        "description_context",
+        "spec_bullets"
+      ]
+    }
+  ],
+  "common_mismatches_between_expectation_and_reality": [],
+  "prompt_ready_description": "A compact air purifier, standing 14 inches tall with a sleek design, efficiently cleans up to 1,073 ft². Equipped with multiple filters, it captures 99.97% of airborne particles, ensuring a breath of fresh air.",
+  "negative_constraints": [
+    "avoid assumptions about color or finish",
+    "avoid specifying materials without evidence"
+  ]
+}

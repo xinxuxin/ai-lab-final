@@ -3,7 +3,11 @@
 from app.collectors.discovery import run_discovery
 from app.collectors.product_pages import run_scrape_all, run_scrape_product
 from app.main import app
-from app.services import build_processed_corpus, validate_q1_from_disk
+from app.services import (
+    build_processed_corpus,
+    extract_visual_profile,
+    validate_q1_from_disk,
+)
 from cli.main import app as cli_app
 
 
@@ -15,4 +19,5 @@ def test_import_smoke() -> None:
     assert callable(run_scrape_product)
     assert callable(run_scrape_all)
     assert callable(build_processed_corpus)
+    assert callable(extract_visual_profile)
     assert callable(validate_q1_from_disk)

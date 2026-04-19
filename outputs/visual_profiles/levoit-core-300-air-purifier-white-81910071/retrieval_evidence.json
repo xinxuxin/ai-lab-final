@@ -1,0 +1,61 @@
+{
+  "baseline_description_only": {
+    "appearance_and_shape": [
+      {
+        "aspect_key": "appearance_and_shape",
+        "query": "appearance, silhouette, visible form factor, shape, design, look",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home."
+      }
+    ],
+    "color_and_finish": [
+      {
+        "aspect_key": "color_and_finish",
+        "query": "color, finish, gloss, matte, black, white, metallic, wood tone",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home."
+      }
+    ],
+    "material_and_texture": [
+      {
+        "aspect_key": "material_and_texture",
+        "query": "material, texture, plastic, metal, glass, fabric, leather, wood",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home."
+      }
+    ],
+    "size_and_scale": [
+      {
+        "aspect_key": "size_and_scale",
+        "query": "size, scale, dimensions, compact, large, bulky, lightweight",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home."
+      }
+    ],
+    "expectation_vs_reality": [
+      {
+        "aspect_key": "expectation_vs_reality",
+        "query": "expected vs actual, looks different, misleading, mismatch, reality",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home."
+      }
+    ]
+  },
+  "review_informed_rag": {
+    "appearance_and_shape": [],
+    "color_and_finish": [],
+    "material_and_texture": [],
+    "size_and_scale": [],
+    "expectation_vs_reality": []
+  }
+}

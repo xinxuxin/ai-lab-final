@@ -1,0 +1,58 @@
+{
+  "product_name": "Levoit Core 300 Air Purifier White",
+  "category": "Air Purifiers",
+  "high_confidence_visual_attributes": [
+    {
+      "attribute": "Dimensions",
+      "rationale": "The overall dimensions provided give a clear specification of the product's size.",
+      "evidence_snippets": [
+        "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+      ],
+      "source_chunk_ids": [
+        "chunk-1"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "Weight",
+      "rationale": "The specified weight offers a clear measurement of how heavy the product is.",
+      "evidence_snippets": [
+        "Weight: 7.5 Pounds"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    }
+  ],
+  "low_confidence_or_conflicting_attributes": [
+    {
+      "attribute": "color of the product",
+      "rationale": "The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.",
+      "evidence_snippets": [
+        "Levoit Core 300 Air Purifier White"
+      ],
+      "source_chunk_ids": [
+        "description"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "Room size range",
+      "rationale": "The product claims to clean air in a room but does not specify the exact range.",
+      "evidence_snippets": [
+        "Room Size Range: Range Not Specified"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    }
+  ],
+  "common_mismatches_between_expectation_and_reality": [],
+  "prompt_ready_description": "A compact, white air purifier that effectively cleans the air in spaces up to 1,073 ft² while maintaining low noise levels of 22dB.",
+  "negative_constraints": [
+    "avoid unsupported claims about materials",
+    "avoid speculating on product features"
+  ]
+}

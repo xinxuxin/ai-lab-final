@@ -260,17 +260,105 @@ class ImageAsset(BaseModel):
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 
-class VisualProfile(BaseModel):
-    """Structured visual target extracted from text evidence."""
+class ReviewChunk(BaseModel):
+    """Primary text-analysis chunk derived from one review or review split."""
 
+    chunk_id: str
+    product_slug: str
     product_id: str
-    summary: str
-    visual_attributes: list[str]
-    materials: list[str]
-    colors: list[str]
-    packaging_cues: list[str]
-    evidence_review_ids: list[str] = Field(default_factory=list)
+    source_review_id: str
+    chunk_index: int = 0
+    text: str
+    token_estimate: int
+    source: Literal["review", "review_split"] = "review"
+
+
+class RetrievedEvidence(BaseModel):
+    """Retrieved evidence snippet for one aspect query."""
+
+    aspect_key: str
+    query: str
+    chunk_id: str
+    source_review_id: str
+    score: float
+    snippet: str
+
+
+class VisualAttributeEvidence(BaseModel):
+    """One visual attribute plus supporting evidence."""
+
+    attribute: str
+    rationale: str
     evidence_snippets: list[str] = Field(default_factory=list)
+    source_chunk_ids: list[str] = Field(default_factory=list)
+    source_review_ids: list[str] = Field(default_factory=list)
+
+
+class VisualMismatchEvidence(BaseModel):
+    """Expectation-versus-reality mismatch grounded in review evidence."""
+
+    mismatch: str
+    evidence_snippets: list[str] = Field(default_factory=list)
+    source_chunk_ids: list[str] = Field(default_factory=list)
+    source_review_ids: list[str] = Field(default_factory=list)
+
+
+class VisualProfile(BaseModel):
+    """Structured visual profile optimized for downstream image generation."""
+
+    product_name: str
+    category: str
+    high_confidence_visual_attributes: list[VisualAttributeEvidence] = Field(
+        default_factory=list
+    )
+    low_confidence_or_conflicting_attributes: list[VisualAttributeEvidence] = Field(
+        default_factory=list
+    )
+    common_mismatches_between_expectation_and_reality: list[VisualMismatchEvidence] = Field(
+        default_factory=list
+    )
+    prompt_ready_description: str
+    negative_constraints: list[str] = Field(default_factory=list)
+
+
+class AspectEvidenceResult(BaseModel):
+    """LLM-extracted aspect-specific evidence candidates."""
+
+    aspect_key: str
+    supported_attributes: list[VisualAttributeEvidence] = Field(default_factory=list)
+    conflicting_or_uncertain_attributes: list[VisualAttributeEvidence] = Field(
+        default_factory=list
+    )
+    expectation_reality_mismatches: list[VisualMismatchEvidence] = Field(default_factory=list)
+
+
+class ConflictResolutionResult(BaseModel):
+    """Cross-aspect conflict resolution result before final synthesis."""
+
+    resolved_high_confidence_attributes: list[VisualAttributeEvidence] = Field(
+        default_factory=list
+    )
+    low_confidence_or_conflicting_attributes: list[VisualAttributeEvidence] = Field(
+        default_factory=list
+    )
+    common_mismatches_between_expectation_and_reality: list[VisualMismatchEvidence] = Field(
+        default_factory=list
+    )
+    negative_constraints: list[str] = Field(default_factory=list)
+    resolution_notes: list[str] = Field(default_factory=list)
+
+
+class LLMTraceStep(BaseModel):
+    """One prompt/response step in the Q2 analysis chain."""
+
+    step_name: str
+    mode: Literal["baseline_description_only", "review_informed_rag"]
+    prompt_path: str
+    system_prompt: str
+    user_prompt: str
+    raw_response_text: str
+    parsed_output: dict[str, object]
+    attempt_count: int = 1
 
 
 class PromptVersion(BaseModel):

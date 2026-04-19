@@ -52,6 +52,7 @@ def build_processed_corpus(
     raw_dir: Path | None = None,
     output_dir: Path | None = None,
     selected_products_path: Path | None = None,
+    docs_root: Path | None = None,
     min_review_count: int | None = None,
     settings: Settings | None = None,
 ) -> BuildCorpusResult:
@@ -61,6 +62,7 @@ def build_processed_corpus(
     resolved_raw_dir = raw_dir or RAW_DIR
     resolved_output_dir = output_dir or PROCESSED_DIR
     resolved_selected_products = selected_products_path or SELECTED_PRODUCTS_PATH
+    resolved_docs_root = docs_root or DOCS_DIR
     review_threshold = min_review_count or settings.q1_min_review_count
 
     raw_manifest = _load_raw_manifest(resolved_raw_dir / "raw_manifest.json")
@@ -109,6 +111,7 @@ def build_processed_corpus(
     q1_summary_path = write_q1_docs(
         processed_manifest=manifest,
         q1_validation=q1_validation,
+        docs_root=resolved_docs_root,
     )
 
     return BuildCorpusResult(
@@ -209,9 +212,11 @@ def write_q1_docs(
     *,
     processed_manifest: ProcessedManifest,
     q1_validation: Q1ValidationResult,
+    docs_root: Path | None = None,
 ) -> Path:
     """Write human-readable Q1 reporting support documents."""
-    DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    resolved_docs_root = docs_root or DOCS_DIR
+    resolved_docs_root.mkdir(parents=True, exist_ok=True)
     summary_lines = [
         "# Q1 Summary",
         "",
@@ -253,7 +258,7 @@ def write_q1_docs(
     for note in q1_validation.notes:
         summary_lines.append(f"- {note}")
 
-    summary_path = DOCS_DIR / "q1_summary.md"
+    summary_path = resolved_docs_root / "q1_summary.md"
     summary_path.write_text("\n".join(summary_lines).rstrip() + "\n", encoding="utf-8")
 
     rationale_template = "\n".join(
@@ -296,7 +301,7 @@ def write_q1_docs(
             "",
         ]
     )
-    (DOCS_DIR / "q1_selection_rationale_template.md").write_text(
+    (resolved_docs_root / "q1_selection_rationale_template.md").write_text(
         rationale_template,
         encoding="utf-8",
     )

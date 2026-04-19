@@ -1,0 +1,753 @@
+{
+  "baseline_description_only": [
+    {
+      "step_name": "aspect_evidence_extraction:appearance_and_shape",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"appearance_and_shape\",\n  \"aspect_query\": \"appearance, silhouette, visible form factor, shape, design, look\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"appearance_and_shape\",\n      \"query\": \"appearance, silhouette, visible form factor, shape, design, look\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"appearance_and_shape\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"size dimensions\",\n      \"rationale\": \"The overall dimensions of the purifier are explicitly stated in the specifications.\",\n      \"evidence_snippets\": [\"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    },\n    {\n      \"attribute\": \"weight\",\n      \"rationale\": \"The weight of the product is directly provided in the specifications.\",\n      \"evidence_snippets\": [\"Weight: 7.5 Pounds\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "appearance_and_shape",
+        "supported_attributes": [
+          {
+            "attribute": "size dimensions",
+            "rationale": "The overall dimensions of the purifier are explicitly stated in the specifications.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "weight",
+            "rationale": "The weight of the product is directly provided in the specifications.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:color_and_finish",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"color_and_finish\",\n  \"aspect_query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"color_and_finish\",\n  \"supported_attributes\": [],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"specific color or finish\",\n      \"rationale\": \"The product description does not specify any color or finish details.\",\n      \"evidence_snippets\": [\"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "color_and_finish",
+        "supported_attributes": [],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "specific color or finish",
+            "rationale": "The product description does not specify any color or finish details.",
+            "evidence_snippets": [
+              "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:material_and_texture",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"material_and_texture\",\n  \"aspect_query\": \"material, texture, plastic, metal, glass, fabric, leather, wood\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"material_and_texture\",\n      \"query\": \"material, texture, plastic, metal, glass, fabric, leather, wood\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"material_and_texture\",\n  \"supported_attributes\": [],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"filter materials\",\n      \"rationale\": \"The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.\",\n      \"evidence_snippets\": [\"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "material_and_texture",
+        "supported_attributes": [],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "filter materials",
+            "rationale": "The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.",
+            "evidence_snippets": [
+              "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:size_and_scale",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"size_and_scale\",\n  \"aspect_query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"size_and_scale\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"dimensions\",\n      \"rationale\": \"The overall dimensions of the air purifier are explicitly stated in the product specifications.\",\n      \"evidence_snippets\": [\"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    },\n    {\n      \"attribute\": \"weight\",\n      \"rationale\": \"The weight of the air purifier is provided, indicating it is relatively lightweight for portability.\",\n      \"evidence_snippets\": [\"Weight: 7.5 Pounds\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    },\n    {\n      \"attribute\": \"room size capacity\",\n      \"rationale\": \"The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.\",\n      \"evidence_snippets\": [\"This air purifier cleans the air in a room up to 1,073 ft²\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "size_and_scale",
+        "supported_attributes": [
+          {
+            "attribute": "dimensions",
+            "rationale": "The overall dimensions of the air purifier are explicitly stated in the product specifications.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "weight",
+            "rationale": "The weight of the air purifier is provided, indicating it is relatively lightweight for portability.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "room size capacity",
+            "rationale": "The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.",
+            "evidence_snippets": [
+              "This air purifier cleans the air in a room up to 1,073 ft²"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:expectation_vs_reality",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"aspect_query\": \"expected vs actual, looks different, misleading, mismatch, reality\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"expectation_vs_reality\",\n      \"query\": \"expected vs actual, looks different, misleading, mismatch, reality\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"effectiveness in air purification\",\n      \"rationale\": \"The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.\",\n      \"evidence_snippets\": [\n        \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"room size specifications\",\n      \"rationale\": \"While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.\",\n      \"evidence_snippets\": [\n        \"This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB\",\n        \"Room Size Range: Range Not Specified\"\n      ],\n      \"source_chunk_ids\": [\"description_context\", \"spec_bullets\"],\n      \"source_review_ids\": [\"description_context\", \"spec_bullets\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "expectation_vs_reality",
+        "supported_attributes": [
+          {
+            "attribute": "effectiveness in air purification",
+            "rationale": "The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.",
+            "evidence_snippets": [
+              "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "room size specifications",
+            "rationale": "While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.",
+            "evidence_snippets": [
+              "This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB",
+              "Room Size Range: Range Not Specified"
+            ],
+            "source_chunk_ids": [
+              "description_context",
+              "spec_bullets"
+            ],
+            "source_review_ids": [
+              "description_context",
+              "spec_bullets"
+            ]
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "conflict_resolution",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/conflict_resolution.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"why it survives conflict resolution\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain/conflicting attribute\",\n      \"rationale\": \"what conflict or weakness remains\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"common mismatch theme\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"negative_constraints\": [\"things an image prompt should avoid\"],\n  \"resolution_notes\": [\"short note about major conflicts or uncertainty\"]\n}\n\nRules:\n- Merge duplicates and keep the strongest evidence.\n- Do not convert weak evidence into high-confidence attributes.\n- Negative constraints should be practical prompt constraints, not full sentences.\n- If a mismatch is only mentioned once and weakly, do not include it.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"aspect_results\": [\n    {\n      \"aspect_key\": \"appearance_and_shape\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"size dimensions\",\n          \"rationale\": \"The overall dimensions of the purifier are explicitly stated in the specifications.\",\n          \"evidence_snippets\": [\n            \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        },\n        {\n          \"attribute\": \"weight\",\n          \"rationale\": \"The weight of the product is directly provided in the specifications.\",\n          \"evidence_snippets\": [\n            \"Weight: 7.5 Pounds\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"supported_attributes\": [],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"specific color or finish\",\n          \"rationale\": \"The product description does not specify any color or finish details.\",\n          \"evidence_snippets\": [\n            \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"material_and_texture\",\n      \"supported_attributes\": [],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"filter materials\",\n          \"rationale\": \"The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.\",\n          \"evidence_snippets\": [\n            \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"dimensions\",\n          \"rationale\": \"The overall dimensions of the air purifier are explicitly stated in the product specifications.\",\n          \"evidence_snippets\": [\n            \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        },\n        {\n          \"attribute\": \"weight\",\n          \"rationale\": \"The weight of the air purifier is provided, indicating it is relatively lightweight for portability.\",\n          \"evidence_snippets\": [\n            \"Weight: 7.5 Pounds\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        },\n        {\n          \"attribute\": \"room size capacity\",\n          \"rationale\": \"The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.\",\n          \"evidence_snippets\": [\n            \"This air purifier cleans the air in a room up to 1,073 ft²\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"expectation_vs_reality\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"effectiveness in air purification\",\n          \"rationale\": \"The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.\",\n          \"evidence_snippets\": [\n            \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"room size specifications\",\n          \"rationale\": \"While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.\",\n          \"evidence_snippets\": [\n            \"This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB\",\n            \"Room Size Range: Range Not Specified\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\",\n            \"spec_bullets\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\",\n            \"spec_bullets\"\n          ]\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"size dimensions\",\n      \"rationale\": \"The overall dimensions of the purifier are explicitly stated in the specifications.\",\n      \"evidence_snippets\": [\n        \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"weight\",\n      \"rationale\": \"The weight of the product is directly provided in the specifications.\",\n      \"evidence_snippets\": [\n        \"Weight: 7.5 Pounds\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"room size capacity\",\n      \"rationale\": \"The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.\",\n      \"evidence_snippets\": [\n        \"This air purifier cleans the air in a room up to 1,073 ft²\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"effectiveness in air purification\",\n      \"rationale\": \"The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.\",\n      \"evidence_snippets\": [\n        \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"specific color or finish\",\n      \"rationale\": \"The product description does not specify any color or finish details.\",\n      \"evidence_snippets\": [\n        \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"filter materials\",\n      \"rationale\": \"The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.\",\n      \"evidence_snippets\": [\n        \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"room size specifications\",\n      \"rationale\": \"While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.\",\n      \"evidence_snippets\": [\n        \"This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB\",\n        \"Room Size Range: Range Not Specified\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\",\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\",\n        \"spec_bullets\"\n      ]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [],\n  \"negative_constraints\": [\n    \"avoid assumptions about color or finish\",\n    \"avoid specifying materials without evidence\"\n  ],\n  \"resolution_notes\": [\n    \"There is uncertainty regarding specific color, filter material, and room size specifications.\"\n  ]\n}",
+      "parsed_output": {
+        "resolved_high_confidence_attributes": [
+          {
+            "attribute": "size dimensions",
+            "rationale": "The overall dimensions of the purifier are explicitly stated in the specifications.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "weight",
+            "rationale": "The weight of the product is directly provided in the specifications.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "room size capacity",
+            "rationale": "The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.",
+            "evidence_snippets": [
+              "This air purifier cleans the air in a room up to 1,073 ft²"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "effectiveness in air purification",
+            "rationale": "The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.",
+            "evidence_snippets": [
+              "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "specific color or finish",
+            "rationale": "The product description does not specify any color or finish details.",
+            "evidence_snippets": [
+              "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "filter materials",
+            "rationale": "The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.",
+            "evidence_snippets": [
+              "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "room size specifications",
+            "rationale": "While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.",
+            "evidence_snippets": [
+              "This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB",
+              "Room Size Range: Range Not Specified"
+            ],
+            "source_chunk_ids": [
+              "description_context",
+              "spec_bullets"
+            ],
+            "source_review_ids": [
+              "description_context",
+              "spec_bullets"
+            ]
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [],
+        "negative_constraints": [
+          "avoid assumptions about color or finish",
+          "avoid specifying materials without evidence"
+        ],
+        "resolution_notes": [
+          "There is uncertainty regarding specific color, filter material, and room size specifications."
+        ]
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "final_visual_profile_synthesis",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/final_visual_profile_synthesis.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"product_name\": \"full product name\",\n  \"category\": \"category\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"brief why\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain attribute\",\n      \"rationale\": \"why it is uncertain\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"expectation vs reality gap\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"prompt_ready_description\": \"concise image-generation-ready description grounded in evidence\",\n  \"negative_constraints\": [\"constraint one\", \"constraint two\"]\n}\n\nRules:\n- The prompt_ready_description should be vivid but grounded.\n- Include only attributes supported by the provided description/specs/evidence.\n- If the listing and reviews disagree, keep the disagreement in low_confidence_or_conflicting_attributes.\n- Negative constraints should explicitly avoid unsupported or contradicted details.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"conflict_resolution\": {\n    \"resolved_high_confidence_attributes\": [\n      {\n        \"attribute\": \"size dimensions\",\n        \"rationale\": \"The overall dimensions of the purifier are explicitly stated in the specifications.\",\n        \"evidence_snippets\": [\n          \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"weight\",\n        \"rationale\": \"The weight of the product is directly provided in the specifications.\",\n        \"evidence_snippets\": [\n          \"Weight: 7.5 Pounds\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"room size capacity\",\n        \"rationale\": \"The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.\",\n        \"evidence_snippets\": [\n          \"This air purifier cleans the air in a room up to 1,073 ft²\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"effectiveness in air purification\",\n        \"rationale\": \"The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.\",\n        \"evidence_snippets\": [\n          \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      }\n    ],\n    \"low_confidence_or_conflicting_attributes\": [\n      {\n        \"attribute\": \"specific color or finish\",\n        \"rationale\": \"The product description does not specify any color or finish details.\",\n        \"evidence_snippets\": [\n          \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"filter materials\",\n        \"rationale\": \"The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.\",\n        \"evidence_snippets\": [\n          \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"room size specifications\",\n        \"rationale\": \"While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.\",\n        \"evidence_snippets\": [\n          \"This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB\",\n          \"Room Size Range: Range Not Specified\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\",\n          \"spec_bullets\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\",\n          \"spec_bullets\"\n        ]\n      }\n    ],\n    \"common_mismatches_between_expectation_and_reality\": [],\n    \"negative_constraints\": [\n      \"avoid assumptions about color or finish\",\n      \"avoid specifying materials without evidence\"\n    ],\n    \"resolution_notes\": [\n      \"There is uncertainty regarding specific color, filter material, and room size specifications.\"\n    ]\n  }\n}",
+      "raw_response_text": "{\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"size dimensions\",\n      \"rationale\": \"The overall dimensions of the purifier are explicitly stated in the specifications.\",\n      \"evidence_snippets\": [\n        \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"weight\",\n      \"rationale\": \"The weight of the product is directly provided in the specifications.\",\n      \"evidence_snippets\": [\n        \"Weight: 7.5 Pounds\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"room size capacity\",\n      \"rationale\": \"The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.\",\n      \"evidence_snippets\": [\n        \"This air purifier cleans the air in a room up to 1,073 ft²\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"effectiveness in air purification\",\n      \"rationale\": \"The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.\",\n      \"evidence_snippets\": [\n        \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"specific color or finish\",\n      \"rationale\": \"The product description does not specify any color or finish details.\",\n      \"evidence_snippets\": [\n        \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"filter materials\",\n      \"rationale\": \"The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.\",\n      \"evidence_snippets\": [\n        \"The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"room size specifications\",\n      \"rationale\": \"While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.\",\n      \"evidence_snippets\": [\n        \"This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB\",\n        \"Room Size Range: Range Not Specified\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\",\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\",\n        \"spec_bullets\"\n      ]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [],\n  \"prompt_ready_description\": \"A compact air purifier, standing 14 inches tall with a sleek design, efficiently cleans up to 1,073 ft². Equipped with multiple filters, it captures 99.97% of airborne particles, ensuring a breath of fresh air.\",\n  \"negative_constraints\": [\n    \"avoid assumptions about color or finish\",\n    \"avoid specifying materials without evidence\"\n  ]\n}",
+      "parsed_output": {
+        "product_name": "Levoit Core 300 Air Purifier White",
+        "category": "Air Purifiers",
+        "high_confidence_visual_attributes": [
+          {
+            "attribute": "size dimensions",
+            "rationale": "The overall dimensions of the purifier are explicitly stated in the specifications.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "weight",
+            "rationale": "The weight of the product is directly provided in the specifications.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "room size capacity",
+            "rationale": "The air purifier cleans the air in a room up to 1,073 ft², which indicates its capacity for large spaces.",
+            "evidence_snippets": [
+              "This air purifier cleans the air in a room up to 1,073 ft²"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "effectiveness in air purification",
+            "rationale": "The description explicitly states that the air purifier captures at least 99.97% of airborne particles down to 0.3 microns and helps breathe cleaner air.",
+            "evidence_snippets": [
+              "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "specific color or finish",
+            "rationale": "The product description does not specify any color or finish details.",
+            "evidence_snippets": [
+              "Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "filter materials",
+            "rationale": "The evidence mentions different types of filters but does not specify the materials used for the air purifier itself.",
+            "evidence_snippets": [
+              "The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "room size specifications",
+            "rationale": "While the description mentions the air purifier cleans air in a room up to 1,073 ft², the room size range in the spec bullets states 'Range Not Specified'.",
+            "evidence_snippets": [
+              "This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB",
+              "Room Size Range: Range Not Specified"
+            ],
+            "source_chunk_ids": [
+              "description_context",
+              "spec_bullets"
+            ],
+            "source_review_ids": [
+              "description_context",
+              "spec_bullets"
+            ]
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [],
+        "prompt_ready_description": "A compact air purifier, standing 14 inches tall with a sleek design, efficiently cleans up to 1,073 ft². Equipped with multiple filters, it captures 99.97% of airborne particles, ensuring a breath of fresh air.",
+        "negative_constraints": [
+          "avoid assumptions about color or finish",
+          "avoid specifying materials without evidence"
+        ]
+      },
+      "attempt_count": 1
+    }
+  ],
+  "review_informed_rag": [
+    {
+      "step_name": "aspect_evidence_extraction:appearance_and_shape",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"appearance_and_shape\",\n  \"aspect_query\": \"appearance, silhouette, visible form factor, shape, design, look\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"appearance_and_shape\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"Dimensions\",\n      \"rationale\": \"The overall dimensions provided give a clear specification of the product's size.\",\n      \"evidence_snippets\": [\"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"],\n      \"source_chunk_ids\": [\"chunk-1\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "appearance_and_shape",
+        "supported_attributes": [
+          {
+            "attribute": "Dimensions",
+            "rationale": "The overall dimensions provided give a clear specification of the product's size.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-1"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:color_and_finish",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"color_and_finish\",\n  \"aspect_query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"color_and_finish\",\n  \"supported_attributes\": [],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"color of the product\",\n      \"rationale\": \"The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.\",\n      \"evidence_snippets\": [\"Levoit Core 300 Air Purifier White\"],\n      \"source_chunk_ids\": [\"description\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "color_and_finish",
+        "supported_attributes": [],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "color of the product",
+            "rationale": "The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.",
+            "evidence_snippets": [
+              "Levoit Core 300 Air Purifier White"
+            ],
+            "source_chunk_ids": [
+              "description"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:material_and_texture",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"material_and_texture\",\n  \"aspect_query\": \"material, texture, plastic, metal, glass, fabric, leather, wood\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"material_and_texture\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"plastic\",\n      \"rationale\": \"The air purifier is likely made of plastic as it is a common material for home appliances, although this is not explicitly stated.\",\n      \"evidence_snippets\": [],\n      \"source_chunk_ids\": [],\n      \"source_review_ids\": []\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"metal\",\n      \"rationale\": \"There is no specific evidence indicating that metal is used in the construction, leaving this uncertain.\",\n      \"evidence_snippets\": [],\n      \"source_chunk_ids\": [],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"glass\",\n      \"rationale\": \"No evidence suggests the use of glass; however, it is common for air purifiers to have glass elements, making it a possibility but unconfirmed.\",\n      \"evidence_snippets\": [],\n      \"source_chunk_ids\": [],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"fabric\",\n      \"rationale\": \"Fabric details are not mentioned in the evidence, leading to uncertainty about its use.\",\n      \"evidence_snippets\": [],\n      \"source_chunk_ids\": [],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"leather\",\n      \"rationale\": \"There is no evidence supporting the inclusion of leather in the material composition.\",\n      \"evidence_snippets\": [],\n      \"source_chunk_ids\": [],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"wood\",\n      \"rationale\": \"No mention of wood in the description or specifications, leaving its presence uncertain.\",\n      \"evidence_snippets\": [],\n      \"source_chunk_ids\": [],\n      \"source_review_ids\": []\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "material_and_texture",
+        "supported_attributes": [
+          {
+            "attribute": "plastic",
+            "rationale": "The air purifier is likely made of plastic as it is a common material for home appliances, although this is not explicitly stated.",
+            "evidence_snippets": [],
+            "source_chunk_ids": [],
+            "source_review_ids": []
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "metal",
+            "rationale": "There is no specific evidence indicating that metal is used in the construction, leaving this uncertain.",
+            "evidence_snippets": [],
+            "source_chunk_ids": [],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "glass",
+            "rationale": "No evidence suggests the use of glass; however, it is common for air purifiers to have glass elements, making it a possibility but unconfirmed.",
+            "evidence_snippets": [],
+            "source_chunk_ids": [],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "fabric",
+            "rationale": "Fabric details are not mentioned in the evidence, leading to uncertainty about its use.",
+            "evidence_snippets": [],
+            "source_chunk_ids": [],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "leather",
+            "rationale": "There is no evidence supporting the inclusion of leather in the material composition.",
+            "evidence_snippets": [],
+            "source_chunk_ids": [],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "wood",
+            "rationale": "No mention of wood in the description or specifications, leaving its presence uncertain.",
+            "evidence_snippets": [],
+            "source_chunk_ids": [],
+            "source_review_ids": []
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:size_and_scale",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"size_and_scale\",\n  \"aspect_query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"size_and_scale\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"Dimensions: 14 inches high, 8.7 inches wide and deep\",\n      \"rationale\": \"The specified dimensions provide clear evidence of the product's size.\",\n      \"evidence_snippets\": [\"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"Weight: 7.5 pounds\",\n      \"rationale\": \"The specified weight offers a clear measurement of how heavy the product is.\",\n      \"evidence_snippets\": [\"Weight: 7.5 Pounds\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"Room size range: unspecified\",\n      \"rationale\": \"The product claims to clean air in a room but does not specify the exact range.\",\n      \"evidence_snippets\": [\"Room Size Range: Range Not Specified\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "size_and_scale",
+        "supported_attributes": [
+          {
+            "attribute": "Dimensions: 14 inches high, 8.7 inches wide and deep",
+            "rationale": "The specified dimensions provide clear evidence of the product's size.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "Weight: 7.5 pounds",
+            "rationale": "The specified weight offers a clear measurement of how heavy the product is.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "Room size range: unspecified",
+            "rationale": "The product claims to clean air in a room but does not specify the exact range.",
+            "evidence_snippets": [
+              "Room Size Range: Range Not Specified"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:expectation_vs_reality",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"aspect_query\": \"expected vs actual, looks different, misleading, mismatch, reality\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"supported_attributes\": [],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "expectation_vs_reality",
+        "supported_attributes": [],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "conflict_resolution",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/conflict_resolution.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"why it survives conflict resolution\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain/conflicting attribute\",\n      \"rationale\": \"what conflict or weakness remains\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"common mismatch theme\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"negative_constraints\": [\"things an image prompt should avoid\"],\n  \"resolution_notes\": [\"short note about major conflicts or uncertainty\"]\n}\n\nRules:\n- Merge duplicates and keep the strongest evidence.\n- Do not convert weak evidence into high-confidence attributes.\n- Negative constraints should be practical prompt constraints, not full sentences.\n- If a mismatch is only mentioned once and weakly, do not include it.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"aspect_results\": [\n    {\n      \"aspect_key\": \"appearance_and_shape\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"Dimensions\",\n          \"rationale\": \"The overall dimensions provided give a clear specification of the product's size.\",\n          \"evidence_snippets\": [\n            \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-1\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"supported_attributes\": [],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"color of the product\",\n          \"rationale\": \"The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.\",\n          \"evidence_snippets\": [\n            \"Levoit Core 300 Air Purifier White\"\n          ],\n          \"source_chunk_ids\": [\n            \"description\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"material_and_texture\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"plastic\",\n          \"rationale\": \"The air purifier is likely made of plastic as it is a common material for home appliances, although this is not explicitly stated.\",\n          \"evidence_snippets\": [],\n          \"source_chunk_ids\": [],\n          \"source_review_ids\": []\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"metal\",\n          \"rationale\": \"There is no specific evidence indicating that metal is used in the construction, leaving this uncertain.\",\n          \"evidence_snippets\": [],\n          \"source_chunk_ids\": [],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"glass\",\n          \"rationale\": \"No evidence suggests the use of glass; however, it is common for air purifiers to have glass elements, making it a possibility but unconfirmed.\",\n          \"evidence_snippets\": [],\n          \"source_chunk_ids\": [],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"fabric\",\n          \"rationale\": \"Fabric details are not mentioned in the evidence, leading to uncertainty about its use.\",\n          \"evidence_snippets\": [],\n          \"source_chunk_ids\": [],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"leather\",\n          \"rationale\": \"There is no evidence supporting the inclusion of leather in the material composition.\",\n          \"evidence_snippets\": [],\n          \"source_chunk_ids\": [],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"wood\",\n          \"rationale\": \"No mention of wood in the description or specifications, leaving its presence uncertain.\",\n          \"evidence_snippets\": [],\n          \"source_chunk_ids\": [],\n          \"source_review_ids\": []\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"Dimensions: 14 inches high, 8.7 inches wide and deep\",\n          \"rationale\": \"The specified dimensions provide clear evidence of the product's size.\",\n          \"evidence_snippets\": [\n            \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"Weight: 7.5 pounds\",\n          \"rationale\": \"The specified weight offers a clear measurement of how heavy the product is.\",\n          \"evidence_snippets\": [\n            \"Weight: 7.5 Pounds\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"Room size range: unspecified\",\n          \"rationale\": \"The product claims to clean air in a room but does not specify the exact range.\",\n          \"evidence_snippets\": [\n            \"Room Size Range: Range Not Specified\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"expectation_vs_reality\",\n      \"supported_attributes\": [],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"Dimensions\",\n      \"rationale\": \"The overall dimensions provided give a clear specification of the product's size.\",\n      \"evidence_snippets\": [\"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"],\n      \"source_chunk_ids\": [\"chunk-1\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"Weight: 7.5 pounds\",\n      \"rationale\": \"The specified weight offers a clear measurement of how heavy the product is.\",\n      \"evidence_snippets\": [\"Weight: 7.5 Pounds\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"color of the product\",\n      \"rationale\": \"The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.\",\n      \"evidence_snippets\": [\"Levoit Core 300 Air Purifier White\"],\n      \"source_chunk_ids\": [\"description\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"Room size range: unspecified\",\n      \"rationale\": \"The product claims to clean air in a room but does not specify the exact range.\",\n      \"evidence_snippets\": [\"Room Size Range: Range Not Specified\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [],\n  \"negative_constraints\": [\"avoid unsupported claims about materials\", \"avoid speculating on product features\"],\n  \"resolution_notes\": [\"Materials such as metal, glass, fabric, leather, and wood remain uncertain due to lack of evidence.\"]\n}",
+      "parsed_output": {
+        "resolved_high_confidence_attributes": [
+          {
+            "attribute": "Dimensions",
+            "rationale": "The overall dimensions provided give a clear specification of the product's size.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-1"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "Weight: 7.5 pounds",
+            "rationale": "The specified weight offers a clear measurement of how heavy the product is.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "color of the product",
+            "rationale": "The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.",
+            "evidence_snippets": [
+              "Levoit Core 300 Air Purifier White"
+            ],
+            "source_chunk_ids": [
+              "description"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "Room size range: unspecified",
+            "rationale": "The product claims to clean air in a room but does not specify the exact range.",
+            "evidence_snippets": [
+              "Room Size Range: Range Not Specified"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [],
+        "negative_constraints": [
+          "avoid unsupported claims about materials",
+          "avoid speculating on product features"
+        ],
+        "resolution_notes": [
+          "Materials such as metal, glass, fabric, leather, and wood remain uncertain due to lack of evidence."
+        ]
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "final_visual_profile_synthesis",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/final_visual_profile_synthesis.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"product_name\": \"full product name\",\n  \"category\": \"category\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"brief why\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain attribute\",\n      \"rationale\": \"why it is uncertain\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"expectation vs reality gap\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"prompt_ready_description\": \"concise image-generation-ready description grounded in evidence\",\n  \"negative_constraints\": [\"constraint one\", \"constraint two\"]\n}\n\nRules:\n- The prompt_ready_description should be vivid but grounded.\n- Include only attributes supported by the provided description/specs/evidence.\n- If the listing and reviews disagree, keep the disagreement in low_confidence_or_conflicting_attributes.\n- Negative constraints should explicitly avoid unsupported or contradicted details.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"selected_category\": \"home-appliance\",\n  \"description\": \"Refresh your home’s air with the Levoit Core 300-P Air Purifier. The Pre-Filter removes large airborne particles like dust and hair, the Main Filter captures at least 99.97% of airborne particles down to 0.3 microns, and the Activated Carbon Filter removes smoke, odors, fumes and VOCs (Volatile Organic Compounds). This air purifier cleans the air in a room up to 1,073 ft² with noise levels as low as 22dB, helping you breathe cleaner air while maintaining a peaceful home.\",\n  \"spec_bullets\": [\n    \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\",\n    \"Weight: 7.5 Pounds\",\n    \"Number of Settings: 3\",\n    \"Wattage Required: 45 Watts\",\n    \"Filter Type: Carbon\",\n    \"Industry or Government Certifications: ETL Listed, CARB Certified\",\n    \"Room Size Range: Range Not Specified\",\n    \"Allergens Captured: Pollen, Tobacco Smoke, Odors, Fireplace Smoke, Pet Dander, Dustmite Debris, Household Dust\",\n    \"Maximum Filter Life: 12 Months\",\n    \"Power Source: Electric\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"conflict_resolution\": {\n    \"resolved_high_confidence_attributes\": [\n      {\n        \"attribute\": \"Dimensions\",\n        \"rationale\": \"The overall dimensions provided give a clear specification of the product's size.\",\n        \"evidence_snippets\": [\n          \"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-1\"\n        ],\n        \"source_review_ids\": []\n      },\n      {\n        \"attribute\": \"Weight: 7.5 pounds\",\n        \"rationale\": \"The specified weight offers a clear measurement of how heavy the product is.\",\n        \"evidence_snippets\": [\n          \"Weight: 7.5 Pounds\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\"\n        ],\n        \"source_review_ids\": []\n      }\n    ],\n    \"low_confidence_or_conflicting_attributes\": [\n      {\n        \"attribute\": \"color of the product\",\n        \"rationale\": \"The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.\",\n        \"evidence_snippets\": [\n          \"Levoit Core 300 Air Purifier White\"\n        ],\n        \"source_chunk_ids\": [\n          \"description\"\n        ],\n        \"source_review_ids\": []\n      },\n      {\n        \"attribute\": \"Room size range: unspecified\",\n        \"rationale\": \"The product claims to clean air in a room but does not specify the exact range.\",\n        \"evidence_snippets\": [\n          \"Room Size Range: Range Not Specified\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\"\n        ],\n        \"source_review_ids\": []\n      }\n    ],\n    \"common_mismatches_between_expectation_and_reality\": [],\n    \"negative_constraints\": [\n      \"avoid unsupported claims about materials\",\n      \"avoid speculating on product features\"\n    ],\n    \"resolution_notes\": [\n      \"Materials such as metal, glass, fabric, leather, and wood remain uncertain due to lack of evidence.\"\n    ]\n  }\n}",
+      "raw_response_text": "{\n  \"product_name\": \"Levoit Core 300 Air Purifier White\",\n  \"category\": \"Air Purifiers\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"Dimensions\",\n      \"rationale\": \"The overall dimensions provided give a clear specification of the product's size.\",\n      \"evidence_snippets\": [\"Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)\"],\n      \"source_chunk_ids\": [\"chunk-1\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"Weight\",\n      \"rationale\": \"The specified weight offers a clear measurement of how heavy the product is.\",\n      \"evidence_snippets\": [\"Weight: 7.5 Pounds\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"color of the product\",\n      \"rationale\": \"The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.\",\n      \"evidence_snippets\": [\"Levoit Core 300 Air Purifier White\"],\n      \"source_chunk_ids\": [\"description\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"Room size range\",\n      \"rationale\": \"The product claims to clean air in a room but does not specify the exact range.\",\n      \"evidence_snippets\": [\"Room Size Range: Range Not Specified\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [],\n  \"prompt_ready_description\": \"A compact, white air purifier that effectively cleans the air in spaces up to 1,073 ft² while maintaining low noise levels of 22dB.\",\n  \"negative_constraints\": [\n    \"avoid unsupported claims about materials\",\n    \"avoid speculating on product features\"\n  ]\n}",
+      "parsed_output": {
+        "product_name": "Levoit Core 300 Air Purifier White",
+        "category": "Air Purifiers",
+        "high_confidence_visual_attributes": [
+          {
+            "attribute": "Dimensions",
+            "rationale": "The overall dimensions provided give a clear specification of the product's size.",
+            "evidence_snippets": [
+              "Dimensions (Overall): 14 Inches (H) x 8.7 Inches (W) x 8.7 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-1"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "Weight",
+            "rationale": "The specified weight offers a clear measurement of how heavy the product is.",
+            "evidence_snippets": [
+              "Weight: 7.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "color of the product",
+            "rationale": "The product description mentions it as 'Levoit Core 300 Air Purifier White', but there is no definitive evidence provided to confirm the presence of alternative colors or finishes.",
+            "evidence_snippets": [
+              "Levoit Core 300 Air Purifier White"
+            ],
+            "source_chunk_ids": [
+              "description"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "Room size range",
+            "rationale": "The product claims to clean air in a room but does not specify the exact range.",
+            "evidence_snippets": [
+              "Room Size Range: Range Not Specified"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [],
+        "prompt_ready_description": "A compact, white air purifier that effectively cleans the air in spaces up to 1,073 ft² while maintaining low noise levels of 22dB.",
+        "negative_constraints": [
+          "avoid unsupported claims about materials",
+          "avoid speculating on product features"
+        ]
+      },
+      "attempt_count": 1
+    }
+  ]
+}

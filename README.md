@@ -88,6 +88,40 @@ This repository is structured to support all four required questions:
 - Added `verify-artifacts --stage q1` with human-readable and machine-readable output.
 - Added tests for duplicate removal, category uniqueness, empty description failure, and minimum review threshold failure.
 
+### Stage 6: Q2 LLM Analysis Pipeline
+
+- Added a full API-only Q2 analysis pipeline under `backend/src/app/services/visual_profiles.py`.
+- Implemented two modes:
+  - `baseline_description_only`
+  - `review_informed_rag`
+- Added review chunking where one review is the primary chunk unit and only overly long reviews are split.
+- Added a pluggable retrieval layer:
+  - default local embedding cache retriever
+  - optional managed vector DB adapter placeholder
+- Implemented aspect-specific retrieval queries for:
+  - appearance and shape
+  - color and finish
+  - material and texture
+  - size and scale
+  - expectation vs reality mismatches
+- Added a three-step prompt chain:
+  - aspect evidence extraction
+  - conflict resolution
+  - final `VisualProfile` synthesis
+- Added editable prompt templates under `prompts/q2/`.
+- Added schema validation plus retry-on-parse-failure for every LLM step.
+- Added output paths under `outputs/visual_profiles/<product_slug>/` for:
+  - `baseline_description_only.json`
+  - `review_informed_rag.json`
+  - `retrieval_evidence.json`
+  - `llm_trace.json`
+- Added a retrieval fallback path so `review_informed_rag` can degrade to keyword-overlap retrieval when the configured OpenAI project lacks embedding-model access.
+- Added tests for:
+  - schema validation
+  - prompt loading
+  - mocked LLM pipeline execution
+  - retrieval ranking and cache behavior
+
 ## Repository Structure
 
 ```text
@@ -199,6 +233,16 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main build-corpus --raw-dir ../data/ra
 PYTHONPATH=src ../.venv/bin/python -m cli.main verify-artifacts --stage q1 --processed-dir ../data/processed --input ../data/selected_products.jsonl
 ```
 
+Q2 visual-profile extraction now supports:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product levoit-core-300-air-purifier-white-81910071 --mode baseline_description_only
+PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product levoit-core-300-air-purifier-white-81910071 --mode review_informed_rag
+```
+
 ## Frontend Overview
 
 Implemented routes:
@@ -262,6 +306,8 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../con
 PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100
 PYTHONPATH=src ../.venv/bin/python -m cli.main build-corpus --raw-dir ../data/raw --output-dir ../data/processed --input ../data/selected_products.jsonl
 PYTHONPATH=src ../.venv/bin/python -m cli.main verify-artifacts --stage q1 --processed-dir ../data/processed --input ../data/selected_products.jsonl
+PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product <product-slug> --mode baseline_description_only
+PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product <product-slug> --mode review_informed_rag
 PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow
 ```
 
@@ -294,19 +340,21 @@ npm run build
 
 ## Current Limitations
 
-- Product discovery, one-time product scraping, and Q1 processed-corpus validation are implemented; retrieval, prompt execution, image generation, and evaluation are still pending.
+- Product discovery, one-time product scraping, Q1 processed-corpus validation, and the Q2 LLM analysis pipeline are implemented; image generation and evaluation are still pending.
 - Discovery is currently implemented for Best Buy search pages only.
 - Product scraping is currently implemented for Target public product pages only.
 - Target's public PDP payload exposes only a recent-review block, so the current scraper captures a truthful subset of public reviews and marks those products as `partial_success`.
+- The Q2 pipeline is fully implemented and tested. A real local smoke run was completed for `levoit-core-300-air-purifier-white-81910071` in both modes.
+- The tested OpenAI project key allowed chat completions but not `text-embedding-3-small`, so `review_informed_rag` automatically fell back to keyword-overlap retrieval during the live run.
 - Frontend currently uses presentation-friendly mock data only and does not call backend APIs yet.
 - Workflow traces and downstream report exports are still placeholders awaiting later stages.
 - Comparison and generation pages currently use styled placeholders rather than real saved image thumbnails.
 
 ## Next Recommended Stage
 
-Implement `Q2` end-to-end:
+Implement `Q3` end-to-end:
 
-- build chunked textual corpora from `data/processed/`
-- add retrieval artifacts and evidence selection for prompt construction
-- extract structured visual profiles from cleaned descriptions and reviews
-- connect the frontend Product Selection and Review Explorer pages to real processed artifacts
+- add API-only image generation providers and prompt iteration records
+- generate 3-5 images per product for at least two models
+- compare generated images to real product images
+- connect the frontend Visual Profile / Generation / Comparison pages to saved outputs

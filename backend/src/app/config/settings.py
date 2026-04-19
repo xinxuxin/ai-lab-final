@@ -42,6 +42,15 @@ class Settings(BaseSettings):
     scraping_min_review_chars: int = Field(default=25, alias="SCRAPING_MIN_REVIEW_CHARS")
     q1_min_review_count: int = Field(default=5, alias="Q1_MIN_REVIEW_COUNT")
     corpus_min_review_chars: int = Field(default=25, alias="CORPUS_MIN_REVIEW_CHARS")
+    openai_base_url: str = Field(default="https://api.openai.com/v1", alias="OPENAI_BASE_URL")
+    llm_analysis_model: str = Field(default="gpt-4o-mini", alias="LLM_ANALYSIS_MODEL")
+    embedding_model: str = Field(
+        default="text-embedding-3-small",
+        alias="EMBEDDING_MODEL",
+    )
+    retrieval_top_k: int = Field(default=4, alias="RETRIEVAL_TOP_K")
+    review_chunk_max_chars: int = Field(default=1200, alias="REVIEW_CHUNK_MAX_CHARS")
+    llm_max_retries: int = Field(default=3, alias="LLM_MAX_RETRIES")
     target_api_key: str = Field(
         default="9f36aeafbe60771e321a7cc95a78140772ab3e96",
         alias="TARGET_API_KEY",
