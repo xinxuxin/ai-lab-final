@@ -1,11 +1,46 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { ArtifactBadge } from "../components/ArtifactBadge";
+import { LoadingState } from "../components/LoadingState";
 import { StageCard } from "../components/StageCard";
 import { StatCard } from "../components/StatCard";
-import { overviewStats, pipelineSteps, rubricItems } from "../mock/projectData";
+import { useApiData } from "../hooks/useApiData";
+import { api } from "../lib/api";
+import { rubricItems } from "../lib/presentation";
 
 export function HomePage() {
+  const productsQuery = useApiData(() => api.getProducts(), []);
+  const workflowQuery = useApiData(() => api.getWorkflow(), []);
+
+  const products = productsQuery.data?.items ?? [];
+  const stages = workflowQuery.data?.stages ?? [];
+  const overviewStats = [
+    {
+      label: "Selected products",
+      value: String(products.length || 0),
+      hint: "loaded from processed corpus artifacts",
+    },
+    {
+      label: "Review corpus",
+      value: String(products.reduce((sum, item) => sum + item.reviewCount, 0)),
+      hint: "cleaned reviews available for downstream analysis",
+    },
+    {
+      label: "Profiles ready",
+      value: String(
+        products.filter(
+          (item) => item.artifacts.profiles.baseline && item.artifacts.profiles.reviewInformed,
+        ).length,
+      ),
+      hint: "products with both baseline and review-informed outputs",
+    },
+    {
+      label: "Evaluation ready",
+      value: String(products.filter((item) => item.artifacts.evaluation).length),
+      hint: "products with saved comparison summaries",
+    },
+  ];
+
   return (
     <>
       <motion.section
@@ -20,7 +55,7 @@ export function HomePage() {
             transition={{ delay: 0.05 }}
             className="text-sm font-semibold uppercase tracking-[0.24em] text-white/70"
           >
-            Presentation demo frontend
+            Artifact-backed demo frontend
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
@@ -28,17 +63,17 @@ export function HomePage() {
             transition={{ delay: 0.12 }}
             className="mt-4 max-w-3xl font-display text-5xl font-bold leading-tight lg:text-6xl"
           >
-            Generating product images from customer reviews, with visible evidence at every stage.
+            Generating product images from customer reviews, with real pipeline artifacts driving every page.
           </motion.h1>
           <p className="mt-5 max-w-2xl text-base text-white/75">
-            This frontend is already shaped around the assignment structure. It tells the story from
-            Q1 product selection to Q4 workflow orchestration, while leaving clean slots for future
-            real artifacts, prompts, traces, and evaluation outputs.
+            The dashboard now reads saved outputs from discovery, scraping, corpus building, visual
+            profile extraction, image generation, and evaluation. Missing stages stay visible
+            instead of being hidden.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <span className="rounded-full bg-white/15 px-4 py-2 text-sm">Q1 to Q4 aligned</span>
-            <span className="rounded-full bg-white/15 px-4 py-2 text-sm">Mock artifact loading</span>
-            <span className="rounded-full bg-white/15 px-4 py-2 text-sm">Presentation-ready visuals</span>
+            <span className="rounded-full bg-white/15 px-4 py-2 text-sm">real artifact loading</span>
+            <span className="rounded-full bg-white/15 px-4 py-2 text-sm">presentation-ready states</span>
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -62,26 +97,32 @@ export function HomePage() {
       <AnimatedSection
         eyebrow="Q1 to Q4"
         title="Four-stage pipeline overview"
-        description="The home page frames the final demo around the assignment questions, so viewers can immediately connect each visual module to the report logic."
+        description="Each card is now driven by real artifact-stage progress rather than fixed mock status."
       >
-        <div className="grid gap-5 lg:grid-cols-2">
-          {pipelineSteps.map((stage) => (
-            <div key={stage.title} className="space-y-3">
+        {workflowQuery.loading ? (
+          <LoadingState title="Loading workflow stages" lines={4} />
+        ) : (
+          <div className="grid gap-5 lg:grid-cols-2">
+            {stages.map((stage) => (
               <StageCard
-                title={stage.title}
-                description={stage.summary}
+                key={stage.stage}
+                title={stage.stage}
+                description={stage.detail}
                 status={stage.status}
-                chips={stage.bullets}
+                chips={[
+                  `${stage.completedCount}/${stage.totalCount} ready`,
+                  stage.artifact,
+                ]}
               />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </AnimatedSection>
 
       <AnimatedSection
         eyebrow="Rubric focus"
         title="What the demo is optimizing for"
-        description="These panels mirror the rubric priorities so the presentation UI supports analysis quality, not just visual appeal."
+        description="The presentation view still mirrors the rubric, but the content now reflects actual repository state."
       >
         <div className="grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
           {rubricItems.map((item, index) => (

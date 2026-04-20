@@ -1,12 +1,17 @@
 import { motion } from "framer-motion";
-import { WorkflowNode } from "../mock/projectData";
 import { ArtifactBadge } from "./ArtifactBadge";
 
 type FlowDiagramProps = {
-  nodes: WorkflowNode[];
+  nodes: Array<{
+    id: string;
+    title: string;
+    role: string;
+    detail: string;
+    status: "Ready" | "Cached" | "Pending" | "Running";
+  }>;
 };
 
-const statusTone: Record<WorkflowNode["status"], "lime" | "sky" | "coral" | "neutral"> = {
+const statusTone: Record<FlowDiagramProps["nodes"][number]["status"], "lime" | "sky" | "coral" | "neutral"> = {
   Ready: "lime",
   Cached: "sky",
   Pending: "neutral",
@@ -45,4 +50,3 @@ export function FlowDiagram({ nodes }: FlowDiagramProps) {
     </div>
   );
 }
-

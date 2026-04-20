@@ -4,6 +4,8 @@ import { ArtifactBadge } from "./ArtifactBadge";
 type ImageGridItem = {
   title: string;
   subtitle: string;
+  imageUrl?: string | null;
+  alt?: string;
   status?: string;
   tint?: string;
 };
@@ -24,9 +26,19 @@ export function ImageGrid({ items }: ImageGridProps) {
           whileHover={{ y: -6 }}
           className={`overflow-hidden rounded-[1.5rem] border border-white/70 bg-gradient-to-br p-4 shadow-float ${item.tint ?? "from-slate-100 to-slate-200"}`}
         >
-          <div className="flex h-48 items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white/60">
-            <span className="font-display text-lg text-slate-400">Image Placeholder</span>
-          </div>
+          {item.imageUrl ? (
+            <div className="flex h-48 items-center justify-center overflow-hidden rounded-[1.25rem] bg-white/80">
+              <img
+                src={item.imageUrl}
+                alt={item.alt ?? item.title}
+                className="h-full w-full object-contain"
+              />
+            </div>
+          ) : (
+            <div className="flex h-48 items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white/60">
+              <span className="font-display text-lg text-slate-400">Artifact Missing</span>
+            </div>
+          )}
           <div className="mt-4 flex items-start justify-between gap-3">
             <div>
               <p className="font-semibold text-ink">{item.title}</p>

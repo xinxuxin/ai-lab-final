@@ -1,0 +1,16 @@
+{
+  "status": "missing_generated_images",
+  "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+  "product_name": "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)",
+  "category": "audio",
+  "reference_image_count": 10,
+  "comparison_panel_count": 0,
+  "available_models": [],
+  "missing_models": [
+    "openai",
+    "stability"
+  ],
+  "vision_assisted_status": "not_run",
+  "aggregate_scores": {},
+  "summary_text": "Reference product images are available, but no generated image manifests were found for comparison yet."
+}

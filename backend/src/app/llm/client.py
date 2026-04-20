@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import base64
 import json
+import mimetypes
 from dataclasses import dataclass
+from pathlib import Path
 
 import httpx
 
@@ -73,6 +76,54 @@ class OpenAITextAnalysisClient:
         if not isinstance(usage, dict):
             usage = {}
         return JSONCompletionResult(text=content, usage=usage)
+
+    def complete_json_with_images(
+        self,
+        *,
+        system_prompt: str,
+        user_prompt: str,
+        image_paths: list[Path],
+        model: str | None = None,
+    ) -> JSONCompletionResult:
+        """Request a JSON-only multimodal chat completion."""
+        content: list[dict[str, object]] = [{"type": "text", "text": user_prompt}]
+        for image_path in image_paths:
+            media_type = mimetypes.guess_type(image_path.name)[0] or "image/png"
+            data_url = (
+                f"data:{media_type};base64,"
+                f"{base64.b64encode(image_path.read_bytes()).decode('utf-8')}"
+            )
+            content.append(
+                {
+                    "type": "image_url",
+                    "image_url": {"url": data_url},
+                }
+            )
+        payload = {
+            "model": model or self._settings.llm_analysis_model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": content},
+            ],
+            "response_format": {"type": "json_object"},
+        }
+        response = self._client.post(
+            f"{self._settings.openai_base_url}/chat/completions",
+            content=json.dumps(payload),
+        )
+        response.raise_for_status()
+        data = response.json()
+        choices = data.get("choices", [])
+        if not choices:
+            raise LLMClientError("OpenAI multimodal completion returned no choices.")
+        message = choices[0].get("message", {})
+        content_value = message.get("content")
+        if not isinstance(content_value, str) or not content_value.strip():
+            raise LLMClientError("OpenAI multimodal completion returned empty content.")
+        usage = data.get("usage", {})
+        if not isinstance(usage, dict):
+            usage = {}
+        return JSONCompletionResult(text=content_value, usage=usage)
 
     def embed_texts(
         self,

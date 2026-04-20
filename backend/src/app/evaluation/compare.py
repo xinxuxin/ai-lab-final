@@ -1,9 +1,8 @@
-"""Evaluation placeholders."""
+"""Evaluation entrypoints."""
 
-from app.models.schemas import EvaluationRecord
+from app.services.evaluation import EvaluateImagesResult, evaluate_images_for_product
 
 
-def compare_generated_images(product_id: str) -> EvaluationRecord | None:
-    """Placeholder comparison entrypoint."""
-    del product_id
-    return None
+def compare_generated_images(product_slug: str) -> EvaluateImagesResult:
+    """Build evaluation artifacts for one product slug."""
+    return evaluate_images_for_product(product_slug=product_slug)

@@ -12,8 +12,10 @@ from app.collectors.product_pages import run_scrape_all, run_scrape_product
 from app.config.settings import get_settings
 from app.services import (
     build_processed_corpus,
+    evaluate_images_for_product,
     extract_visual_profile,
     generate_images_for_product,
+    list_evaluation_ready_products,
     list_generation_ready_products,
     validate_q1_from_disk,
 )
@@ -374,9 +376,64 @@ def generate_images(
 
 
 @app.command("evaluate-images")
-def evaluate_images() -> None:
+def evaluate_images(
+    product: str | None = typer.Option(
+        None,
+        "--product",
+        help="Product slug to evaluate.",
+    ),
+    all_products: bool = typer.Option(
+        False,
+        "--all",
+        help="Evaluate all products with raw artifacts.",
+    ),
+    vision_assisted: bool = typer.Option(
+        False,
+        "--vision-assisted",
+        help="Run optional vision-assisted evaluation via API.",
+    ),
+) -> None:
     """Evaluate generated images against reference product images."""
-    _print_placeholder("evaluate-images")
+    configure_logging()
+    if bool(product) == bool(all_products):
+        raise typer.BadParameter("Choose exactly one of --product or --all.")
+
+    products = [product] if product else list_evaluation_ready_products()
+    if not products:
+        raise typer.BadParameter("No evaluation-ready products were found under data/raw.")
+
+    summaries: list[dict[str, object]] = []
+    saved_paths: list[str] = []
+    for product_slug in products:
+        result = evaluate_images_for_product(
+            product_slug=product_slug,
+            vision_assisted=vision_assisted,
+        )
+        summaries.append(
+            {
+                "product_slug": product_slug,
+                "status": result.summary["status"],
+                "comparison_panel_count": result.summary["comparison_panel_count"],
+                "available_models": result.summary["available_models"],
+                "missing_models": result.summary["missing_models"],
+                "vision_assisted_status": result.summary["vision_assisted_status"],
+            }
+        )
+        saved_paths.extend(
+            [
+                str(result.human_score_sheet_path),
+                str(result.vision_assisted_eval_path),
+                str(result.summary_path),
+                str(result.comparison_panels_manifest_path),
+            ]
+        )
+
+    typer.echo("Evaluation summary:")
+    typer.echo(json.dumps({"runs": summaries}, indent=2))
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    for path in saved_paths:
+        typer.echo(f"- {path}")
 
 
 @app.command("run-workflow")

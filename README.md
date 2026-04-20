@@ -165,6 +165,46 @@ This repository is structured to support all four required questions:
   - manifest writing
   - image file integrity failures
 
+### Stage 8: Evaluation and Frontend Integration
+
+- Added a Q3 evaluation pipeline under `backend/src/app/services/evaluation.py`.
+- Evaluation now supports:
+  - human scoring template generation
+  - optional vision-assisted evaluation through the OpenAI API
+- Evaluation artifacts are saved under `outputs/evaluations/<product_slug>/`:
+  - `human_score_sheet.csv`
+  - `vision_assisted_eval.json`
+  - `summary.json`
+  - `comparison_panels_manifest.json`
+- Added artifact-backed API payload builders under `backend/src/app/services/dashboard_data.py`.
+- Added FastAPI endpoints:
+  - `/api/products`
+  - `/api/products/{slug}`
+  - `/api/reviews/{slug}/stats`
+  - `/api/profiles/{slug}`
+  - `/api/generation/{slug}`
+  - `/api/evaluation/{slug}`
+  - `/api/workflow/latest`
+  - `/api/assets/{artifact_path}`
+- Frontend pages now read real backend-generated artifacts instead of product-level mock content:
+  - Home page reads live product and workflow summaries
+  - Product Selection reads processed product artifacts
+  - Review Explorer reads review stats, samples, and retrieval evidence
+  - Visual Profile reads baseline and review-informed outputs
+  - Image Generation reads prompt history and generated-image manifests
+  - Comparison Dashboard reads evaluation summaries and comparison panels
+  - Agentic Workflow reads real stage progress from disk
+- Added polished UI behaviors for:
+  - loading states
+  - missing-artifact states
+  - freshness badges
+  - comparison slider
+  - chart-backed evaluation summaries
+- Added backend tests for:
+  - artifact-backed API endpoints
+  - evaluation artifact generation
+- Added frontend fetch-layer tests with Vitest.
+
 ## Repository Structure
 
 ```text
@@ -297,6 +337,16 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main generate-images --product levoit-
 PYTHONPATH=src ../.venv/bin/python -m cli.main generate-images --all --count 4
 ```
 
+Q3 evaluation now supports:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --product levoit-core-300-air-purifier-white-81910071
+PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --all
+```
+
 ## Frontend Overview
 
 Implemented routes:
@@ -321,6 +371,11 @@ Reusable UI components:
 - `ConfidenceChip`
 - `FlowDiagram`
 - `PromptCard`
+- `LoadingState`
+- `MissingArtifactState`
+- `FreshnessBadge`
+- `ProductSelector`
+- `ComparisonSlider`
 
 ## Local Setup
 
@@ -370,6 +425,7 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow
 ```bash
 cd frontend
 npm run dev
+npm test
 ```
 
 ## Validation Commands
@@ -394,21 +450,21 @@ npm run build
 
 ## Current Limitations
 
-- Product discovery, one-time product scraping, Q1 processed-corpus validation, and the Q2 LLM analysis pipeline are implemented; image generation and evaluation are still pending.
+- Product discovery, one-time product scraping, Q1 validation, Q2 analysis, Q3 image generation, Q3 evaluation, and artifact-backed frontend integration are implemented.
 - Discovery is currently implemented for Best Buy search pages only.
 - Product scraping is currently implemented for Target public product pages only.
 - Target's public PDP payload exposes only a recent-review block, so the current scraper captures a truthful subset of public reviews and marks those products as `partial_success`.
 - The Q2 pipeline is fully implemented and tested. A real local smoke run was completed for `levoit-core-300-air-purifier-white-81910071` in both modes.
 - The tested OpenAI project key allowed chat completions but not `text-embedding-3-small`, so `review_informed_rag` automatically fell back to keyword-overlap retrieval during the live run.
-- Frontend currently uses presentation-friendly mock data only and does not call backend APIs yet.
-- Workflow traces and downstream report exports are still placeholders awaiting later stages.
-- Comparison and generation pages currently use styled placeholders rather than real saved image thumbnails.
+- Only one product currently has real Q2 visual-profile outputs on disk, so the profile page will prefer that product by default while other products surface missing-artifact states.
+- No real generated image artifacts have been produced yet in this repository snapshot, so generation and evaluation pages honestly display missing or incomplete downstream states unless `generate-images` is run.
+- The comparison page currently shows saved evaluation summaries, but full per-dimension provider analytics require actual generated images and optional vision-assisted scoring.
 
 ## Next Recommended Stage
 
-Implement `Q3` end-to-end:
+Implement `Q4` end-to-end:
 
-- add API-only image generation providers and prompt iteration records
-- generate 3-5 images per product for at least two models
-- compare generated images to real product images
-- connect the frontend Visual Profile / Generation / Comparison pages to saved outputs
+- generate real Q3 image outputs for both providers
+- run optional vision-assisted evaluation on those outputs
+- extend workflow tracing into a fully automated end-to-end run report
+- add final report exports and reflective discussion support artifacts

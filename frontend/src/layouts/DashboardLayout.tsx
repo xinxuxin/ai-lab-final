@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { PropsWithChildren } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { navLinks } from "../mock/projectData";
+import { navLinks } from "../lib/navigation";
 
 export function DashboardLayout({ children }: PropsWithChildren) {
   const location = useLocation();

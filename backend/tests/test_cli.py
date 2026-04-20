@@ -23,6 +23,7 @@ from app.models.schemas import (
     VisualProfile,
 )
 from app.services.corpus import BuildCorpusResult
+from app.services.evaluation import EvaluateImagesResult
 from app.services.image_generation import GenerateImagesResult
 from app.services.visual_profiles import ExtractVisualProfileResult
 from cli.main import app
@@ -441,3 +442,41 @@ def test_cli_generate_images_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> 
     )
     assert result.exit_code == 0
     assert "Image generation summary:" in result.stdout
+
+
+def test_cli_evaluate_images_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Evaluate-images command should print saved evaluation artifact paths."""
+    output_dir = tmp_path / "outputs" / "evaluations" / "sample-product"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    def fake_evaluate_images_for_product(
+        *,
+        product_slug: str,
+        raw_root: Path | None = None,
+        generated_root: Path | None = None,
+        outputs_root: Path | None = None,
+        settings: object | None = None,
+        vision_assisted: bool = False,
+        llm_client: object | None = None,
+    ) -> EvaluateImagesResult:
+        del raw_root, generated_root, outputs_root, settings, vision_assisted, llm_client
+        return EvaluateImagesResult(
+            product_slug=product_slug,
+            evaluation_dir=output_dir,
+            human_score_sheet_path=output_dir / "human_score_sheet.csv",
+            vision_assisted_eval_path=output_dir / "vision_assisted_eval.json",
+            summary_path=output_dir / "summary.json",
+            comparison_panels_manifest_path=output_dir / "comparison_panels_manifest.json",
+            summary={
+                "status": "human_scoring_ready",
+                "comparison_panel_count": 4,
+                "available_models": ["openai"],
+                "missing_models": ["stability"],
+                "vision_assisted_status": "not_run",
+            },
+        )
+
+    monkeypatch.setattr("cli.main.evaluate_images_for_product", fake_evaluate_images_for_product)
+    result = runner.invoke(app, ["evaluate-images", "--product", "sample-product"])
+    assert result.exit_code == 0
+    assert "Evaluation summary:" in result.stdout
