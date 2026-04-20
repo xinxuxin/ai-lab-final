@@ -1,0 +1,101 @@
+{
+  "product_name": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™",
+  "category": "Desk Lamps",
+  "high_confidence_visual_attributes": [
+    {
+      "attribute": "oval glass shade",
+      "rationale": "The snippet describes an 'oval glass shade' which directly supports this attribute.",
+      "evidence_snippets": [
+        "Boasting an oval glass shade with a wooden base"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "wooden base",
+      "rationale": "The snippet mentions a 'wooden base' as part of the lamp's design.",
+      "evidence_snippets": [
+        "with a wooden base"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "glass shade",
+      "rationale": "The description explicitly states that the shade is made of glass.",
+      "evidence_snippets": [
+        "boasting an oval glass shade"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "weight of 2.5 pounds",
+      "rationale": "The weight is specified directly in the specs.",
+      "evidence_snippets": [
+        "Weight: 2.5 Pounds"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep",
+      "rationale": "The dimensions are provided in the specs.",
+      "evidence_snippets": [
+        "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": []
+    }
+  ],
+  "low_confidence_or_conflicting_attributes": [
+    {
+      "attribute": "plastic components",
+      "rationale": "While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.",
+      "evidence_snippets": [
+        "Cord Covering: Plastic"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    }
+  ],
+  "common_mismatches_between_expectation_and_reality": [
+    {
+      "mismatch": "The lamp's natural appeal and functionality may differ from customer expectations.",
+      "evidence_snippets": [
+        "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light."
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    }
+  ],
+  "prompt_ready_description": "A stylish desk lamp featuring an oval glass shade and a wooden base, providing a warm glow with an integrated LED bulb. It's designed to enhance your space and includes two USB ports for convenient device charging.",
+  "negative_constraints": [
+    "avoid suggesting plastic elements",
+    "do not imply larger dimensions"
+  ]
+}

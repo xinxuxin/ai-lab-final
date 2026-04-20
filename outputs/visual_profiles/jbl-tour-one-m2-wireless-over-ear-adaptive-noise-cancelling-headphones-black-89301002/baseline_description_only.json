@@ -1,0 +1,114 @@
+{
+  "product_name": "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)",
+  "category": "Wireless Headphones",
+  "high_confidence_visual_attributes": [
+    {
+      "attribute": "comfortable design",
+      "rationale": "The description explicitly states the headphones are 'Built for comfort designed for inspiration.'",
+      "evidence_snippets": [
+        "Built for comfort designed for inspiration."
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "lightweight design",
+      "rationale": "The spec bullet mentions 'Lightweight Design', indicating that the headphones are designed to be light.",
+      "evidence_snippets": [
+        "Electronics Features: Adjustable Headband, Lightweight Design"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "black",
+      "rationale": "The product is specifically described as 'JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black).' ",
+      "evidence_snippets": [
+        "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "leatherette ear cushions",
+      "rationale": "The evidence explicitly states that the ear cushion material is leatherette, which directly supports this attribute.",
+      "evidence_snippets": [
+        "Ear Cushion Material: Leatherette"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    },
+    {
+      "attribute": "weight",
+      "rationale": "The weight of the product is explicitly stated as .6 pounds.",
+      "evidence_snippets": [
+        "Weight: .6 pounds"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    }
+  ],
+  "low_confidence_or_conflicting_attributes": [
+    {
+      "attribute": "specific color or finish",
+      "rationale": "While the product name includes 'Black', there is no explicit description or evidence to confirm the hue or finish of the headphones.",
+      "evidence_snippets": [
+        "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "noise cancellation effectiveness",
+      "rationale": "The description highlights adaptive noise cancellation technology, but it does not provide user feedback or comparative effectiveness against expectations.",
+      "evidence_snippets": [
+        "True Adaptive Noise Cancelling technology tunes out distractions"
+      ],
+      "source_chunk_ids": [
+        "description_context"
+      ],
+      "source_review_ids": [
+        "description_context"
+      ]
+    }
+  ],
+  "common_mismatches_between_expectation_and_reality": [
+    {
+      "mismatch": "lack of water resistance rating",
+      "evidence_snippets": [
+        "Water Resistance: No Water Resistance Rating"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": [
+        "spec_bullets"
+      ]
+    }
+  ],
+  "prompt_ready_description": "Experience unparalleled comfort and immersive sound with the JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones in black, featuring plush leatherette ear cushions and a lightweight design for long listening sessions.",
+  "negative_constraints": [
+    "avoid vague color descriptions",
+    "avoid unsupported claims about sound quality"
+  ]
+}

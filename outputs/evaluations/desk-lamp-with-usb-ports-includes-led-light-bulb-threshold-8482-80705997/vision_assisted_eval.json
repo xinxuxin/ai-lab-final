@@ -1,6 +1,6 @@
 {
   "status": "not_run",
-  "reason": "no_generated_images_available",
+  "reason": "vision_assisted_disabled",
   "evaluations": [],
   "aggregate_scores": {}
 }

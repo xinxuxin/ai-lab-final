@@ -1,0 +1,113 @@
+{
+  "product_name": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™",
+  "category": "Desk Lamps",
+  "high_confidence_visual_attributes": [
+    {
+      "attribute": "oval shade",
+      "rationale": "The shape of the lamp's shade is specified as oval.",
+      "evidence_snippets": [
+        "Shade Shape: Oval"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "wooden base",
+      "rationale": "The lamp's body material is identified as wood, contributing to its appearance.",
+      "evidence_snippets": [
+        "Lighting Body Material: Wood",
+        "the lamp adds a touch of natural appeal to your home decor while illuminating your space"
+      ],
+      "source_chunk_ids": [
+        "chunk-id",
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+      ],
+      "source_review_ids": [
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+      ]
+    },
+    {
+      "attribute": "glass shade",
+      "rationale": "The material of the shade is confirmed to be glass.",
+      "evidence_snippets": [
+        "Lighting Shade Material: Glass",
+        "oval glass shade"
+      ],
+      "source_chunk_ids": [
+        "chunk-id",
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+      ],
+      "source_review_ids": [
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+      ]
+    },
+    {
+      "attribute": "dimensional size",
+      "rationale": "Specific assembled dimensions are provided, indicating the physical size of the lamp.",
+      "evidence_snippets": [
+        "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "plastic cord covering",
+      "rationale": "The cord covering of the lamp is specified to be made of plastic.",
+      "evidence_snippets": [
+        "Cord Covering: Plastic"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "small size",
+      "rationale": "The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.",
+      "evidence_snippets": [
+        "Good function and pretty small size lamp."
+      ],
+      "source_chunk_ids": [
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+      ],
+      "source_review_ids": [
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+      ]
+    },
+    {
+      "attribute": "lightweight",
+      "rationale": "The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.",
+      "evidence_snippets": [
+        "Weight: 2.5 Pounds"
+      ],
+      "source_chunk_ids": [
+        "39fee327-8192-44ae-ae11-d13e5046964f__0"
+      ],
+      "source_review_ids": [
+        "39fee327-8192-44ae-ae11-d13e5046964f"
+      ]
+    }
+  ],
+  "low_confidence_or_conflicting_attributes": [
+    {
+      "attribute": "warm light color",
+      "rationale": "The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.",
+      "evidence_snippets": [
+        "I wish the color of the light was more on the warm side."
+      ],
+      "source_chunk_ids": [
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+      ],
+      "source_review_ids": [
+        "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+      ]
+    }
+  ],
+  "common_mismatches_between_expectation_and_reality": [],
+  "prompt_ready_description": "A compact desk lamp featuring an oval glass shade and a wooden base, equipped with two USB ports for device charging. This lightweight lamp emits a soft glow with a dimmable setting, perfect for creating ambiance in any cozy corner.",
+  "negative_constraints": []
+}

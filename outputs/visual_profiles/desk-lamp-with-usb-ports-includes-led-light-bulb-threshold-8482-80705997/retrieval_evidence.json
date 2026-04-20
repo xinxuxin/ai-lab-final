@@ -1,0 +1,87 @@
+{
+  "baseline_description_only": {
+    "appearance_and_shape": [
+      {
+        "aspect_key": "appearance_and_shape",
+        "query": "appearance, silhouette, visible form factor, shape, design, look",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you."
+      }
+    ],
+    "color_and_finish": [
+      {
+        "aspect_key": "color_and_finish",
+        "query": "color, finish, gloss, matte, black, white, metallic, wood tone",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you."
+      }
+    ],
+    "material_and_texture": [
+      {
+        "aspect_key": "material_and_texture",
+        "query": "material, texture, plastic, metal, glass, fabric, leather, wood",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you."
+      }
+    ],
+    "size_and_scale": [
+      {
+        "aspect_key": "size_and_scale",
+        "query": "size, scale, dimensions, compact, large, bulky, lightweight",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you."
+      }
+    ],
+    "expectation_vs_reality": [
+      {
+        "aspect_key": "expectation_vs_reality",
+        "query": "expected vs actual, looks different, misleading, mismatch, reality",
+        "chunk_id": "description_context",
+        "source_review_id": "description_context",
+        "score": 1.0,
+        "snippet": "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you."
+      }
+    ]
+  },
+  "review_informed_rag": {
+    "appearance_and_shape": [],
+    "color_and_finish": [
+      {
+        "aspect_key": "color_and_finish",
+        "query": "color, finish, gloss, matte, black, white, metallic, wood tone",
+        "chunk_id": "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0",
+        "source_review_id": "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5",
+        "score": 0.1111111111111111,
+        "snippet": "Good lamp but wish it's warmer light\nGood function and pretty small size lamp. I wish the color of the light was more on the warm side. Going to try it out as part of newborn’s middle of the night chang up set up. However, majority suggests using red light or warm light so I am hesitant to say this is a good option for this set up."
+      }
+    ],
+    "material_and_texture": [],
+    "size_and_scale": [
+      {
+        "aspect_key": "size_and_scale",
+        "query": "size, scale, dimensions, compact, large, bulky, lightweight",
+        "chunk_id": "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0",
+        "source_review_id": "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5",
+        "score": 0.14285714285714285,
+        "snippet": "Good lamp but wish it's warmer light\nGood function and pretty small size lamp. I wish the color of the light was more on the warm side. Going to try it out as part of newborn’s middle of the night chang up set up. However, majority suggests using red light or warm light so I am hesitant to say this is a good option for this set up."
+      },
+      {
+        "aspect_key": "size_and_scale",
+        "query": "size, scale, dimensions, compact, large, bulky, lightweight",
+        "chunk_id": "39fee327-8192-44ae-ae11-d13e5046964f__0",
+        "source_review_id": "39fee327-8192-44ae-ae11-d13e5046964f",
+        "score": 0.14285714285714285,
+        "snippet": "cute little lamp. love the brightness for the size and the dimming function"
+      }
+    ],
+    "expectation_vs_reality": []
+  }
+}

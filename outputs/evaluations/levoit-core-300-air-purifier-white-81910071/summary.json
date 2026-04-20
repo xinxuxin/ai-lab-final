@@ -1,16 +1,17 @@
 {
-  "status": "missing_generated_images",
+  "status": "human_scoring_ready",
   "product_slug": "levoit-core-300-air-purifier-white-81910071",
   "product_name": "Levoit Core 300 Air Purifier White",
   "category": "home-appliance",
   "reference_image_count": 14,
-  "comparison_panel_count": 0,
-  "available_models": [],
-  "missing_models": [
-    "openai",
+  "comparison_panel_count": 4,
+  "available_models": [
     "stability"
+  ],
+  "missing_models": [
+    "openai"
   ],
   "vision_assisted_status": "not_run",
   "aggregate_scores": {},
-  "summary_text": "Reference product images are available, but no generated image manifests were found for comparison yet."
+  "summary_text": "Comparison panels and the human scoring sheet were generated. Vision-assisted scoring was not run."
 }

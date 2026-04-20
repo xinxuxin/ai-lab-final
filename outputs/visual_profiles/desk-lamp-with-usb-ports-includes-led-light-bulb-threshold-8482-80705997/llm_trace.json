@@ -1,0 +1,908 @@
+{
+  "baseline_description_only": [
+    {
+      "step_name": "aspect_evidence_extraction:appearance_and_shape",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"appearance_and_shape\",\n  \"aspect_query\": \"appearance, silhouette, visible form factor, shape, design, look\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"appearance_and_shape\",\n      \"query\": \"appearance, silhouette, visible form factor, shape, design, look\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"appearance_and_shape\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"oval glass shade\",\n      \"rationale\": \"The snippet describes an 'oval glass shade' which directly supports this attribute.\",\n      \"evidence_snippets\": [\"Boasting an oval glass shade with a wooden base\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The snippet mentions a 'wooden base' as part of the lamp's design.\",\n      \"evidence_snippets\": [\"with a wooden base\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "appearance_and_shape",
+        "supported_attributes": [
+          {
+            "attribute": "oval glass shade",
+            "rationale": "The snippet describes an 'oval glass shade' which directly supports this attribute.",
+            "evidence_snippets": [
+              "Boasting an oval glass shade with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The snippet mentions a 'wooden base' as part of the lamp's design.",
+            "evidence_snippets": [
+              "with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:color_and_finish",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"color_and_finish\",\n  \"aspect_query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"color_and_finish\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The description explicitly mentions the lamp has a wooden base, confirming the material used.\",\n      \"evidence_snippets\": [\"boasting an oval glass shade with a wooden base\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The description explicitly states that the shade is made of glass.\",\n      \"evidence_snippets\": [\"boasting an oval glass shade\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "color_and_finish",
+        "supported_attributes": [
+          {
+            "attribute": "wooden base",
+            "rationale": "The description explicitly mentions the lamp has a wooden base, confirming the material used.",
+            "evidence_snippets": [
+              "boasting an oval glass shade with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The description explicitly states that the shade is made of glass.",
+            "evidence_snippets": [
+              "boasting an oval glass shade"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:material_and_texture",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"material_and_texture\",\n  \"aspect_query\": \"material, texture, plastic, metal, glass, fabric, leather, wood\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"material_and_texture\",\n      \"query\": \"material, texture, plastic, metal, glass, fabric, leather, wood\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"material_and_texture\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The description explicitly mentions an 'oval glass shade'.\",\n      \"evidence_snippets\": [\"Boasting an oval glass shade with a wooden base\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The description explicitly mentions a 'wooden base'.\",\n      \"evidence_snippets\": [\"Boasting an oval glass shade with a wooden base\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"plastic components\",\n      \"rationale\": \"While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.\",\n      \"evidence_snippets\": [\"Cord Covering: Plastic\"],\n      \"source_chunk_ids\": [\"spec_bullets\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "material_and_texture",
+        "supported_attributes": [
+          {
+            "attribute": "glass shade",
+            "rationale": "The description explicitly mentions an 'oval glass shade'.",
+            "evidence_snippets": [
+              "Boasting an oval glass shade with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The description explicitly mentions a 'wooden base'.",
+            "evidence_snippets": [
+              "Boasting an oval glass shade with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "plastic components",
+            "rationale": "While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.",
+            "evidence_snippets": [
+              "Cord Covering: Plastic"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:size_and_scale",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"size_and_scale\",\n  \"aspect_query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"size_and_scale\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"weight of 2.5 pounds\",\n      \"rationale\": \"The weight is specified directly in the specs.\",\n      \"evidence_snippets\": [\"Weight: 2.5 Pounds\"],\n      \"source_chunk_ids\": [\"spec_bullets\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep\",\n      \"rationale\": \"The dimensions are provided in the specs.\",\n      \"evidence_snippets\": [\"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"],\n      \"source_chunk_ids\": [\"spec_bullets\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"oval glass shade\",\n      \"rationale\": \"The shade shape and material are indicated in the specs and contribute to the design.\",\n      \"evidence_snippets\": [\"Shade Shape: Oval\", \"Lighting Shade Material: Glass\"],\n      \"source_chunk_ids\": [\"spec_bullets\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "size_and_scale",
+        "supported_attributes": [
+          {
+            "attribute": "weight of 2.5 pounds",
+            "rationale": "The weight is specified directly in the specs.",
+            "evidence_snippets": [
+              "Weight: 2.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep",
+            "rationale": "The dimensions are provided in the specs.",
+            "evidence_snippets": [
+              "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "oval glass shade",
+            "rationale": "The shade shape and material are indicated in the specs and contribute to the design.",
+            "evidence_snippets": [
+              "Shade Shape: Oval",
+              "Lighting Shade Material: Glass"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:expectation_vs_reality",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"aspect_query\": \"expected vs actual, looks different, misleading, mismatch, reality\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"expectation_vs_reality\",\n      \"query\": \"expected vs actual, looks different, misleading, mismatch, reality\",\n      \"chunk_id\": \"description_context\",\n      \"source_review_id\": \"description_context\",\n      \"score\": 1.0,\n      \"snippet\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"supported_attributes\": [],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"The lamp's natural appeal and functionality may differ from customer expectations.\",\n      \"evidence_snippets\": [\"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light.\"],\n      \"source_chunk_ids\": [\"description_context\"],\n      \"source_review_ids\": [\"description_context\"]\n    }\n  ]\n}",
+      "parsed_output": {
+        "aspect_key": "expectation_vs_reality",
+        "supported_attributes": [],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": [
+          {
+            "mismatch": "The lamp's natural appeal and functionality may differ from customer expectations.",
+            "evidence_snippets": [
+              "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ]
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "conflict_resolution",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/conflict_resolution.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"why it survives conflict resolution\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain/conflicting attribute\",\n      \"rationale\": \"what conflict or weakness remains\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"common mismatch theme\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"negative_constraints\": [\"things an image prompt should avoid\"],\n  \"resolution_notes\": [\"short note about major conflicts or uncertainty\"]\n}\n\nRules:\n- Merge duplicates and keep the strongest evidence.\n- Do not convert weak evidence into high-confidence attributes.\n- Negative constraints should be practical prompt constraints, not full sentences.\n- If a mismatch is only mentioned once and weakly, do not include it.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"aspect_results\": [\n    {\n      \"aspect_key\": \"appearance_and_shape\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"oval glass shade\",\n          \"rationale\": \"The snippet describes an 'oval glass shade' which directly supports this attribute.\",\n          \"evidence_snippets\": [\n            \"Boasting an oval glass shade with a wooden base\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        },\n        {\n          \"attribute\": \"wooden base\",\n          \"rationale\": \"The snippet mentions a 'wooden base' as part of the lamp's design.\",\n          \"evidence_snippets\": [\n            \"with a wooden base\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"wooden base\",\n          \"rationale\": \"The description explicitly mentions the lamp has a wooden base, confirming the material used.\",\n          \"evidence_snippets\": [\n            \"boasting an oval glass shade with a wooden base\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        },\n        {\n          \"attribute\": \"glass shade\",\n          \"rationale\": \"The description explicitly states that the shade is made of glass.\",\n          \"evidence_snippets\": [\n            \"boasting an oval glass shade\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"material_and_texture\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"glass shade\",\n          \"rationale\": \"The description explicitly mentions an 'oval glass shade'.\",\n          \"evidence_snippets\": [\n            \"Boasting an oval glass shade with a wooden base\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        },\n        {\n          \"attribute\": \"wooden base\",\n          \"rationale\": \"The description explicitly mentions a 'wooden base'.\",\n          \"evidence_snippets\": [\n            \"Boasting an oval glass shade with a wooden base\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"plastic components\",\n          \"rationale\": \"While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.\",\n          \"evidence_snippets\": [\n            \"Cord Covering: Plastic\"\n          ],\n          \"source_chunk_ids\": [\n            \"spec_bullets\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"weight of 2.5 pounds\",\n          \"rationale\": \"The weight is specified directly in the specs.\",\n          \"evidence_snippets\": [\n            \"Weight: 2.5 Pounds\"\n          ],\n          \"source_chunk_ids\": [\n            \"spec_bullets\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep\",\n          \"rationale\": \"The dimensions are provided in the specs.\",\n          \"evidence_snippets\": [\n            \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n          ],\n          \"source_chunk_ids\": [\n            \"spec_bullets\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"oval glass shade\",\n          \"rationale\": \"The shade shape and material are indicated in the specs and contribute to the design.\",\n          \"evidence_snippets\": [\n            \"Shade Shape: Oval\",\n            \"Lighting Shade Material: Glass\"\n          ],\n          \"source_chunk_ids\": [\n            \"spec_bullets\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"expectation_vs_reality\",\n      \"supported_attributes\": [],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": [\n        {\n          \"mismatch\": \"The lamp's natural appeal and functionality may differ from customer expectations.\",\n          \"evidence_snippets\": [\n            \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light.\"\n          ],\n          \"source_chunk_ids\": [\n            \"description_context\"\n          ],\n          \"source_review_ids\": [\n            \"description_context\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"oval glass shade\",\n      \"rationale\": \"The snippet describes an 'oval glass shade' which directly supports this attribute.\",\n      \"evidence_snippets\": [\n        \"Boasting an oval glass shade with a wooden base\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The snippet mentions a 'wooden base' as part of the lamp's design.\",\n      \"evidence_snippets\": [\n        \"with a wooden base\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The description explicitly states that the shade is made of glass.\",\n      \"evidence_snippets\": [\n        \"boasting an oval glass shade\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"weight of 2.5 pounds\",\n      \"rationale\": \"The weight is specified directly in the specs.\",\n      \"evidence_snippets\": [\n        \"Weight: 2.5 Pounds\"\n      ],\n      \"source_chunk_ids\": [\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep\",\n      \"rationale\": \"The dimensions are provided in the specs.\",\n      \"evidence_snippets\": [\n        \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n      ],\n      \"source_chunk_ids\": [\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": []\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"plastic components\",\n      \"rationale\": \"While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.\",\n      \"evidence_snippets\": [\n        \"Cord Covering: Plastic\"\n      ],\n      \"source_chunk_ids\": [\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"The lamp's natural appeal and functionality may differ from customer expectations.\",\n      \"evidence_snippets\": [\n        \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    }\n  ],\n  \"negative_constraints\": [\n    \"avoid suggesting plastic elements\",\n    \"do not imply larger dimensions\"\n  ],\n  \"resolution_notes\": [\n    \"The existence of plastic components is uncertain as it is only mentioned in the specifications and not in the main description.\"\n  ]\n}",
+      "parsed_output": {
+        "resolved_high_confidence_attributes": [
+          {
+            "attribute": "oval glass shade",
+            "rationale": "The snippet describes an 'oval glass shade' which directly supports this attribute.",
+            "evidence_snippets": [
+              "Boasting an oval glass shade with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The snippet mentions a 'wooden base' as part of the lamp's design.",
+            "evidence_snippets": [
+              "with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The description explicitly states that the shade is made of glass.",
+            "evidence_snippets": [
+              "boasting an oval glass shade"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "weight of 2.5 pounds",
+            "rationale": "The weight is specified directly in the specs.",
+            "evidence_snippets": [
+              "Weight: 2.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep",
+            "rationale": "The dimensions are provided in the specs.",
+            "evidence_snippets": [
+              "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "plastic components",
+            "rationale": "While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.",
+            "evidence_snippets": [
+              "Cord Covering: Plastic"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [
+          {
+            "mismatch": "The lamp's natural appeal and functionality may differ from customer expectations.",
+            "evidence_snippets": [
+              "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "negative_constraints": [
+          "avoid suggesting plastic elements",
+          "do not imply larger dimensions"
+        ],
+        "resolution_notes": [
+          "The existence of plastic components is uncertain as it is only mentioned in the specifications and not in the main description."
+        ]
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "final_visual_profile_synthesis",
+      "mode": "baseline_description_only",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/final_visual_profile_synthesis.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"product_name\": \"full product name\",\n  \"category\": \"category\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"brief why\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain attribute\",\n      \"rationale\": \"why it is uncertain\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"expectation vs reality gap\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"prompt_ready_description\": \"concise image-generation-ready description grounded in evidence\",\n  \"negative_constraints\": [\"constraint one\", \"constraint two\"]\n}\n\nRules:\n- The prompt_ready_description should be vivid but grounded.\n- Include only attributes supported by the provided description/specs/evidence.\n- If the listing and reviews disagree, keep the disagreement in low_confidence_or_conflicting_attributes.\n- Negative constraints should explicitly avoid unsupported or contradicted details.\n\n\nContext JSON:\n{\n  \"mode\": \"baseline_description_only\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"conflict_resolution\": {\n    \"resolved_high_confidence_attributes\": [\n      {\n        \"attribute\": \"oval glass shade\",\n        \"rationale\": \"The snippet describes an 'oval glass shade' which directly supports this attribute.\",\n        \"evidence_snippets\": [\n          \"Boasting an oval glass shade with a wooden base\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"wooden base\",\n        \"rationale\": \"The snippet mentions a 'wooden base' as part of the lamp's design.\",\n        \"evidence_snippets\": [\n          \"with a wooden base\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"glass shade\",\n        \"rationale\": \"The description explicitly states that the shade is made of glass.\",\n        \"evidence_snippets\": [\n          \"boasting an oval glass shade\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      },\n      {\n        \"attribute\": \"weight of 2.5 pounds\",\n        \"rationale\": \"The weight is specified directly in the specs.\",\n        \"evidence_snippets\": [\n          \"Weight: 2.5 Pounds\"\n        ],\n        \"source_chunk_ids\": [\n          \"spec_bullets\"\n        ],\n        \"source_review_ids\": []\n      },\n      {\n        \"attribute\": \"assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep\",\n        \"rationale\": \"The dimensions are provided in the specs.\",\n        \"evidence_snippets\": [\n          \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n        ],\n        \"source_chunk_ids\": [\n          \"spec_bullets\"\n        ],\n        \"source_review_ids\": []\n      }\n    ],\n    \"low_confidence_or_conflicting_attributes\": [\n      {\n        \"attribute\": \"plastic components\",\n        \"rationale\": \"While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.\",\n        \"evidence_snippets\": [\n          \"Cord Covering: Plastic\"\n        ],\n        \"source_chunk_ids\": [\n          \"spec_bullets\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      }\n    ],\n    \"common_mismatches_between_expectation_and_reality\": [\n      {\n        \"mismatch\": \"The lamp's natural appeal and functionality may differ from customer expectations.\",\n        \"evidence_snippets\": [\n          \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light.\"\n        ],\n        \"source_chunk_ids\": [\n          \"description_context\"\n        ],\n        \"source_review_ids\": [\n          \"description_context\"\n        ]\n      }\n    ],\n    \"negative_constraints\": [\n      \"avoid suggesting plastic elements\",\n      \"do not imply larger dimensions\"\n    ],\n    \"resolution_notes\": [\n      \"The existence of plastic components is uncertain as it is only mentioned in the specifications and not in the main description.\"\n    ]\n  }\n}",
+      "raw_response_text": "{\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"oval glass shade\",\n      \"rationale\": \"The snippet describes an 'oval glass shade' which directly supports this attribute.\",\n      \"evidence_snippets\": [\n        \"Boasting an oval glass shade with a wooden base\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The snippet mentions a 'wooden base' as part of the lamp's design.\",\n      \"evidence_snippets\": [\n        \"with a wooden base\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The description explicitly states that the shade is made of glass.\",\n      \"evidence_snippets\": [\n        \"boasting an oval glass shade\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    },\n    {\n      \"attribute\": \"weight of 2.5 pounds\",\n      \"rationale\": \"The weight is specified directly in the specs.\",\n      \"evidence_snippets\": [\n        \"Weight: 2.5 Pounds\"\n      ],\n      \"source_chunk_ids\": [\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep\",\n      \"rationale\": \"The dimensions are provided in the specs.\",\n      \"evidence_snippets\": [\n        \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n      ],\n      \"source_chunk_ids\": [\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": []\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"plastic components\",\n      \"rationale\": \"While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.\",\n      \"evidence_snippets\": [\n        \"Cord Covering: Plastic\"\n      ],\n      \"source_chunk_ids\": [\n        \"spec_bullets\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"The lamp's natural appeal and functionality may differ from customer expectations.\",\n      \"evidence_snippets\": [\n        \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light.\"\n      ],\n      \"source_chunk_ids\": [\n        \"description_context\"\n      ],\n      \"source_review_ids\": [\n        \"description_context\"\n      ]\n    }\n  ],\n  \"prompt_ready_description\": \"A stylish desk lamp featuring an oval glass shade and a wooden base, providing a warm glow with an integrated LED bulb. It's designed to enhance your space and includes two USB ports for convenient device charging.\",\n  \"negative_constraints\": [\n    \"avoid suggesting plastic elements\",\n    \"do not imply larger dimensions\"\n  ]\n}",
+      "parsed_output": {
+        "product_name": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™",
+        "category": "Desk Lamps",
+        "high_confidence_visual_attributes": [
+          {
+            "attribute": "oval glass shade",
+            "rationale": "The snippet describes an 'oval glass shade' which directly supports this attribute.",
+            "evidence_snippets": [
+              "Boasting an oval glass shade with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The snippet mentions a 'wooden base' as part of the lamp's design.",
+            "evidence_snippets": [
+              "with a wooden base"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The description explicitly states that the shade is made of glass.",
+            "evidence_snippets": [
+              "boasting an oval glass shade"
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          },
+          {
+            "attribute": "weight of 2.5 pounds",
+            "rationale": "The weight is specified directly in the specs.",
+            "evidence_snippets": [
+              "Weight: 2.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "assembled dimensions of 6.52 inches high, 4.85 inches wide, and 4.84 inches deep",
+            "rationale": "The dimensions are provided in the specs.",
+            "evidence_snippets": [
+              "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "plastic components",
+            "rationale": "While the specifications mention 'Cord Covering: Plastic', the description does not reference any plastic elements.",
+            "evidence_snippets": [
+              "Cord Covering: Plastic"
+            ],
+            "source_chunk_ids": [
+              "spec_bullets"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [
+          {
+            "mismatch": "The lamp's natural appeal and functionality may differ from customer expectations.",
+            "evidence_snippets": [
+              "Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light."
+            ],
+            "source_chunk_ids": [
+              "description_context"
+            ],
+            "source_review_ids": [
+              "description_context"
+            ]
+          }
+        ],
+        "prompt_ready_description": "A stylish desk lamp featuring an oval glass shade and a wooden base, providing a warm glow with an integrated LED bulb. It's designed to enhance your space and includes two USB ports for convenient device charging.",
+        "negative_constraints": [
+          "avoid suggesting plastic elements",
+          "do not imply larger dimensions"
+        ]
+      },
+      "attempt_count": 1
+    }
+  ],
+  "review_informed_rag": [
+    {
+      "step_name": "aspect_evidence_extraction:appearance_and_shape",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"appearance_and_shape\",\n  \"aspect_query\": \"appearance, silhouette, visible form factor, shape, design, look\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"appearance_and_shape\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"oval shade\",\n      \"rationale\": \"The shape of the lamp's shade is specified as oval.\",\n      \"evidence_snippets\": [\"Shade Shape: Oval\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The lamp's body material is identified as wood, contributing to its appearance.\",\n      \"evidence_snippets\": [\"Lighting Body Material: Wood\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The material of the shade is confirmed to be glass.\",\n      \"evidence_snippets\": [\"Lighting Shade Material: Glass\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"dimensional size\",\n      \"rationale\": \"Specific assembled dimensions are provided, indicating the physical size of the lamp.\",\n      \"evidence_snippets\": [\"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "appearance_and_shape",
+        "supported_attributes": [
+          {
+            "attribute": "oval shade",
+            "rationale": "The shape of the lamp's shade is specified as oval.",
+            "evidence_snippets": [
+              "Shade Shape: Oval"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The lamp's body material is identified as wood, contributing to its appearance.",
+            "evidence_snippets": [
+              "Lighting Body Material: Wood"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The material of the shade is confirmed to be glass.",
+            "evidence_snippets": [
+              "Lighting Shade Material: Glass"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "dimensional size",
+            "rationale": "Specific assembled dimensions are provided, indicating the physical size of the lamp.",
+            "evidence_snippets": [
+              "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:color_and_finish",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"color_and_finish\",\n  \"aspect_query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"query\": \"color, finish, gloss, matte, black, white, metallic, wood tone\",\n      \"chunk_id\": \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\",\n      \"source_review_id\": \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\",\n      \"score\": 0.1111111111111111,\n      \"snippet\": \"Good lamp but wish it's warmer light\\nGood function and pretty small size lamp. I wish the color of the light was more on the warm side. Going to try it out as part of newborn’s middle of the night chang up set up. However, majority suggests using red light or warm light so I am hesitant to say this is a good option for this set up.\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"color_and_finish\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The evidence explicitly mentions that the lamp has a wooden base, confirming this material attribute.\",\n      \"evidence_snippets\": [\"the lamp adds a touch of natural appeal to your home decor while illuminating your space\"],\n      \"source_chunk_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The description specifies that the lamp has an oval glass shade, supporting this material attribute.\",\n      \"evidence_snippets\": [\"oval glass shade\"],\n      \"source_chunk_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"warm light color\",\n      \"rationale\": \"The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.\",\n      \"evidence_snippets\": [\"I wish the color of the light was more on the warm side.\"],\n      \"source_chunk_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "color_and_finish",
+        "supported_attributes": [
+          {
+            "attribute": "wooden base",
+            "rationale": "The evidence explicitly mentions that the lamp has a wooden base, confirming this material attribute.",
+            "evidence_snippets": [
+              "the lamp adds a touch of natural appeal to your home decor while illuminating your space"
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The description specifies that the lamp has an oval glass shade, supporting this material attribute.",
+            "evidence_snippets": [
+              "oval glass shade"
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [
+          {
+            "attribute": "warm light color",
+            "rationale": "The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.",
+            "evidence_snippets": [
+              "I wish the color of the light was more on the warm side."
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          }
+        ],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:material_and_texture",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"material_and_texture\",\n  \"aspect_query\": \"material, texture, plastic, metal, glass, fabric, leather, wood\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"material_and_texture\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The shade of the lamp is explicitly mentioned as being made of glass.\",\n      \"evidence_snippets\": [\"Lighting Shade Material: Glass\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The body material of the lamp is clearly indicated as wood.\",\n      \"evidence_snippets\": [\"Lighting Body Material: Wood\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"plastic cord covering\",\n      \"rationale\": \"The cord covering of the lamp is specified to be made of plastic.\",\n      \"evidence_snippets\": [\"Cord Covering: Plastic\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "material_and_texture",
+        "supported_attributes": [
+          {
+            "attribute": "glass shade",
+            "rationale": "The shade of the lamp is explicitly mentioned as being made of glass.",
+            "evidence_snippets": [
+              "Lighting Shade Material: Glass"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The body material of the lamp is clearly indicated as wood.",
+            "evidence_snippets": [
+              "Lighting Body Material: Wood"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "plastic cord covering",
+            "rationale": "The cord covering of the lamp is specified to be made of plastic.",
+            "evidence_snippets": [
+              "Cord Covering: Plastic"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:size_and_scale",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"size_and_scale\",\n  \"aspect_query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": [\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n      \"chunk_id\": \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\",\n      \"source_review_id\": \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\",\n      \"score\": 0.14285714285714285,\n      \"snippet\": \"Good lamp but wish it's warmer light\\nGood function and pretty small size lamp. I wish the color of the light was more on the warm side. Going to try it out as part of newborn’s middle of the night chang up set up. However, majority suggests using red light or warm light so I am hesitant to say this is a good option for this set up.\"\n    },\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"query\": \"size, scale, dimensions, compact, large, bulky, lightweight\",\n      \"chunk_id\": \"39fee327-8192-44ae-ae11-d13e5046964f__0\",\n      \"source_review_id\": \"39fee327-8192-44ae-ae11-d13e5046964f\",\n      \"score\": 0.14285714285714285,\n      \"snippet\": \"cute little lamp. love the brightness for the size and the dimming function\"\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"size_and_scale\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"small size\",\n      \"rationale\": \"The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.\",\n      \"evidence_snippets\": [\"Good function and pretty small size lamp.\"],\n      \"source_chunk_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    },\n    {\n      \"attribute\": \"lightweight\",\n      \"rationale\": \"The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.\",\n      \"evidence_snippets\": [\"Weight: 2.5 Pounds\"],\n      \"source_chunk_ids\": [\"39fee327-8192-44ae-ae11-d13e5046964f__0\"],\n      \"source_review_ids\": [\"39fee327-8192-44ae-ae11-d13e5046964f\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "size_and_scale",
+        "supported_attributes": [
+          {
+            "attribute": "small size",
+            "rationale": "The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.",
+            "evidence_snippets": [
+              "Good function and pretty small size lamp."
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "lightweight",
+            "rationale": "The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.",
+            "evidence_snippets": [
+              "Weight: 2.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "39fee327-8192-44ae-ae11-d13e5046964f__0"
+            ],
+            "source_review_ids": [
+              "39fee327-8192-44ae-ae11-d13e5046964f"
+            ]
+          }
+        ],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "aspect_evidence_extraction:expectation_vs_reality",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/aspect_evidence_extraction.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"aspect_key\": \"<repeat input aspect_key>\",\n  \"supported_attributes\": [\n    {\n      \"attribute\": \"short visual/material/size attribute\",\n      \"rationale\": \"why the evidence supports it\",\n      \"evidence_snippets\": [\"direct snippet 1\", \"direct snippet 2\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"conflicting_or_uncertain_attributes\": [\n    {\n      \"attribute\": \"short uncertain or conflicting attribute\",\n      \"rationale\": \"why this remains uncertain or conflicting\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"expectation_reality_mismatches\": [\n    {\n      \"mismatch\": \"difference between expectation and real product experience\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ]\n}\n\nRules:\n- Ground every attribute in the provided evidence only.\n- Prefer fewer, stronger attributes over long speculative lists.\n- Keep snippets verbatim and short.\n- If evidence is weak, place the attribute under conflicting_or_uncertain_attributes.\n- If there is no support for an item, return an empty list for that section.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"aspect_query\": \"expected vs actual, looks different, misleading, mismatch, reality\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"retrieved_evidence\": []\n}",
+      "raw_response_text": "{\n  \"aspect_key\": \"expectation_vs_reality\",\n  \"supported_attributes\": [],\n  \"conflicting_or_uncertain_attributes\": [],\n  \"expectation_reality_mismatches\": []\n}",
+      "parsed_output": {
+        "aspect_key": "expectation_vs_reality",
+        "supported_attributes": [],
+        "conflicting_or_uncertain_attributes": [],
+        "expectation_reality_mismatches": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "conflict_resolution",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/conflict_resolution.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"why it survives conflict resolution\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain/conflicting attribute\",\n      \"rationale\": \"what conflict or weakness remains\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"common mismatch theme\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"negative_constraints\": [\"things an image prompt should avoid\"],\n  \"resolution_notes\": [\"short note about major conflicts or uncertainty\"]\n}\n\nRules:\n- Merge duplicates and keep the strongest evidence.\n- Do not convert weak evidence into high-confidence attributes.\n- Negative constraints should be practical prompt constraints, not full sentences.\n- If a mismatch is only mentioned once and weakly, do not include it.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"aspect_results\": [\n    {\n      \"aspect_key\": \"appearance_and_shape\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"oval shade\",\n          \"rationale\": \"The shape of the lamp's shade is specified as oval.\",\n          \"evidence_snippets\": [\n            \"Shade Shape: Oval\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"wooden base\",\n          \"rationale\": \"The lamp's body material is identified as wood, contributing to its appearance.\",\n          \"evidence_snippets\": [\n            \"Lighting Body Material: Wood\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"glass shade\",\n          \"rationale\": \"The material of the shade is confirmed to be glass.\",\n          \"evidence_snippets\": [\n            \"Lighting Shade Material: Glass\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"dimensional size\",\n          \"rationale\": \"Specific assembled dimensions are provided, indicating the physical size of the lamp.\",\n          \"evidence_snippets\": [\n            \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"color_and_finish\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"wooden base\",\n          \"rationale\": \"The evidence explicitly mentions that the lamp has a wooden base, confirming this material attribute.\",\n          \"evidence_snippets\": [\n            \"the lamp adds a touch of natural appeal to your home decor while illuminating your space\"\n          ],\n          \"source_chunk_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n          ],\n          \"source_review_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n          ]\n        },\n        {\n          \"attribute\": \"glass shade\",\n          \"rationale\": \"The description specifies that the lamp has an oval glass shade, supporting this material attribute.\",\n          \"evidence_snippets\": [\n            \"oval glass shade\"\n          ],\n          \"source_chunk_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n          ],\n          \"source_review_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [\n        {\n          \"attribute\": \"warm light color\",\n          \"rationale\": \"The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.\",\n          \"evidence_snippets\": [\n            \"I wish the color of the light was more on the warm side.\"\n          ],\n          \"source_chunk_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n          ],\n          \"source_review_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n          ]\n        }\n      ],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"material_and_texture\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"glass shade\",\n          \"rationale\": \"The shade of the lamp is explicitly mentioned as being made of glass.\",\n          \"evidence_snippets\": [\n            \"Lighting Shade Material: Glass\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"wooden base\",\n          \"rationale\": \"The body material of the lamp is clearly indicated as wood.\",\n          \"evidence_snippets\": [\n            \"Lighting Body Material: Wood\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        },\n        {\n          \"attribute\": \"plastic cord covering\",\n          \"rationale\": \"The cord covering of the lamp is specified to be made of plastic.\",\n          \"evidence_snippets\": [\n            \"Cord Covering: Plastic\"\n          ],\n          \"source_chunk_ids\": [\n            \"chunk-id\"\n          ],\n          \"source_review_ids\": []\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"size_and_scale\",\n      \"supported_attributes\": [\n        {\n          \"attribute\": \"small size\",\n          \"rationale\": \"The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.\",\n          \"evidence_snippets\": [\n            \"Good function and pretty small size lamp.\"\n          ],\n          \"source_chunk_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n          ],\n          \"source_review_ids\": [\n            \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n          ]\n        },\n        {\n          \"attribute\": \"lightweight\",\n          \"rationale\": \"The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.\",\n          \"evidence_snippets\": [\n            \"Weight: 2.5 Pounds\"\n          ],\n          \"source_chunk_ids\": [\n            \"39fee327-8192-44ae-ae11-d13e5046964f__0\"\n          ],\n          \"source_review_ids\": [\n            \"39fee327-8192-44ae-ae11-d13e5046964f\"\n          ]\n        }\n      ],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    },\n    {\n      \"aspect_key\": \"expectation_vs_reality\",\n      \"supported_attributes\": [],\n      \"conflicting_or_uncertain_attributes\": [],\n      \"expectation_reality_mismatches\": []\n    }\n  ]\n}",
+      "raw_response_text": "{\n  \"resolved_high_confidence_attributes\": [\n    {\n      \"attribute\": \"oval shade\",\n      \"rationale\": \"The shape of the lamp's shade is specified as oval.\",\n      \"evidence_snippets\": [\n        \"Shade Shape: Oval\"\n      ],\n      \"source_chunk_ids\": [\n        \"chunk-id\"\n      ],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The lamp's body material is identified as wood, contributing to its appearance.\",\n      \"evidence_snippets\": [\n        \"Lighting Body Material: Wood\",\n        \"the lamp adds a touch of natural appeal to your home decor while illuminating your space\"\n      ],\n      \"source_chunk_ids\": [\n        \"chunk-id\",\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n      ],\n      \"source_review_ids\": [\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n      ]\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The material of the shade is confirmed to be glass.\",\n      \"evidence_snippets\": [\n        \"Lighting Shade Material: Glass\",\n        \"oval glass shade\"\n      ],\n      \"source_chunk_ids\": [\n        \"chunk-id\",\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n      ],\n      \"source_review_ids\": [\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n      ]\n    },\n    {\n      \"attribute\": \"dimensional size\",\n      \"rationale\": \"Specific assembled dimensions are provided, indicating the physical size of the lamp.\",\n      \"evidence_snippets\": [\n        \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n      ],\n      \"source_chunk_ids\": [\n        \"chunk-id\"\n      ],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"plastic cord covering\",\n      \"rationale\": \"The cord covering of the lamp is specified to be made of plastic.\",\n      \"evidence_snippets\": [\n        \"Cord Covering: Plastic\"\n      ],\n      \"source_chunk_ids\": [\n        \"chunk-id\"\n      ],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"small size\",\n      \"rationale\": \"The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.\",\n      \"evidence_snippets\": [\n        \"Good function and pretty small size lamp.\"\n      ],\n      \"source_chunk_ids\": [\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n      ],\n      \"source_review_ids\": [\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n      ]\n    },\n    {\n      \"attribute\": \"lightweight\",\n      \"rationale\": \"The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.\",\n      \"evidence_snippets\": [\n        \"Weight: 2.5 Pounds\"\n      ],\n      \"source_chunk_ids\": [\n        \"39fee327-8192-44ae-ae11-d13e5046964f__0\"\n      ],\n      \"source_review_ids\": [\n        \"39fee327-8192-44ae-ae11-d13e5046964f\"\n      ]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"warm light color\",\n      \"rationale\": \"The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.\",\n      \"evidence_snippets\": [\n        \"I wish the color of the light was more on the warm side.\"\n      ],\n      \"source_chunk_ids\": [\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n      ],\n      \"source_review_ids\": [\n        \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n      ]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [],\n  \"negative_constraints\": [],\n  \"resolution_notes\": []\n}",
+      "parsed_output": {
+        "resolved_high_confidence_attributes": [
+          {
+            "attribute": "oval shade",
+            "rationale": "The shape of the lamp's shade is specified as oval.",
+            "evidence_snippets": [
+              "Shade Shape: Oval"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The lamp's body material is identified as wood, contributing to its appearance.",
+            "evidence_snippets": [
+              "Lighting Body Material: Wood",
+              "the lamp adds a touch of natural appeal to your home decor while illuminating your space"
+            ],
+            "source_chunk_ids": [
+              "chunk-id",
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The material of the shade is confirmed to be glass.",
+            "evidence_snippets": [
+              "Lighting Shade Material: Glass",
+              "oval glass shade"
+            ],
+            "source_chunk_ids": [
+              "chunk-id",
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "dimensional size",
+            "rationale": "Specific assembled dimensions are provided, indicating the physical size of the lamp.",
+            "evidence_snippets": [
+              "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "plastic cord covering",
+            "rationale": "The cord covering of the lamp is specified to be made of plastic.",
+            "evidence_snippets": [
+              "Cord Covering: Plastic"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "small size",
+            "rationale": "The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.",
+            "evidence_snippets": [
+              "Good function and pretty small size lamp."
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "lightweight",
+            "rationale": "The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.",
+            "evidence_snippets": [
+              "Weight: 2.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "39fee327-8192-44ae-ae11-d13e5046964f__0"
+            ],
+            "source_review_ids": [
+              "39fee327-8192-44ae-ae11-d13e5046964f"
+            ]
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "warm light color",
+            "rationale": "The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.",
+            "evidence_snippets": [
+              "I wish the color of the light was more on the warm side."
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [],
+        "negative_constraints": [],
+        "resolution_notes": []
+      },
+      "attempt_count": 1
+    },
+    {
+      "step_name": "final_visual_profile_synthesis",
+      "mode": "review_informed_rag",
+      "prompt_path": "/Users/macbook/Desktop/ai-lab-final/prompts/q2/final_visual_profile_synthesis.md",
+      "system_prompt": "You are a careful product analyst. Use only the supplied product description, spec bullets, and evidence snippets. Never invent unsupported visual attributes. Prefer explicit uncertainty over speculation.",
+      "user_prompt": "Return JSON with this shape:\n{\n  \"product_name\": \"full product name\",\n  \"category\": \"category\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"supported attribute\",\n      \"rationale\": \"brief why\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"uncertain attribute\",\n      \"rationale\": \"why it is uncertain\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [\n    {\n      \"mismatch\": \"expectation vs reality gap\",\n      \"evidence_snippets\": [\"direct snippet\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": [\"review-id\"]\n    }\n  ],\n  \"prompt_ready_description\": \"concise image-generation-ready description grounded in evidence\",\n  \"negative_constraints\": [\"constraint one\", \"constraint two\"]\n}\n\nRules:\n- The prompt_ready_description should be vivid but grounded.\n- Include only attributes supported by the provided description/specs/evidence.\n- If the listing and reviews disagree, keep the disagreement in low_confidence_or_conflicting_attributes.\n- Negative constraints should explicitly avoid unsupported or contradicted details.\n\n\nContext JSON:\n{\n  \"mode\": \"review_informed_rag\",\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"selected_category\": \"lighting\",\n  \"description\": \"Illuminate your favorite reading nook with this USB Ports Desk Lamp from Threshold™. Boasting an oval glass shade with a wooden base, this lamp adds a touch of natural appeal to your home decor while illuminating your space with just the right amount of light. The non-removable integrated LED bulb creates a soft glow, while the full-range dimmable setting allows you to create the perfect ambiance. Place it on the side table next to your sofa or on a console table in your living room for an inviting look, and use the two USB ports to charge your devices. Threshold™: Looks like home, feels like you.\",\n  \"spec_bullets\": [\n    \"Includes: 1 Desk Task Lamp, Integrated LED Bulb(s) (Non-Removable)\",\n    \"Weight: 2.5 Pounds\",\n    \"Shade Shape: Oval\",\n    \"Lighting Shade Material: Glass\",\n    \"Bulb Base Size: Non-Removable Integrated Bulb\",\n    \"Features: USB Port(s)\",\n    \"Lighting Body Material: Wood\",\n    \"Light Appearance: Temperature Not Specified\",\n    \"Assembly Details: Adult Assembly Required, Tools Provided\",\n    \"Number of Light Bulb Sockets: 1\",\n    \"Cord Covering: Plastic\",\n    \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\",\n    \"Base Dimensions: 1.57 Inches (H) x 3.54 Inches (W) x 3.54 Inches (D)\",\n    \"Cable/Cord Length: 6 Feet\",\n    \"Shade Dimensions: 4.94 Inches (H)\",\n    \"Maximum Light Bulb Wattage: 5 Watts\",\n    \"Lighting Switch Type: Base Turn Knob Rotary Switch\",\n    \"Number of Lighting Shades: 1\",\n    \"Color rendering index: 0\",\n    \"Light settings: Dimmable (Full Range)\",\n    \"Battery: No Battery Used\",\n    \"Warranty: 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869\"\n  ],\n  \"conflict_resolution\": {\n    \"resolved_high_confidence_attributes\": [\n      {\n        \"attribute\": \"oval shade\",\n        \"rationale\": \"The shape of the lamp's shade is specified as oval.\",\n        \"evidence_snippets\": [\n          \"Shade Shape: Oval\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\"\n        ],\n        \"source_review_ids\": []\n      },\n      {\n        \"attribute\": \"wooden base\",\n        \"rationale\": \"The lamp's body material is identified as wood, contributing to its appearance.\",\n        \"evidence_snippets\": [\n          \"Lighting Body Material: Wood\",\n          \"the lamp adds a touch of natural appeal to your home decor while illuminating your space\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\",\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n        ],\n        \"source_review_ids\": [\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n        ]\n      },\n      {\n        \"attribute\": \"glass shade\",\n        \"rationale\": \"The material of the shade is confirmed to be glass.\",\n        \"evidence_snippets\": [\n          \"Lighting Shade Material: Glass\",\n          \"oval glass shade\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\",\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n        ],\n        \"source_review_ids\": [\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n        ]\n      },\n      {\n        \"attribute\": \"dimensional size\",\n        \"rationale\": \"Specific assembled dimensions are provided, indicating the physical size of the lamp.\",\n        \"evidence_snippets\": [\n          \"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\"\n        ],\n        \"source_review_ids\": []\n      },\n      {\n        \"attribute\": \"plastic cord covering\",\n        \"rationale\": \"The cord covering of the lamp is specified to be made of plastic.\",\n        \"evidence_snippets\": [\n          \"Cord Covering: Plastic\"\n        ],\n        \"source_chunk_ids\": [\n          \"chunk-id\"\n        ],\n        \"source_review_ids\": []\n      },\n      {\n        \"attribute\": \"small size\",\n        \"rationale\": \"The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.\",\n        \"evidence_snippets\": [\n          \"Good function and pretty small size lamp.\"\n        ],\n        \"source_chunk_ids\": [\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n        ],\n        \"source_review_ids\": [\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n        ]\n      },\n      {\n        \"attribute\": \"lightweight\",\n        \"rationale\": \"The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.\",\n        \"evidence_snippets\": [\n          \"Weight: 2.5 Pounds\"\n        ],\n        \"source_chunk_ids\": [\n          \"39fee327-8192-44ae-ae11-d13e5046964f__0\"\n        ],\n        \"source_review_ids\": [\n          \"39fee327-8192-44ae-ae11-d13e5046964f\"\n        ]\n      }\n    ],\n    \"low_confidence_or_conflicting_attributes\": [\n      {\n        \"attribute\": \"warm light color\",\n        \"rationale\": \"The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.\",\n        \"evidence_snippets\": [\n          \"I wish the color of the light was more on the warm side.\"\n        ],\n        \"source_chunk_ids\": [\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"\n        ],\n        \"source_review_ids\": [\n          \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"\n        ]\n      }\n    ],\n    \"common_mismatches_between_expectation_and_reality\": [],\n    \"negative_constraints\": [],\n    \"resolution_notes\": []\n  }\n}",
+      "raw_response_text": "{\n  \"product_name\": \"Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™\",\n  \"category\": \"Desk Lamps\",\n  \"high_confidence_visual_attributes\": [\n    {\n      \"attribute\": \"oval shade\",\n      \"rationale\": \"The shape of the lamp's shade is specified as oval.\",\n      \"evidence_snippets\": [\"Shade Shape: Oval\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"wooden base\",\n      \"rationale\": \"The lamp's body material is identified as wood, contributing to its appearance.\",\n      \"evidence_snippets\": [\n        \"Lighting Body Material: Wood\",\n        \"the lamp adds a touch of natural appeal to your home decor while illuminating your space\"\n      ],\n      \"source_chunk_ids\": [\"chunk-id\", \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    },\n    {\n      \"attribute\": \"glass shade\",\n      \"rationale\": \"The material of the shade is confirmed to be glass.\",\n      \"evidence_snippets\": [\n        \"Lighting Shade Material: Glass\",\n        \"oval glass shade\"\n      ],\n      \"source_chunk_ids\": [\"chunk-id\", \"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    },\n    {\n      \"attribute\": \"dimensional size\",\n      \"rationale\": \"Specific assembled dimensions are provided, indicating the physical size of the lamp.\",\n      \"evidence_snippets\": [\"Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"plastic cord covering\",\n      \"rationale\": \"The cord covering of the lamp is specified to be made of plastic.\",\n      \"evidence_snippets\": [\"Cord Covering: Plastic\"],\n      \"source_chunk_ids\": [\"chunk-id\"],\n      \"source_review_ids\": []\n    },\n    {\n      \"attribute\": \"small size\",\n      \"rationale\": \"The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.\",\n      \"evidence_snippets\": [\"Good function and pretty small size lamp.\"],\n      \"source_chunk_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    },\n    {\n      \"attribute\": \"lightweight\",\n      \"rationale\": \"The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.\",\n      \"evidence_snippets\": [\"Weight: 2.5 Pounds\"],\n      \"source_chunk_ids\": [\"39fee327-8192-44ae-ae11-d13e5046964f__0\"],\n      \"source_review_ids\": [\"39fee327-8192-44ae-ae11-d13e5046964f\"]\n    }\n  ],\n  \"low_confidence_or_conflicting_attributes\": [\n    {\n      \"attribute\": \"warm light color\",\n      \"rationale\": \"The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.\",\n      \"evidence_snippets\": [\"I wish the color of the light was more on the warm side.\"],\n      \"source_chunk_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0\"],\n      \"source_review_ids\": [\"c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5\"]\n    }\n  ],\n  \"common_mismatches_between_expectation_and_reality\": [],\n  \"prompt_ready_description\": \"A compact desk lamp featuring an oval glass shade and a wooden base, equipped with two USB ports for device charging. This lightweight lamp emits a soft glow with a dimmable setting, perfect for creating ambiance in any cozy corner.\",\n  \"negative_constraints\": []\n}",
+      "parsed_output": {
+        "product_name": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™",
+        "category": "Desk Lamps",
+        "high_confidence_visual_attributes": [
+          {
+            "attribute": "oval shade",
+            "rationale": "The shape of the lamp's shade is specified as oval.",
+            "evidence_snippets": [
+              "Shade Shape: Oval"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "wooden base",
+            "rationale": "The lamp's body material is identified as wood, contributing to its appearance.",
+            "evidence_snippets": [
+              "Lighting Body Material: Wood",
+              "the lamp adds a touch of natural appeal to your home decor while illuminating your space"
+            ],
+            "source_chunk_ids": [
+              "chunk-id",
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "glass shade",
+            "rationale": "The material of the shade is confirmed to be glass.",
+            "evidence_snippets": [
+              "Lighting Shade Material: Glass",
+              "oval glass shade"
+            ],
+            "source_chunk_ids": [
+              "chunk-id",
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "dimensional size",
+            "rationale": "Specific assembled dimensions are provided, indicating the physical size of the lamp.",
+            "evidence_snippets": [
+              "Assembled Dimensions: 6.52 Inches (H) x 4.85 Inches (W) x 4.84 Inches (D)"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "plastic cord covering",
+            "rationale": "The cord covering of the lamp is specified to be made of plastic.",
+            "evidence_snippets": [
+              "Cord Covering: Plastic"
+            ],
+            "source_chunk_ids": [
+              "chunk-id"
+            ],
+            "source_review_ids": []
+          },
+          {
+            "attribute": "small size",
+            "rationale": "The lamp is described as having a pretty small size, supporting the notion of its compact dimensions.",
+            "evidence_snippets": [
+              "Good function and pretty small size lamp."
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          },
+          {
+            "attribute": "lightweight",
+            "rationale": "The weight of 2.5 pounds indicates that it is lightweight for a desk lamp.",
+            "evidence_snippets": [
+              "Weight: 2.5 Pounds"
+            ],
+            "source_chunk_ids": [
+              "39fee327-8192-44ae-ae11-d13e5046964f__0"
+            ],
+            "source_review_ids": [
+              "39fee327-8192-44ae-ae11-d13e5046964f"
+            ]
+          }
+        ],
+        "low_confidence_or_conflicting_attributes": [
+          {
+            "attribute": "warm light color",
+            "rationale": "The review mentions a desire for a warmer light color, indicating a potential mismatch between expectation and actual light appearance from the lamp.",
+            "evidence_snippets": [
+              "I wish the color of the light was more on the warm side."
+            ],
+            "source_chunk_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5__0"
+            ],
+            "source_review_ids": [
+              "c14fa2ce-08bb-4454-8d6c-4e8eb5910dc5"
+            ]
+          }
+        ],
+        "common_mismatches_between_expectation_and_reality": [],
+        "prompt_ready_description": "A compact desk lamp featuring an oval glass shade and a wooden base, equipped with two USB ports for device charging. This lightweight lamp emits a soft glow with a dimmable setting, perfect for creating ambiance in any cozy corner.",
+        "negative_constraints": []
+      },
+      "attempt_count": 1
+    }
+  ]
+}

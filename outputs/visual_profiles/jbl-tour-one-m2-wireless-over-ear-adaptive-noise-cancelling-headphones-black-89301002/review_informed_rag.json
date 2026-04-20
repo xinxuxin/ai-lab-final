@@ -1,0 +1,84 @@
+{
+  "product_name": "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)",
+  "category": "Wireless Headphones",
+  "high_confidence_visual_attributes": [
+    {
+      "attribute": "lightweight design",
+      "rationale": "The specification mentions a ‘Lightweight Design’ which supports the idea that these headphones are not heavy.",
+      "evidence_snippets": [
+        "Electronics Features: Adjustable Headband, Lightweight Design"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "leatherette ear cushions",
+      "rationale": "The specification lists 'Ear Cushion Material: Leatherette', indicating the material used for the ear cushions.",
+      "evidence_snippets": [
+        "Ear Cushion Material: Leatherette"
+      ],
+      "source_chunk_ids": [
+        "spec_bullets"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "weight of 0.6 pounds",
+      "rationale": "The weight specification clearly states that the headphones weigh 0.6 pounds, which supports the notion of being lightweight.",
+      "evidence_snippets": [
+        "Weight: .6 pounds"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "sound quality",
+      "rationale": "Several users express satisfaction with the sound quality, stating it surpasses competitors.",
+      "evidence_snippets": [
+        "...these headphones surpass the Beats in sound quality.",
+        "I just bought a second pair of JBL Tour One M2 headphones... produce great sound."
+      ],
+      "source_chunk_ids": [
+        "376332e9-f206-4b54-bd51-21ad7a6195e1__0",
+        "6f358c3c-a6b0-494d-8bc5-2465c9d0dc11__0"
+      ],
+      "source_review_ids": [
+        "376332e9-f206-4b54-bd51-21ad7a6195e1",
+        "6f358c3c-a6b0-494d-8bc5-2465c9d0dc11"
+      ]
+    }
+  ],
+  "low_confidence_or_conflicting_attributes": [
+    {
+      "attribute": "color",
+      "rationale": "The product name specifies the color as black, but there is no specific evidence provided from the description or specifications to confirm the exact color finish.",
+      "evidence_snippets": [
+        "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)"
+      ],
+      "source_chunk_ids": [
+        "chunk-id"
+      ],
+      "source_review_ids": []
+    },
+    {
+      "attribute": "expectation of value for price",
+      "rationale": "Some users feel the product does not meet their expectations for its price, suggesting a disparity in perceived value.",
+      "evidence_snippets": [
+        "Underwhelmed... expected more for the price."
+      ],
+      "source_chunk_ids": [
+        "11789809-9298-4cf0-9eb1-3750cb923c91__0"
+      ],
+      "source_review_ids": [
+        "11789809-9298-4cf0-9eb1-3750cb923c91"
+      ]
+    }
+  ],
+  "common_mismatches_between_expectation_and_reality": [],
+  "prompt_ready_description": "The JBL Tour One M2 are wireless over-ear headphones featuring a lightweight design, leatherette ear cushions, and impressive sound quality, ideal for immersive listening experiences.",
+  "negative_constraints": []
+}

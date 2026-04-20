@@ -1,0 +1,44 @@
+{
+  "versions": [
+    {
+      "prompt_version_id": "89301002-stability-pilot",
+      "product_id": "89301002",
+      "provider": "stability",
+      "model_name": "stability",
+      "strategy": "pilot",
+      "prompt_source_mode": "baseline_description_only",
+      "prompt_text": "Create a realistic studio product photograph of a single JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black) in the Wireless Headphones category.\n\nUse this evidence-grounded visual description:\nExperience unparalleled comfort and immersive sound with the JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones in black, featuring plush leatherette ear cushions and a lightweight design for long listening sessions.\n\nPrioritize these supported details:\ncomfortable design; lightweight design; black\n\nComposition requirements:\n- centered composition\n- single isolated product\n- neutral or studio background\n- sharp, clean commercial product photography\n- no extra accessories unless directly supported by the source evidence\n\nAvoid these unsupported elements:\navoid unsupported claims about sound quality; avoid vague color descriptions; centered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only",
+      "negative_prompt": "avoid unsupported claims about sound quality; avoid vague color descriptions; centered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only",
+      "negative_constraints": [
+        "avoid unsupported claims about sound quality",
+        "avoid vague color descriptions",
+        "centered composition",
+        "neutral or studio background",
+        "no extra accessories unless explicitly supported",
+        "realistic product photography",
+        "single product only"
+      ],
+      "notes": "Template: /Users/macbook/Desktop/ai-lab-final/prompts/q3/pilot_prompt.md",
+      "created_at": "2026-04-20T06:30:36.767498"
+    },
+    {
+      "prompt_version_id": "89301002-stability-final",
+      "product_id": "89301002",
+      "provider": "stability",
+      "model_name": "stability",
+      "strategy": "final",
+      "prompt_source_mode": "review_informed_rag",
+      "prompt_text": "Create a realistic, presentation-quality product photograph of a single JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black) in the Wireless Headphones category.\n\nRender the product as:\nThe JBL Tour One M2 are wireless over-ear headphones featuring a lightweight design, leatherette ear cushions, and impressive sound quality, ideal for immersive listening experiences.\n\nStrongly preserve these evidence-backed visual details:\nlightweight design; leatherette ear cushions; weight of 0.6 pounds; sound quality\n\nScene requirements:\n- centered composition\n- neutral seamless studio background\n- realistic product photography lighting\n- single product only\n- no lifestyle scene and no extra accessories unless directly supported by evidence\n\nExplicitly avoid:\ncentered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only\n\nAlso avoid mismatches between listing expectation and review reality:\nDo not add unsupported embellishments or misleading scale cues.",
+      "negative_prompt": "centered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only",
+      "negative_constraints": [
+        "centered composition",
+        "neutral or studio background",
+        "no extra accessories unless explicitly supported",
+        "realistic product photography",
+        "single product only"
+      ],
+      "notes": "Template: /Users/macbook/Desktop/ai-lab-final/prompts/q3/final_prompt.md",
+      "created_at": "2026-04-20T06:30:36.767661"
+    }
+  ]
+}
