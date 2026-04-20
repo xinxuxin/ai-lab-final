@@ -63,12 +63,12 @@ export function HomePage() {
             transition={{ delay: 0.12 }}
             className="mt-4 max-w-3xl font-display text-5xl font-bold leading-tight lg:text-6xl"
           >
-            Generating product images from customer reviews, with real pipeline artifacts driving every page.
+            Generating product images from customer reviews through an artifact-grounded pipeline.
           </motion.h1>
           <p className="mt-5 max-w-2xl text-base text-white/75">
-            The dashboard now reads saved outputs from discovery, scraping, corpus building, visual
-            profile extraction, image generation, and evaluation. Missing stages stay visible
-            instead of being hidden.
+            The dashboard reads saved outputs from discovery, scraping, corpus building, visual
+            profile extraction, image generation, and evaluation so every page reflects the current
+            repository state.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <span className="rounded-full bg-white/15 px-4 py-2 text-sm">Q1 to Q4 aligned</span>
@@ -122,7 +122,7 @@ export function HomePage() {
       <AnimatedSection
         eyebrow="Rubric focus"
         title="What the demo is optimizing for"
-        description="The presentation view still mirrors the rubric, but the content now reflects actual repository state."
+        description="The dashboard mirrors the rubric while reflecting the current repository state."
       >
         <div className="grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
           {rubricItems.map((item, index) => (

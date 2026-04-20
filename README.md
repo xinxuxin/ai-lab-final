@@ -2,6 +2,12 @@
 
 Production-quality full-stack repository for a CMU final project that studies how public product descriptions and customer reviews can be converted into image-generation-ready prompts, then compared against real posted product images.
 
+## Master Guide
+
+For the most detailed project reference, presentation preparation, experiment design, results summary, and end-to-end workflow explanation, see:
+
+- [docs/master_guide.md](/Users/macbook/Desktop/ai-lab-final/docs/master_guide.md)
+
 ## Assignment Alignment
 
 This repository is structured to support all four required questions:

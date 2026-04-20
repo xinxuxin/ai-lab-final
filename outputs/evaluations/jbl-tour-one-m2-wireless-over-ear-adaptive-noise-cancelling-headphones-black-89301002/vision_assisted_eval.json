@@ -1,6 +1,200 @@
 {
-  "status": "failed",
-  "reason": "OpenAI request failed after multiple attempts.",
-  "evaluations": [],
-  "aggregate_scores": {}
+  "status": "completed",
+  "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+  "evaluations": [
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-openai-01",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 4.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "shape_silhouette_accuracy",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "failed": [
+        "component_completeness"
+      ],
+      "summary": "The generated image closely matches the real product's color, material finish, shape, and overall size proportion, earning high scores in those categories. However, the absence of certain identifiable components (like specific button placements or branding elements details) in the generated image prevents a perfect score in component completeness. As a conservative approach, any ambiguity led to slightly lower scores."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-openai-02",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 3.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 3.0
+      },
+      "worked": [],
+      "failed": [],
+      "summary": "The color accuracy is good, with both images showcasing a black finish, though the generated image appears slightly different in shade. Material finish is represented well, but the texture might be assumed, leading to a score of 4 instead of 5. The shape and silhouette differ; the generated image has a raised earcup design that might not exactly match the original's profile. Component completeness suffers since certain details appear less defined in the generated image, affecting recognizability. Overall, while the images are similar, subtle differences in details impact the overall score."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-openai-03",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 5.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 3.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "failed": [
+        "shape_silhouette_accuracy",
+        "component_completeness"
+      ],
+      "summary": "The color in both images matches well, with a solid black finish. The material finish appears slightly different; the generated image has a matte texture compared to the gloss of the real product. The shape silhouette is not fully accurate, as the generated image's ear cups have a slightly different contour. Component completeness is lacking, particularly regarding visible buttons or features that might not be fully represented in the generated image. Overall, while the generated image is recognizable, there are notable deviations in shape and completeness."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-openai-04",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 5.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 4.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "shape_silhouette_accuracy",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "failed": [
+        "component_completeness"
+      ],
+      "summary": "The color is consistent across both images, scoring a 5 for color accuracy. The material finish is slightly different in appearance, reflecting a score of 4 for material finish accuracy. The overall shape and silhouette are quite similar, warranting a 4 for shape silhouette accuracy. Component completeness is rated a 3 due to potentially missing control elements or branding previously visible in the reference image. Size proportion impression is satisfactory, leading to a score of 4. The overall recognizability is strong, hence a score of 4. The main area of concern is the component completeness."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-stability-01",
+      "provider": "stability",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 4.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "shape_silhouette_accuracy",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "failed": [
+        "component_completeness"
+      ],
+      "summary": "The generated image closely matches the real product in terms of color, material finish, and overall shape, resulting in high scores. However, the absence of certain components (like buttons and the emblem orientation) in the generated image affects the completeness of components, leading to a lower score in that category. Overall, the generated image is recognizable and mostly accurate."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-stability-02",
+      "provider": "stability",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 3.0,
+        "shape_silhouette_accuracy": 4.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy: The color is consistent with the original product.",
+        "shape_silhouette_accuracy: The overall shape and silhouette match well.",
+        "size_proportion_impression: Proportions appear accurate in terms of ear cups to headband size.",
+        "overall_recognizability: The product is easily identifiable as JBL headphones."
+      ],
+      "failed": [
+        "material_finish_accuracy: The finish on the ear cups and headband appears different, affecting accuracy.",
+        "component_completeness: Some components, like buttons or ports, are missing or not clearly visible."
+      ],
+      "summary": "The generated image closely resembles the reference product in terms of color, shape, and overall appearance. However, inconsistencies in the material finishes and the incomplete visibility of certain components resulted in lower scores in those dimensions. While the product is recognizable, subtle detail differences impact overall accuracy."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-stability-03",
+      "provider": "stability",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 4.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "shape_silhouette_accuracy",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "failed": [
+        "component_completeness"
+      ],
+      "summary": "The generated image has a strong resemblance to the original product in terms of color, material finish, and overall shape. However, it lacks some details in component completeness; the controls and branding are less defined compared to the original. There are no significant size discrepancies, and it remains recognizable as a JBL product. The overall impression is quite effective, but minor details could improve the accuracy further."
+    },
+    {
+      "panel_id": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002-stability-04",
+      "provider": "stability",
+      "scores": {
+        "color_accuracy": 5.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 4.0,
+        "component_completeness": 4.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "shape_silhouette_accuracy"
+      ],
+      "failed": [
+        "component_completeness",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "summary": "The color accuracy is high as both images display the headphones in a similar black hue. Material finish is also close, though the generated image may have slightly better sheen. Shape and silhouette are largely accurate, but subtle differences can be observed in the earcup shape. Component completeness is rated down due to the slight differences in button placements and features visible in the real product image that aren't as clear in the generated version. Size proportions are somewhat aligned but vary slightly due to angles, leading to a less accurate impression. Overall recognizability is still strong, but minor discrepancies prevent a perfect score."
+    }
+  ],
+  "aggregate_scores": {
+    "openai": {
+      "color_accuracy": 4.5,
+      "material_finish_accuracy": 4.0,
+      "shape_silhouette_accuracy": 3.5,
+      "component_completeness": 3.0,
+      "size_proportion_impression": 4.0,
+      "overall_recognizability": 3.75
+    },
+    "stability": {
+      "color_accuracy": 4.25,
+      "material_finish_accuracy": 3.75,
+      "shape_silhouette_accuracy": 4.0,
+      "component_completeness": 3.25,
+      "size_proportion_impression": 4.0,
+      "overall_recognizability": 4.0
+    }
+  }
 }

@@ -61,6 +61,11 @@ export function ComparisonPage() {
     }));
   }, [evaluationQuery.data]);
 
+  const hasAggregateScores = useMemo(
+    () => scoreChartData.some((item) => item.openai > 0 || item.stability > 0),
+    [scoreChartData],
+  );
+
   const firstPanel = evaluationQuery.data?.comparisonPanels?.[0];
 
   return (
@@ -156,37 +161,55 @@ export function ComparisonPage() {
               title="Per-dimension scores"
               description="Bar charts summarize provider averages whenever vision-assisted evaluation has been run."
             >
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={scoreChartData}>
-                    <CartesianGrid strokeDasharray="4 4" stroke="#d7dfed" />
-                    <XAxis dataKey="metric" stroke="#64748b" />
-                    <YAxis stroke="#64748b" domain={[0, 5]} />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="openai" fill="#8ec5ff" radius={[10, 10, 0, 0]} />
-                    <Bar dataKey="stability" fill="#ff8a72" radius={[10, 10, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+              {hasAggregateScores ? (
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={scoreChartData}>
+                      <CartesianGrid strokeDasharray="4 4" stroke="#d7dfed" />
+                      <XAxis dataKey="metric" stroke="#64748b" />
+                      <YAxis stroke="#64748b" domain={[0, 5]} />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="openai" fill="#8ec5ff" radius={[10, 10, 0, 0]} />
+                      <Bar dataKey="stability" fill="#ff8a72" radius={[10, 10, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <MissingArtifactState
+                  title="Vision-assisted scores unavailable"
+                  message={
+                    typeof evaluationQuery.data?.visionAssisted?.reason === "string"
+                      ? `No aggregate score chart is available for this product yet. Latest reason: ${evaluationQuery.data.visionAssisted.reason}`
+                      : "No aggregate score chart is available for this product yet. The side-by-side panels and saved evaluation summary are still available below."
+                  }
+                />
+              )}
             </AnimatedSection>
 
             <AnimatedSection
               title="Radar view"
-              description="The radar view makes tradeoffs visible in a presentation setting."
+              description="The radar view summarizes provider tradeoffs across the evaluation rubric."
             >
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={scoreChartData}>
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="metric" />
-                    <PolarRadiusAxis domain={[0, 5]} />
-                    <Radar dataKey="openai" stroke="#0ea5e9" fill="#8ec5ff" fillOpacity={0.35} />
-                    <Radar dataKey="stability" stroke="#f97316" fill="#ff8a72" fillOpacity={0.22} />
-                    <Tooltip />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </div>
+              {hasAggregateScores ? (
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart data={scoreChartData}>
+                      <PolarGrid />
+                      <PolarAngleAxis dataKey="metric" />
+                      <PolarRadiusAxis domain={[0, 5]} />
+                      <Radar dataKey="openai" stroke="#0ea5e9" fill="#8ec5ff" fillOpacity={0.35} />
+                      <Radar dataKey="stability" stroke="#f97316" fill="#ff8a72" fillOpacity={0.22} />
+                      <Tooltip />
+                    </RadarChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <MissingArtifactState
+                  title="Radar comparison unavailable"
+                  message="This view appears after provider-level aggregate scores have been saved. The product still has real comparison panels and summary text below."
+                />
+              )}
             </AnimatedSection>
           </div>
 

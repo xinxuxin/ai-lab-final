@@ -10,7 +10,24 @@
     "stability"
   ],
   "missing_models": [],
-  "vision_assisted_status": "failed",
-  "aggregate_scores": {},
-  "summary_text": "Comparison panels and the human scoring sheet were generated. Vision-assisted scoring was not run."
+  "vision_assisted_status": "partial",
+  "aggregate_scores": {
+    "openai": {
+      "color_accuracy": 4.0,
+      "material_finish_accuracy": 3.75,
+      "shape_silhouette_accuracy": 3.75,
+      "component_completeness": 3.25,
+      "size_proportion_impression": 4.0,
+      "overall_recognizability": 3.5
+    },
+    "stability": {
+      "color_accuracy": 4.0,
+      "material_finish_accuracy": 3.0,
+      "shape_silhouette_accuracy": 2.0,
+      "component_completeness": 3.0,
+      "size_proportion_impression": 2.0,
+      "overall_recognizability": 3.0
+    }
+  },
+  "summary_text": "Comparison panels and the human scoring sheet were generated. Vision-assisted scoring completed for a subset of panels before the run was interrupted."
 }

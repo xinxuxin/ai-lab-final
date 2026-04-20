@@ -1,6 +1,133 @@
 {
-  "status": "failed",
+  "status": "partial",
   "reason": "OpenAI request failed after multiple attempts.",
-  "evaluations": [],
-  "aggregate_scores": {}
+  "evaluations": [
+    {
+      "panel_id": "levoit-core-300-air-purifier-white-81910071-openai-01",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 5.0,
+        "component_completeness": 4.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "shape_silhouette_accuracy",
+        "color_accuracy",
+        "material_finish_accuracy",
+        "component_completeness",
+        "size_proportion_impression",
+        "overall_recognizability"
+      ],
+      "failed": [],
+      "summary": "The generated image closely resembles the real product in most dimensions. Color accuracy is slightly lower due to the potential difference in lighting or shading. The material finish is also consistent but could be interpreted differently due to the background. Overall, the silhouette and shape are identical, contributing to a strong recognizability. Some minor components like the line across the middle are present in the generated image but may differ slightly in detail, impacting component completeness."
+    },
+    {
+      "panel_id": "levoit-core-300-air-purifier-white-81910071-openai-02",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 5.0,
+        "component_completeness": 4.0,
+        "size_proportion_impression": 5.0,
+        "overall_recognizability": 4.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "shape_silhouette_accuracy",
+        "size_proportion_impression"
+      ],
+      "failed": [
+        "component_completeness",
+        "overall_recognizability"
+      ],
+      "summary": "The color and material finishes are quite similar, but the generated image has a slightly different texture, yielding a score of 4 for material finish accuracy. The shape and size proportions are accurately depicted, hence the scores of 5. However, the absence of certain branding or component details on the generated image affects the scores for component completeness and overall recognizability, leading to lower scores in those areas."
+    },
+    {
+      "panel_id": "levoit-core-300-air-purifier-white-81910071-openai-03",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 3.0,
+        "shape_silhouette_accuracy": 2.0,
+        "component_completeness": 2.0,
+        "size_proportion_impression": 3.0,
+        "overall_recognizability": 3.0
+      },
+      "worked": [],
+      "failed": [
+        "shape_silhouette_accuracy",
+        "component_completeness"
+      ],
+      "summary": "The color of the generated image is mostly accurate but lacks some specific details. The material finish is somewhat realistic but can be perceived as generic. The shape and silhouette differ as the generated image shows a more rounded form compared to the original's flat design. Component completeness is lacking since the generated image omits several control buttons. Size proportion seems reasonable but might not perfectly match the original product's dimensions. Overall recognizability is moderate, as the differences in shape and features affect immediate identification."
+    },
+    {
+      "panel_id": "levoit-core-300-air-purifier-white-81910071-openai-04",
+      "provider": "openai",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 4.0,
+        "shape_silhouette_accuracy": 3.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 4.0,
+        "overall_recognizability": 3.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "size_proportion_impression"
+      ],
+      "failed": [
+        "shape_silhouette_accuracy",
+        "component_completeness",
+        "overall_recognizability"
+      ],
+      "summary": "The colors in both images are similar, leading to a high score in color accuracy. Material finishes also appear consistent. However, the generated image has a different shape and silhouette compared to the reference, affecting its recognition. Additionally, some components, such as the base design and general structure, are lacking, which further impacts overall recognizability."
+    },
+    {
+      "panel_id": "levoit-core-300-air-purifier-white-81910071-stability-01",
+      "provider": "stability",
+      "scores": {
+        "color_accuracy": 4.0,
+        "material_finish_accuracy": 3.0,
+        "shape_silhouette_accuracy": 2.0,
+        "component_completeness": 3.0,
+        "size_proportion_impression": 2.0,
+        "overall_recognizability": 3.0
+      },
+      "worked": [
+        "color_accuracy",
+        "material_finish_accuracy",
+        "component_completeness",
+        "overall_recognizability"
+      ],
+      "failed": [
+        "shape_silhouette_accuracy",
+        "size_proportion_impression"
+      ],
+      "summary": "The generated image shows a similar color scheme to the real product, leading to a relatively high score for color accuracy. However, the material finish appears less refined in the generated image, resulting in a moderate score. The silhouette and overall shape differ significantly, with the real product having a more cylindrical and compact form compared to the bulkier shape in the generated image. Additionally, the perceived size proportions are inconsistent, which affects recognizability. Overall, while the generated image conveys some aspects of the product, significant differences in shape and size impact its overall fidelity."
+    }
+  ],
+  "aggregate_scores": {
+    "openai": {
+      "color_accuracy": 4.0,
+      "material_finish_accuracy": 3.75,
+      "shape_silhouette_accuracy": 3.75,
+      "component_completeness": 3.25,
+      "size_proportion_impression": 4.0,
+      "overall_recognizability": 3.5
+    },
+    "stability": {
+      "color_accuracy": 4.0,
+      "material_finish_accuracy": 3.0,
+      "shape_silhouette_accuracy": 2.0,
+      "component_completeness": 3.0,
+      "size_proportion_impression": 2.0,
+      "overall_recognizability": 3.0
+    }
+  }
 }

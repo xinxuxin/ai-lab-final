@@ -305,8 +305,8 @@ def _run_vision_assisted_evaluation(
     prompt_template = prompt_path.read_text(encoding="utf-8")
     owns_client = llm_client is None
     client = llm_client or OpenAITextAnalysisClient(settings=settings)
+    evaluations: list[VisionPanelEvaluation] = []
     try:
-        evaluations: list[VisionPanelEvaluation] = []
         for panel in panel_manifest["panels"]:
             panel_id = str(panel["panel_id"])
             provider = str(panel["provider"])
@@ -327,7 +327,7 @@ def _run_vision_assisted_evaluation(
             )
             payload = json.loads(completion.text)
             evaluations.append(VisionPanelEvaluation.model_validate(payload))
-            time.sleep(0.75)
+            time.sleep(2.0)
     except (
         OSError,
         json.JSONDecodeError,
@@ -336,16 +336,31 @@ def _run_vision_assisted_evaluation(
         LLMClientError,
         httpx.HTTPError,
     ) as exc:
+        aggregate_scores = _aggregate_vision_scores(evaluations)
         return {
-            "status": "failed",
+            "status": "partial" if evaluations else "failed",
             "reason": str(exc),
-            "evaluations": [],
-            "aggregate_scores": {},
+            "evaluations": [item.model_dump(mode="json") for item in evaluations],
+            "aggregate_scores": aggregate_scores,
         }
     finally:
         if owns_client:
             client.close()
 
+    aggregate_scores = _aggregate_vision_scores(evaluations)
+
+    return {
+        "status": "completed",
+        "product_slug": product_slug,
+        "evaluations": [item.model_dump(mode="json") for item in evaluations],
+        "aggregate_scores": aggregate_scores,
+    }
+
+
+def _aggregate_vision_scores(
+    evaluations: list[VisionPanelEvaluation],
+) -> dict[str, dict[str, float]]:
+    """Aggregate per-provider rubric averages from panel evaluations."""
     aggregate_scores: dict[str, dict[str, float]] = {}
     for provider in ("openai", "stability"):
         provider_evals = [item for item in evaluations if item.provider == provider]
@@ -358,13 +373,7 @@ def _run_vision_assisted_evaluation(
             )
             for dimension in RUBRIC_DIMENSIONS
         }
-
-    return {
-        "status": "completed",
-        "product_slug": product_slug,
-        "evaluations": [item.model_dump(mode="json") for item in evaluations],
-        "aggregate_scores": aggregate_scores,
-    }
+    return aggregate_scores
 
 
 def _build_evaluation_summary(
@@ -389,6 +398,12 @@ def _build_evaluation_summary(
         summary_text = (
             "Vision-assisted evaluation completed. Review per-dimension provider averages "
             "and panel-level strengths versus failures."
+        )
+    elif vision_payload["status"] == "partial":
+        status = "human_scoring_ready"
+        summary_text = (
+            "Comparison panels and the human scoring sheet were generated. "
+            "Vision-assisted scoring completed for a subset of panels before the run was interrupted."
         )
     else:
         status = "human_scoring_ready"

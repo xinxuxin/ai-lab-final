@@ -49,7 +49,7 @@ export function ReviewsPage() {
     <>
       <PageHeader
         eyebrow="Review Explorer"
-        title="Review evidence, chunking, and retrieval in one presentation view"
+        title="Review evidence, chunking, and retrieval"
         description="The review page now reads real review stats, sampled cleaned reviews, and saved retrieval evidence where available."
         badges={["review chart", "retrieved evidence", "real artifacts"]}
       />

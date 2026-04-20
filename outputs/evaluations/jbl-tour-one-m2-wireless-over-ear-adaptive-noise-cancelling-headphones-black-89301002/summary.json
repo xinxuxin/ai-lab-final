@@ -1,5 +1,5 @@
 {
-  "status": "human_scoring_ready",
+  "status": "vision_assisted_complete",
   "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
   "product_name": "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)",
   "category": "audio",
@@ -10,7 +10,24 @@
     "stability"
   ],
   "missing_models": [],
-  "vision_assisted_status": "failed",
-  "aggregate_scores": {},
-  "summary_text": "Comparison panels and the human scoring sheet were generated. Vision-assisted scoring was not run."
+  "vision_assisted_status": "completed",
+  "aggregate_scores": {
+    "openai": {
+      "color_accuracy": 4.5,
+      "material_finish_accuracy": 4.0,
+      "shape_silhouette_accuracy": 3.5,
+      "component_completeness": 3.0,
+      "size_proportion_impression": 4.0,
+      "overall_recognizability": 3.75
+    },
+    "stability": {
+      "color_accuracy": 4.25,
+      "material_finish_accuracy": 3.75,
+      "shape_silhouette_accuracy": 4.0,
+      "component_completeness": 3.25,
+      "size_proportion_impression": 4.0,
+      "overall_recognizability": 4.0
+    }
+  },
+  "summary_text": "Vision-assisted evaluation completed. Review per-dimension provider averages and panel-level strengths versus failures."
 }
