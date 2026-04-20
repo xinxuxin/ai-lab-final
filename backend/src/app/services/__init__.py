@@ -25,6 +25,12 @@ from app.services.visual_profiles import (
     chunk_reviews,
     extract_visual_profile,
 )
+from app.services.verification import (
+    SubmissionPackageResult,
+    VerificationResult,
+    build_submission_package,
+    verify_repository,
+)
 
 __all__ = [
     "BuildCorpusResult",
@@ -34,8 +40,11 @@ __all__ = [
     "ExtractVisualProfileResult",
     "GenerateImagesResult",
     "ImageGenerationPipelineError",
+    "SubmissionPackageResult",
+    "VerificationResult",
     "VisualProfileError",
     "build_processed_corpus",
+    "build_submission_package",
     "chunk_reviews",
     "evaluate_images_for_product",
     "extract_visual_profile",
@@ -44,4 +53,5 @@ __all__ = [
     "list_generation_ready_products",
     "validate_q1_artifacts",
     "validate_q1_from_disk",
+    "verify_repository",
 ]

@@ -25,6 +25,7 @@ from app.models.schemas import (
 from app.services.corpus import BuildCorpusResult
 from app.services.evaluation import EvaluateImagesResult
 from app.services.image_generation import GenerateImagesResult
+from app.services.verification import SubmissionPackageResult, VerificationResult
 from app.services.visual_profiles import ExtractVisualProfileResult
 from cli.main import app
 
@@ -254,25 +255,35 @@ def test_cli_build_corpus_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> Non
 def test_cli_verify_artifacts_q1_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
     """Q1 verification command should print human and machine-readable output."""
 
-    def fake_validate_q1_from_disk(
+    def fake_verify_repository(
         *,
+        stage: str,
         processed_dir: Path | None = None,
         selected_products_path: Path | None = None,
         min_review_count: int | None = None,
-        settings: object | None = None,
-    ) -> Q1ValidationResult:
-        del processed_dir, selected_products_path, min_review_count, settings
-        return Q1ValidationResult(
+        frontend_root: Path | None = None,
+        run_frontend_build: bool = True,
+    ) -> VerificationResult:
+        del processed_dir, selected_products_path, min_review_count, frontend_root, run_frontend_build
+        return VerificationResult(
+            stage=stage,  # type: ignore[arg-type]
             passed=True,
-            selected_products_count=3,
-            distinct_categories_count=3,
-            min_review_count_threshold=5,
-            per_product_review_counts={"sample-product-1": 8},
-            per_product_image_counts={"sample-product-1": 3},
-            notes=["All strict Q1 checks passed."],
+            summary={
+                "stage": stage,
+                "passed": True,
+                "checks": {
+                    "q1": {
+                        "passed": True,
+                        "issues": [],
+                        "selected_products_count": 3,
+                        "distinct_categories_count": 3,
+                    }
+                },
+                "issues": [],
+            },
         )
 
-    monkeypatch.setattr("cli.main.validate_q1_from_disk", fake_validate_q1_from_disk)
+    monkeypatch.setattr("cli.main.verify_repository", fake_verify_repository)
     result = runner.invoke(app, ["verify-artifacts", "--stage", "q1"])
     assert result.exit_code == 0
     assert "Q1 verification summary:" in result.stdout
@@ -480,3 +491,57 @@ def test_cli_evaluate_images_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> 
     result = runner.invoke(app, ["evaluate-images", "--product", "sample-product"])
     assert result.exit_code == 0
     assert "Evaluation summary:" in result.stdout
+
+
+def test_cli_verify_artifacts_full_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Full verification command should print grouped pass/fail output."""
+
+    def fake_verify_repository(
+        *,
+        stage: str,
+        processed_dir: Path | None = None,
+        selected_products_path: Path | None = None,
+        min_review_count: int | None = None,
+        frontend_root: Path | None = None,
+        run_frontend_build: bool = True,
+    ) -> VerificationResult:
+        del processed_dir, selected_products_path, min_review_count, frontend_root, run_frontend_build
+        return VerificationResult(
+            stage=stage,  # type: ignore[arg-type]
+            passed=True,
+            summary={
+                "stage": stage,
+                "passed": True,
+                "checks": {
+                    "q1": {"passed": True, "issues": []},
+                    "q2": {"passed": True, "issues": []},
+                },
+                "issues": [],
+            },
+        )
+
+    monkeypatch.setattr("cli.main.verify_repository", fake_verify_repository)
+    result = runner.invoke(app, ["verify-artifacts", "--stage", "full"])
+    assert result.exit_code == 0
+    assert "FULL verification summary:" in result.stdout
+    assert "Machine-readable JSON:" in result.stdout
+
+
+def test_cli_build_submission_package_smoke(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    """Package builder command should print saved package paths."""
+
+    def fake_build_submission_package(*, output_dir: Path | None = None) -> SubmissionPackageResult:
+        resolved_output_dir = output_dir or tmp_path / "submission_package"
+        resolved_output_dir.mkdir(parents=True, exist_ok=True)
+        manifest_path = resolved_output_dir / "submission_manifest.json"
+        manifest_path.write_text("{}", encoding="utf-8")
+        return SubmissionPackageResult(
+            output_dir=resolved_output_dir,
+            copied_paths=[resolved_output_dir / "README.md"],
+            manifest_path=manifest_path,
+        )
+
+    monkeypatch.setattr("cli.main.build_submission_package", fake_build_submission_package)
+    result = runner.invoke(app, ["build-submission-package"])
+    assert result.exit_code == 0
+    assert "Submission package summary:" in result.stdout

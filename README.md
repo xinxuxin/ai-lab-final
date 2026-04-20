@@ -446,6 +446,18 @@ cd frontend
 npm install
 ```
 
+## Quick Start
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e "backend[dev]"
+cp .env.example .env
+cd frontend && npm install && cd ..
+```
+
 ## Run Locally
 
 ### Backend API
@@ -470,12 +482,59 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main extract-visual-profile --product 
 PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow
 ```
 
+### One-time discovery and scraping
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml
+PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100
+```
+
+Default behavior reuses complete on-disk artifacts and skips unnecessary re-fetching or recomputation.
+
+### Reuse-existing behavior
+
+- discovery reuses `data/discovery/` artifacts by default
+- scraping reuses `data/raw/<product_slug>/` when complete artifacts already exist
+- generation reuses `outputs/generated_images/<product_slug>/<provider>/generation_manifest.json`
+- workflow orchestration reuses downstream artifacts unless refresh is requested
+
+### Refresh behavior
+
+Use `--refresh` when you explicitly want to recompute a stage:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main discover-products --config ../configs/product_queries.yaml --refresh
+PYTHONPATH=src ../.venv/bin/python -m cli.main scrape-all --input ../data/selected_products.jsonl --max-reviews 100 --refresh
+PYTHONPATH=src ../.venv/bin/python -m cli.main generate-images --all --count 4 --refresh
+PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow --all --refresh
+```
+
 ### Frontend
 
 ```bash
 cd frontend
 npm run dev
 npm test
+```
+
+### Frontend demo
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+./scripts/run_frontend_demo.sh
+```
+
+### End-to-end run
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+./scripts/run_full_pipeline.sh
 ```
 
 ## Validation Commands
@@ -496,6 +555,16 @@ mypy src
 ```bash
 cd frontend
 npm run build
+```
+
+### Final verification and submission package
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main verify-artifacts --stage full --frontend-dir ../frontend
+PYTHONPATH=src ../.venv/bin/python -m cli.main build-submission-package
 ```
 
 ## Current Limitations

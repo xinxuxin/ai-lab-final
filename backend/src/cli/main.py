@@ -12,12 +12,13 @@ from app.collectors.product_pages import run_scrape_all, run_scrape_product
 from app.config.settings import get_settings
 from app.services import (
     build_processed_corpus,
+    build_submission_package,
     evaluate_images_for_product,
     extract_visual_profile,
     generate_images_for_product,
     list_evaluation_ready_products,
     list_generation_ready_products,
-    validate_q1_from_disk,
+    verify_repository,
 )
 from app.utils.artifacts import DOCS_DIR
 from app.utils.logging import configure_logging
@@ -507,12 +508,8 @@ def run_workflow(
 @app.command("verify-artifacts")
 def verify_artifacts(
     stage: str = typer.Option(
-        "filesystem",
-        help="Validation stage to run. Use `q1` for assignment checks.",
-    ),
-    path: str = typer.Option(
-        "../artifacts",
-        help="Artifacts root to validate for generic filesystem checks.",
+        "full",
+        help="Validation stage to run: q1, q2, q3, q4, or full.",
     ),
     processed_dir: str = typer.Option(
         "../data/processed",
@@ -526,47 +523,63 @@ def verify_artifacts(
         None,
         help="Minimum cleaned review count required per product for Q1.",
     ),
+    frontend_dir: str = typer.Option(
+        "../frontend",
+        help="Frontend root used for build verification during full checks.",
+    ),
+    skip_frontend_build: bool = typer.Option(
+        False,
+        help="Skip `npm run build` during full verification.",
+    ),
 ) -> None:
-    """Verify that expected artifact directories exist."""
-    if stage == "q1":
-        validation = validate_q1_from_disk(
-            processed_dir=Path(processed_dir).resolve(),
-            selected_products_path=Path(input).resolve(),
-            min_review_count=min_review_count,
-        )
-        typer.echo("Q1 verification summary:")
-        typer.echo(f"- Status: {'PASS' if validation.passed else 'FAIL'}")
-        typer.echo(f"- Selected products: {validation.selected_products_count}")
-        typer.echo(f"- Distinct categories: {validation.distinct_categories_count}")
-        typer.echo(f"- Minimum cleaned review threshold: {validation.min_review_count_threshold}")
-        typer.echo("- Review counts:")
-        for product_slug, count in validation.per_product_review_counts.items():
-            typer.echo(f"  - {product_slug}: {count}")
-        typer.echo("- Valid image counts:")
-        for product_slug, count in validation.per_product_image_counts.items():
-            typer.echo(f"  - {product_slug}: {count}")
-        if validation.issues:
-            typer.echo("- Issues:")
-            for issue in validation.issues:
-                typer.echo(f"  - {issue}")
-        typer.echo("")
-        typer.echo("Machine-readable JSON:")
-        typer.echo(json.dumps(validation.model_dump(mode="json"), indent=2))
-        if not validation.passed:
-            raise typer.Exit(code=1)
-        return
+    """Verify repository artifacts against Q1 through Q4 requirements."""
+    configure_logging()
+    result = verify_repository(
+        stage=stage,  # type: ignore[arg-type]
+        processed_dir=Path(processed_dir).resolve(),
+        selected_products_path=Path(input).resolve(),
+        min_review_count=min_review_count,
+        frontend_root=Path(frontend_dir).resolve(),
+        run_frontend_build=not skip_frontend_build,
+    )
+    typer.echo(f"{stage.upper()} verification summary:")
+    typer.echo(f"- Status: {'PASS' if result.passed else 'FAIL'}")
+    for check_name, check in result.summary["checks"].items():
+        typer.echo(f"- {check_name}: {'PASS' if check.get('passed') else 'FAIL'}")
+        for issue in check.get("issues", []):
+            typer.echo(f"  - {issue}")
+    typer.echo("")
+    typer.echo("Machine-readable JSON:")
+    typer.echo(json.dumps(result.summary, indent=2))
+    if not result.passed:
+        raise typer.Exit(code=1)
 
-    artifact_root = Path(path).resolve()
+
+@app.command("build-submission-package")
+def build_submission_package_command(
+    output_dir: str = typer.Option(
+        "../submission_package",
+        help="Directory where the submission package should be assembled.",
+    )
+) -> None:
+    """Build a submission-ready package with the required code and artifacts."""
+    configure_logging()
+    result = build_submission_package(output_dir=Path(output_dir).resolve())
+    typer.echo("Submission package summary:")
     typer.echo(
         json.dumps(
             {
-                "stage": "verify-artifacts",
-                "exists": artifact_root.exists(),
-                "path": str(artifact_root),
+                "output_dir": str(result.output_dir),
+                "file_count": len(result.copied_paths),
+                "manifest_path": str(result.manifest_path),
             },
             indent=2,
         )
     )
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.output_dir}")
+    typer.echo(f"- {result.manifest_path}")
 
 
 @app.command("serve-api")
