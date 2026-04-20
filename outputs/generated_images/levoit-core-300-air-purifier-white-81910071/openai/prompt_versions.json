@@ -1,0 +1,46 @@
+{
+  "versions": [
+    {
+      "prompt_version_id": "81910071-openai-pilot",
+      "product_id": "81910071",
+      "provider": "openai",
+      "model_name": "openai",
+      "strategy": "pilot",
+      "prompt_source_mode": "baseline_description_only",
+      "prompt_text": "Create a realistic studio product photograph of a single Levoit Core 300 Air Purifier White in the Air Purifiers category.\n\nUse this evidence-grounded visual description:\nA compact air purifier, standing 14 inches tall with a sleek design, efficiently cleans up to 1,073 ft\u00b2. Equipped with multiple filters, it captures 99.97% of airborne particles, ensuring a breath of fresh air.\n\nPrioritize these supported details:\nsize dimensions; weight; room size capacity\n\nComposition requirements:\n- centered composition\n- single isolated product\n- neutral or studio background\n- sharp, clean commercial product photography\n- no extra accessories unless directly supported by the source evidence\n\nAvoid these unsupported elements:\navoid assumptions about color or finish; avoid specifying materials without evidence; centered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only",
+      "negative_prompt": null,
+      "negative_constraints": [
+        "avoid assumptions about color or finish",
+        "avoid specifying materials without evidence",
+        "centered composition",
+        "neutral or studio background",
+        "no extra accessories unless explicitly supported",
+        "realistic product photography",
+        "single product only"
+      ],
+      "notes": "Template: /Users/macbook/Desktop/ai-lab-final/prompts/q3/pilot_prompt.md",
+      "created_at": "2026-04-20T06:45:47.595934"
+    },
+    {
+      "prompt_version_id": "81910071-openai-final",
+      "product_id": "81910071",
+      "provider": "openai",
+      "model_name": "openai",
+      "strategy": "final",
+      "prompt_source_mode": "review_informed_rag",
+      "prompt_text": "Create a realistic, presentation-quality product photograph of a single Levoit Core 300 Air Purifier White in the Air Purifiers category.\n\nRender the product as:\nA compact, white air purifier that effectively cleans the air in spaces up to 1,073 ft\u00b2 while maintaining low noise levels of 22dB.\n\nStrongly preserve these evidence-backed visual details:\nDimensions; Weight\n\nScene requirements:\n- centered composition\n- neutral seamless studio background\n- realistic product photography lighting\n- single product only\n- no lifestyle scene and no extra accessories unless directly supported by evidence\n\nExplicitly avoid:\navoid speculating on product features; avoid unsupported claims about materials; centered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only\n\nAlso avoid mismatches between listing expectation and review reality:\nDo not add unsupported embellishments or misleading scale cues.",
+      "negative_prompt": null,
+      "negative_constraints": [
+        "avoid speculating on product features",
+        "avoid unsupported claims about materials",
+        "centered composition",
+        "neutral or studio background",
+        "no extra accessories unless explicitly supported",
+        "realistic product photography",
+        "single product only"
+      ],
+      "notes": "Template: /Users/macbook/Desktop/ai-lab-final/prompts/q3/final_prompt.md",
+      "created_at": "2026-04-20T06:45:47.596233"
+    }
+  ]
+}

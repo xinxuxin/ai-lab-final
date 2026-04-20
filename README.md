@@ -116,6 +116,7 @@ This repository is structured to support all four required questions:
   - `retrieval_evidence.json`
   - `llm_trace.json`
 - Added a retrieval fallback path so `review_informed_rag` can degrade to keyword-overlap retrieval when the configured OpenAI project lacks embedding-model access.
+- The current local artifact snapshot includes real Q2 outputs for all three selected products.
 - Added tests for:
   - schema validation
   - prompt loading
@@ -159,6 +160,7 @@ This repository is structured to support all four required questions:
   - content type
   - file hashes
 - Added image integrity validation with Pillow before declaring success.
+- The current local artifact snapshot includes real OpenAI Images API outputs and real Stability API outputs for all three selected products.
 - Added tests for:
   - adapter behavior
   - mocked OpenAI and Stability API calls
@@ -200,6 +202,11 @@ This repository is structured to support all four required questions:
   - freshness badges
   - comparison slider
   - chart-backed evaluation summaries
+- The current local artifact snapshot now includes:
+  - real reference-vs-generated comparison panels for both OpenAI and Stability outputs across all three products
+  - human scoring templates for all three products
+  - vision-assisted scoring fully completed for the desk lamp product
+  - dual-model comparison manifests and summary payloads that drive the animated UI
 - Added backend tests for:
   - artifact-backed API endpoints
   - evaluation artifact generation
@@ -345,6 +352,8 @@ source .venv/bin/activate
 cd backend
 PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --product levoit-core-300-air-purifier-white-81910071
 PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --all
+PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --product <product-slug> --vision-assisted
+PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --all --vision-assisted
 ```
 
 ## Frontend Overview
@@ -454,11 +463,11 @@ npm run build
 - Discovery is currently implemented for Best Buy search pages only.
 - Product scraping is currently implemented for Target public product pages only.
 - Target's public PDP payload exposes only a recent-review block, so the current scraper captures a truthful subset of public reviews and marks those products as `partial_success`.
-- The Q2 pipeline is fully implemented and tested. A real local smoke run was completed for `levoit-core-300-air-purifier-white-81910071` in both modes.
-- The tested OpenAI project key allowed chat completions but not `text-embedding-3-small`, so `review_informed_rag` automatically fell back to keyword-overlap retrieval during the live run.
-- Only one product currently has real Q2 visual-profile outputs on disk, so the profile page will prefer that product by default while other products surface missing-artifact states.
-- No real generated image artifacts have been produced yet in this repository snapshot, so generation and evaluation pages honestly display missing or incomplete downstream states unless `generate-images` is run.
-- The comparison page currently shows saved evaluation summaries, but full per-dimension provider analytics require actual generated images and optional vision-assisted scoring.
+- The current local artifact snapshot contains real Q2 outputs for all three products and real dual-provider Q3 image outputs for all three products.
+- The current OpenAI key supports `text-embedding-3-small`, `text-embedding-3-large`, `text-embedding-ada-002`, and OpenAI image generation, so the default retrieval path no longer needs to fall back during normal runs.
+- Human-scoring templates and dual-provider comparison panels are available for all three products.
+- Vision-assisted evaluation is optional and currently sensitive to OpenAI rate limiting. In the current artifact snapshot it completed for the desk lamp product, while the other two products still fall back to `human_scoring_ready` summaries when rate limits interrupt the run.
+- The frontend now reads real artifacts, but pages will still surface explicit missing-artifact or degraded-state messages whenever a downstream stage has not been run or vision-assisted scoring did not complete.
 
 ## Next Recommended Stage
 

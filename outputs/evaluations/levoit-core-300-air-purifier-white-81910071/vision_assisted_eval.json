@@ -1,6 +1,6 @@
 {
-  "status": "not_run",
-  "reason": "vision_assisted_disabled",
+  "status": "failed",
+  "reason": "OpenAI request failed after multiple attempts.",
   "evaluations": [],
   "aggregate_scores": {}
 }

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import json
+import time
 
 import httpx
 
@@ -54,11 +55,28 @@ class OpenAIImageAdapter(ImageGenerationAdapter):
             "size": self._settings.openai_image_size,
             "n": count,
         }
-        response = self._client.post(
-            f"{self._settings.openai_base_url}/images/generations",
-            content=json.dumps(payload),
-        )
-        response.raise_for_status()
+        response: httpx.Response | None = None
+        last_error: Exception | None = None
+        for attempt in range(1, self._settings.llm_max_retries + 1):
+            try:
+                response = self._client.post(
+                    f"{self._settings.openai_base_url}/images/generations",
+                    content=json.dumps(payload),
+                )
+                response.raise_for_status()
+                last_error = None
+                break
+            except (httpx.ReadTimeout, httpx.ConnectTimeout, httpx.ReadError) as exc:
+                last_error = exc
+                if attempt == self._settings.llm_max_retries:
+                    raise ImageGenerationError(
+                        "OpenAI image generation timed out after multiple attempts."
+                    ) from exc
+                time.sleep(min(2**attempt, 5))
+
+        if response is None:
+            raise ImageGenerationError("OpenAI image generation returned no response.") from last_error
+
         data = response.json()
         raw_items = data.get("data", [])
         if not isinstance(raw_items, list) or len(raw_items) != count:

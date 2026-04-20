@@ -1,0 +1,44 @@
+{
+  "versions": [
+    {
+      "prompt_version_id": "80705997-openai-pilot",
+      "product_id": "80705997",
+      "provider": "openai",
+      "model_name": "openai",
+      "strategy": "pilot",
+      "prompt_source_mode": "baseline_description_only",
+      "prompt_text": "Create a realistic studio product photograph of a single Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold\u2122 in the Desk Lamps category.\n\nUse this evidence-grounded visual description:\nA stylish desk lamp featuring an oval glass shade and a wooden base, providing a warm glow with an integrated LED bulb. It's designed to enhance your space and includes two USB ports for convenient device charging.\n\nPrioritize these supported details:\noval glass shade; wooden base; glass shade\n\nComposition requirements:\n- centered composition\n- single isolated product\n- neutral or studio background\n- sharp, clean commercial product photography\n- no extra accessories unless directly supported by the source evidence\n\nAvoid these unsupported elements:\navoid suggesting plastic elements; centered composition; do not imply larger dimensions; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only",
+      "negative_prompt": null,
+      "negative_constraints": [
+        "avoid suggesting plastic elements",
+        "centered composition",
+        "do not imply larger dimensions",
+        "neutral or studio background",
+        "no extra accessories unless explicitly supported",
+        "realistic product photography",
+        "single product only"
+      ],
+      "notes": "Template: /Users/macbook/Desktop/ai-lab-final/prompts/q3/pilot_prompt.md",
+      "created_at": "2026-04-20T06:36:38.380888"
+    },
+    {
+      "prompt_version_id": "80705997-openai-final",
+      "product_id": "80705997",
+      "provider": "openai",
+      "model_name": "openai",
+      "strategy": "final",
+      "prompt_source_mode": "review_informed_rag",
+      "prompt_text": "Create a realistic, presentation-quality product photograph of a single Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold\u2122 in the Desk Lamps category.\n\nRender the product as:\nA compact desk lamp featuring an oval glass shade and a wooden base, equipped with two USB ports for device charging. This lightweight lamp emits a soft glow with a dimmable setting, perfect for creating ambiance in any cozy corner.\n\nStrongly preserve these evidence-backed visual details:\noval shade; wooden base; glass shade; dimensional size; plastic cord covering\n\nScene requirements:\n- centered composition\n- neutral seamless studio background\n- realistic product photography lighting\n- single product only\n- no lifestyle scene and no extra accessories unless directly supported by evidence\n\nExplicitly avoid:\ncentered composition; neutral or studio background; no extra accessories unless explicitly supported; realistic product photography; single product only\n\nAlso avoid mismatches between listing expectation and review reality:\nDo not add unsupported embellishments or misleading scale cues.",
+      "negative_prompt": null,
+      "negative_constraints": [
+        "centered composition",
+        "neutral or studio background",
+        "no extra accessories unless explicitly supported",
+        "realistic product photography",
+        "single product only"
+      ],
+      "notes": "Template: /Users/macbook/Desktop/ai-lab-final/prompts/q3/final_prompt.md",
+      "created_at": "2026-04-20T06:36:38.381130"
+    }
+  ]
+}

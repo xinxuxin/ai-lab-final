@@ -1,0 +1,120 @@
+{
+  "stage": "generate-images",
+  "created_at": "2026-04-20T06:38:04.494583",
+  "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+  "product_id": "80705997",
+  "product_name": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold™",
+  "provider": "openai",
+  "model_name": "openai",
+  "output_dir": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai",
+  "prompt_versions_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/prompt_versions.json",
+  "pilot_generation": {
+    "generation_id": "b94496e5-2896-498b-9a43-eb2f3ebad489",
+    "product_id": "80705997",
+    "provider": "openai",
+    "model_name": "openai",
+    "stage": "pilot",
+    "prompt_version_id": "80705997-openai-pilot",
+    "prompt_source_mode": "baseline_description_only",
+    "output_paths": [
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/pilot/image_01.png"
+    ],
+    "images": [
+      {
+        "filename": "image_01.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/pilot/image_01.png",
+        "sha256": "839ef095040398475343e6f657a98f7e39d914484c06c2d95af1dffe9d59e3e2",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1313995,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      }
+    ],
+    "status": "completed",
+    "metadata": {
+      "image_count": 1,
+      "generated_at": "2026-04-20T06:38:04.482944"
+    },
+    "created_at": "2026-04-20T06:38:04.483210"
+  },
+  "final_generation": {
+    "generation_id": "a226b206-5cce-41d6-b951-efba2a16ab0d",
+    "product_id": "80705997",
+    "provider": "openai",
+    "model_name": "openai",
+    "stage": "final",
+    "prompt_version_id": "80705997-openai-final",
+    "prompt_source_mode": "review_informed_rag",
+    "output_paths": [
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_01.png",
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_02.png",
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_03.png",
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_04.png"
+    ],
+    "images": [
+      {
+        "filename": "image_01.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_01.png",
+        "sha256": "779541afbd574cebf17d63f66192610b0e7fc1ec81324e4aa9e46b38ecf46df2",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1318016,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      },
+      {
+        "filename": "image_02.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_02.png",
+        "sha256": "50d56271e456e64db48555d63a731527d101e6b607cd0e847760ed2955a33381",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1321202,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      },
+      {
+        "filename": "image_03.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_03.png",
+        "sha256": "6e1a1490f7ab047103ed18db676158b6d9d5bb4fd36fd3870eedd94bf2d8bec2",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1276801,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      },
+      {
+        "filename": "image_04.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_04.png",
+        "sha256": "319e9571dfb61f8f0b44be8d1c743c843ae7e1b3bfb23c3a72a05aa99d995960",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1251939,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      }
+    ],
+    "status": "completed",
+    "metadata": {
+      "image_count": 4,
+      "generated_at": "2026-04-20T06:38:04.494534"
+    },
+    "created_at": "2026-04-20T06:38:04.494549"
+  },
+  "status": "completed",
+  "reused_existing": false,
+  "notes": [
+    "Pilot prompt is sourced from baseline_description_only.",
+    "Final prompt is sourced from review_informed_rag and carries refined constraints."
+  ]
+}

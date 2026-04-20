@@ -5,10 +5,13 @@ from __future__ import annotations
 import base64
 import json
 import mimetypes
+import time
 from dataclasses import dataclass
+from io import BytesIO
 from pathlib import Path
 
 import httpx
+from PIL import Image, UnidentifiedImageError
 
 from app.config.settings import Settings, get_settings
 
@@ -59,11 +62,10 @@ class OpenAITextAnalysisClient:
             ],
             "response_format": {"type": "json_object"},
         }
-        response = self._client.post(
-            f"{self._settings.openai_base_url}/chat/completions",
-            content=json.dumps(payload),
+        response = self._post_with_retries(
+            endpoint=f"{self._settings.openai_base_url}/chat/completions",
+            payload=payload,
         )
-        response.raise_for_status()
         data = response.json()
         choices = data.get("choices", [])
         if not choices:
@@ -88,15 +90,10 @@ class OpenAITextAnalysisClient:
         """Request a JSON-only multimodal chat completion."""
         content: list[dict[str, object]] = [{"type": "text", "text": user_prompt}]
         for image_path in image_paths:
-            media_type = mimetypes.guess_type(image_path.name)[0] or "image/png"
-            data_url = (
-                f"data:{media_type};base64,"
-                f"{base64.b64encode(image_path.read_bytes()).decode('utf-8')}"
-            )
             content.append(
                 {
                     "type": "image_url",
-                    "image_url": {"url": data_url},
+                    "image_url": {"url": self._build_image_data_url(image_path)},
                 }
             )
         payload = {
@@ -107,11 +104,10 @@ class OpenAITextAnalysisClient:
             ],
             "response_format": {"type": "json_object"},
         }
-        response = self._client.post(
-            f"{self._settings.openai_base_url}/chat/completions",
-            content=json.dumps(payload),
+        response = self._post_with_retries(
+            endpoint=f"{self._settings.openai_base_url}/chat/completions",
+            payload=payload,
         )
-        response.raise_for_status()
         data = response.json()
         choices = data.get("choices", [])
         if not choices:
@@ -136,11 +132,10 @@ class OpenAITextAnalysisClient:
             "model": model or self._settings.embedding_model,
             "input": texts,
         }
-        response = self._client.post(
-            f"{self._settings.openai_base_url}/embeddings",
-            content=json.dumps(payload),
+        response = self._post_with_retries(
+            endpoint=f"{self._settings.openai_base_url}/embeddings",
+            payload=payload,
         )
-        response.raise_for_status()
         data = response.json()
         embeddings = data.get("data", [])
         if not isinstance(embeddings, list) or len(embeddings) != len(texts):
@@ -155,3 +150,59 @@ class OpenAITextAnalysisClient:
     def close(self) -> None:
         """Close the underlying HTTP client."""
         self._client.close()
+
+    def _post_with_retries(self, *, endpoint: str, payload: dict[str, object]) -> httpx.Response:
+        """POST JSON with retry handling for transient OpenAI API failures."""
+        last_error: Exception | None = None
+        for attempt in range(1, self._settings.llm_max_retries + 1):
+            try:
+                response = self._client.post(endpoint, content=json.dumps(payload))
+                response.raise_for_status()
+                return response
+            except (httpx.ReadTimeout, httpx.ConnectTimeout, httpx.ReadError) as exc:
+                last_error = exc
+            except httpx.HTTPStatusError as exc:
+                last_error = exc
+                if exc.response.status_code not in {429, 500, 502, 503, 504}:
+                    raise
+
+            if attempt == self._settings.llm_max_retries:
+                break
+            time.sleep(min(2**attempt, 8))
+
+        raise LLMClientError("OpenAI request failed after multiple attempts.") from last_error
+
+    def _build_image_data_url(self, image_path: Path) -> str:
+        """Return a model-compatible data URL for a local image path."""
+        media_type = mimetypes.guess_type(image_path.name)[0] or "image/png"
+        image_bytes = image_path.read_bytes()
+        supported_media_types = {"image/png", "image/jpeg", "image/webp", "image/gif"}
+
+        if media_type not in supported_media_types:
+            image_bytes, media_type = self._convert_image_bytes_to_png(
+                image_bytes=image_bytes,
+                image_path=image_path,
+            )
+
+        return (
+            f"data:{media_type};base64,"
+            f"{base64.b64encode(image_bytes).decode('utf-8')}"
+        )
+
+    def _convert_image_bytes_to_png(
+        self,
+        *,
+        image_bytes: bytes,
+        image_path: Path,
+    ) -> tuple[bytes, str]:
+        """Convert unsupported local image bytes to PNG for multimodal requests."""
+        try:
+            with Image.open(BytesIO(image_bytes)) as image:
+                normalized = image.convert("RGBA") if image.mode not in {"RGB", "RGBA"} else image
+                buffer = BytesIO()
+                normalized.save(buffer, format="PNG")
+        except (UnidentifiedImageError, OSError) as exc:
+            raise LLMClientError(
+                f"Unsupported image format for multimodal completion: {image_path}"
+            ) from exc
+        return buffer.getvalue(), "image/png"

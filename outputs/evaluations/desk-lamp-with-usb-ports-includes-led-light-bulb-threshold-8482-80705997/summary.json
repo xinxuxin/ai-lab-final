@@ -1,17 +1,33 @@
 {
-  "status": "human_scoring_ready",
+  "status": "vision_assisted_complete",
   "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
   "product_name": "Desk Lamp with USB Ports (Includes LED Light Bulb) - Threshold\u2122",
   "category": "lighting",
   "reference_image_count": 4,
-  "comparison_panel_count": 4,
+  "comparison_panel_count": 8,
   "available_models": [
+    "openai",
     "stability"
   ],
-  "missing_models": [
-    "openai"
-  ],
-  "vision_assisted_status": "not_run",
-  "aggregate_scores": {},
-  "summary_text": "Comparison panels and the human scoring sheet were generated. Vision-assisted scoring was not run."
+  "missing_models": [],
+  "vision_assisted_status": "completed",
+  "aggregate_scores": {
+    "openai": {
+      "color_accuracy": 2.75,
+      "material_finish_accuracy": 2.5,
+      "shape_silhouette_accuracy": 2.25,
+      "component_completeness": 3.0,
+      "size_proportion_impression": 2.75,
+      "overall_recognizability": 2.5
+    },
+    "stability": {
+      "color_accuracy": 2.0,
+      "material_finish_accuracy": 1.75,
+      "shape_silhouette_accuracy": 1.5,
+      "component_completeness": 1.0,
+      "size_proportion_impression": 1.75,
+      "overall_recognizability": 1.5
+    }
+  },
+  "summary_text": "Vision-assisted evaluation completed. Review per-dimension provider averages and panel-level strengths versus failures."
 }

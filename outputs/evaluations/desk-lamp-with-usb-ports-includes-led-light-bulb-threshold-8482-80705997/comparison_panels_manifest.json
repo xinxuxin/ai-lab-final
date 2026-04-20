@@ -2,12 +2,51 @@
   "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
   "reference_image_count": 4,
   "available_models": [
+    "openai",
     "stability"
   ],
-  "missing_models": [
-    "openai"
-  ],
+  "missing_models": [],
   "panels": [
+    {
+      "panel_id": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997-openai-01",
+      "provider": "openai",
+      "model_name": "openai",
+      "reference_image_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/images/reference_01.avif",
+      "generated_image_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_01.png",
+      "generated_image_sha256": "779541afbd574cebf17d63f66192610b0e7fc1ec81324e4aa9e46b38ecf46df2",
+      "prompt_source_mode": "review_informed_rag",
+      "stage": "final"
+    },
+    {
+      "panel_id": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997-openai-02",
+      "provider": "openai",
+      "model_name": "openai",
+      "reference_image_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/images/reference_02.avif",
+      "generated_image_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_02.png",
+      "generated_image_sha256": "50d56271e456e64db48555d63a731527d101e6b607cd0e847760ed2955a33381",
+      "prompt_source_mode": "review_informed_rag",
+      "stage": "final"
+    },
+    {
+      "panel_id": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997-openai-03",
+      "provider": "openai",
+      "model_name": "openai",
+      "reference_image_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/images/reference_03.avif",
+      "generated_image_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_03.png",
+      "generated_image_sha256": "6e1a1490f7ab047103ed18db676158b6d9d5bb4fd36fd3870eedd94bf2d8bec2",
+      "prompt_source_mode": "review_informed_rag",
+      "stage": "final"
+    },
+    {
+      "panel_id": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997-openai-04",
+      "provider": "openai",
+      "model_name": "openai",
+      "reference_image_path": "/Users/macbook/Desktop/ai-lab-final/data/raw/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/images/reference_04.avif",
+      "generated_image_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/final/image_04.png",
+      "generated_image_sha256": "319e9571dfb61f8f0b44be8d1c743c843ae7e1b3bfb23c3a72a05aa99d995960",
+      "prompt_source_mode": "review_informed_rag",
+      "stage": "final"
+    },
     {
       "panel_id": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997-stability-01",
       "provider": "stability",

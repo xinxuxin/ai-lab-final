@@ -4,16 +4,19 @@ from __future__ import annotations
 
 import csv
 import json
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean
 from typing import Any
 
-from pydantic import BaseModel, ValidationError
+import httpx
+from pydantic import BaseModel, ValidationError, field_validator
 
 from app.config.settings import Settings, get_settings
 from app.imagegen.base import ImageGenerationError
 from app.llm import Q2_SYSTEM_PROMPT, OpenAITextAnalysisClient
+from app.llm.client import LLMClientError
 from app.models.schemas import GenerationManifest
 from app.utils.artifacts import DATA_DIR, OUTPUTS_DIR, ensure_project_dirs
 
@@ -51,6 +54,25 @@ class VisionPanelEvaluation(BaseModel):
     worked: list[str]
     failed: list[str]
     summary: str
+
+    @field_validator("worked", "failed", mode="before")
+    @classmethod
+    def _normalize_issue_lists(cls, value: Any) -> list[str]:
+        """Accept either a plain list or a rubric-keyed dict from the model."""
+        if isinstance(value, list):
+            return [str(item) for item in value]
+        if isinstance(value, dict):
+            normalized: list[str] = []
+            for key, item in value.items():
+                if isinstance(item, bool):
+                    if item:
+                        normalized.append(str(key))
+                    continue
+                text = str(item).strip()
+                if text:
+                    normalized.append(f"{key}: {text}")
+            return normalized
+        return []
 
 
 class EvaluationError(RuntimeError):
@@ -305,7 +327,15 @@ def _run_vision_assisted_evaluation(
             )
             payload = json.loads(completion.text)
             evaluations.append(VisionPanelEvaluation.model_validate(payload))
-    except (OSError, json.JSONDecodeError, ValidationError, ImageGenerationError) as exc:
+            time.sleep(0.75)
+    except (
+        OSError,
+        json.JSONDecodeError,
+        ValidationError,
+        ImageGenerationError,
+        LLMClientError,
+        httpx.HTTPError,
+    ) as exc:
         return {
             "status": "failed",
             "reason": str(exc),

@@ -1,0 +1,120 @@
+{
+  "stage": "generate-images",
+  "created_at": "2026-04-20T06:39:16.269771",
+  "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+  "product_id": "89301002",
+  "product_name": "JBL Tour One M2 Wireless Over-Ear Adaptive Noise Cancelling Headphones (Black)",
+  "provider": "openai",
+  "model_name": "openai",
+  "output_dir": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai",
+  "prompt_versions_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/prompt_versions.json",
+  "pilot_generation": {
+    "generation_id": "c7caa526-a035-4dc0-9cda-3c7898465e61",
+    "product_id": "89301002",
+    "provider": "openai",
+    "model_name": "openai",
+    "stage": "pilot",
+    "prompt_version_id": "89301002-openai-pilot",
+    "prompt_source_mode": "baseline_description_only",
+    "output_paths": [
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/pilot/image_01.png"
+    ],
+    "images": [
+      {
+        "filename": "image_01.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/pilot/image_01.png",
+        "sha256": "5c701bec77e404a74f740e08a0a26fd49e28ac829d7fd09b2f31d445e4b8d7fd",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1365281,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      }
+    ],
+    "status": "completed",
+    "metadata": {
+      "image_count": 1,
+      "generated_at": "2026-04-20T06:39:16.257937"
+    },
+    "created_at": "2026-04-20T06:39:16.258034"
+  },
+  "final_generation": {
+    "generation_id": "1ff3afae-62e8-40be-a32a-cc8a058cdf75",
+    "product_id": "89301002",
+    "provider": "openai",
+    "model_name": "openai",
+    "stage": "final",
+    "prompt_version_id": "89301002-openai-final",
+    "prompt_source_mode": "review_informed_rag",
+    "output_paths": [
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_01.png",
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_02.png",
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_03.png",
+      "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_04.png"
+    ],
+    "images": [
+      {
+        "filename": "image_01.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_01.png",
+        "sha256": "c85ccfb6b5dc1f6e0cfa4872331bb6f6b6e411ec3353e78f4bad50b2fb4008a0",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1453359,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      },
+      {
+        "filename": "image_02.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_02.png",
+        "sha256": "3716f0960e8daa79644fd1bee1d6e78a216119aa40fed488dfd6991a456e2b09",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1415677,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      },
+      {
+        "filename": "image_03.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_03.png",
+        "sha256": "c7f85b00837cb2140e495d70508eb36086ab18f810549f88bdafc8f87da06127",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1454106,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      },
+      {
+        "filename": "image_04.png",
+        "local_path": "/Users/macbook/Desktop/ai-lab-final/outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/final/image_04.png",
+        "sha256": "80321d6aa464ef8982e0cb2eb1cebf774bcf6d151aa5134e77684882ed09c516",
+        "width": 1024,
+        "height": 1024,
+        "byte_size": 1489644,
+        "content_type": "image/png",
+        "metadata": {
+          "revised_prompt": ""
+        }
+      }
+    ],
+    "status": "completed",
+    "metadata": {
+      "image_count": 4,
+      "generated_at": "2026-04-20T06:39:16.269725"
+    },
+    "created_at": "2026-04-20T06:39:16.269743"
+  },
+  "status": "completed",
+  "reused_existing": false,
+  "notes": [
+    "Pilot prompt is sourced from baseline_description_only.",
+    "Final prompt is sourced from review_informed_rag and carries refined constraints."
+  ]
+}
