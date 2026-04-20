@@ -21,7 +21,7 @@ from app.services import (
 )
 from app.utils.artifacts import DOCS_DIR
 from app.utils.logging import configure_logging
-from app.workflow.orchestrator import plan_workflow
+from app.workflow.orchestrator import run_workflow as run_agentic_workflow
 
 app = typer.Typer(help="CLI for the CMU product image generation project.")
 
@@ -437,10 +437,71 @@ def evaluate_images(
 
 
 @app.command("run-workflow")
-def run_workflow() -> None:
-    """Run the staged agentic workflow end-to-end."""
-    traces = [trace.model_dump(mode="json") for trace in plan_workflow()]
-    typer.echo(json.dumps({"workflow": traces}, indent=2))
+def run_workflow(
+    product: str | None = typer.Option(
+        None,
+        "--product",
+        help="Run the full agentic workflow for one product slug.",
+    ),
+    all_products: bool = typer.Option(
+        False,
+        "--all",
+        help="Run the full agentic workflow for every artifact-backed product.",
+    ),
+    refresh: bool = typer.Option(
+        False,
+        help="Recompute stages instead of reusing saved downstream artifacts.",
+    ),
+    reuse_existing: bool = typer.Option(
+        True,
+        "--reuse-existing/--no-reuse-existing",
+        help="Reuse existing downstream artifacts whenever possible.",
+    ),
+    vision_assisted: bool = typer.Option(
+        False,
+        "--vision-assisted",
+        help="Enable optional vision-assisted evaluation during the evaluation stage.",
+    ),
+) -> None:
+    """Run the Q4 multi-agent workflow and save an inspectable trace."""
+    configure_logging()
+    if bool(product) == bool(all_products):
+        raise typer.BadParameter("Choose exactly one of --product or --all.")
+
+    result = run_agentic_workflow(
+        product_slug=product,
+        run_all=all_products,
+        refresh=refresh,
+        reuse_existing=reuse_existing,
+        vision_assisted=vision_assisted,
+    )
+    typer.echo("Workflow summary:")
+    typer.echo(
+        json.dumps(
+            {
+                "run_id": result.summary.run_id,
+                "scope": result.summary.scope,
+                "status": result.summary.status,
+                "products": result.summary.products,
+                "stages": [
+                    {
+                        "stage": stage.stage_key,
+                        "agent": stage.agent_name,
+                        "status": stage.status,
+                        "completed_count": stage.completed_count,
+                        "total_count": stage.total_count,
+                    }
+                    for stage in result.summary.stages
+                ],
+            },
+            indent=2,
+        )
+    )
+    typer.echo("")
+    typer.echo("Artifacts saved to:")
+    typer.echo(f"- {result.trace_path}")
+    typer.echo(f"- {result.stage_status_path}")
+    typer.echo(f"- {result.artifact_links_path}")
 
 
 @app.command("verify-artifacts")

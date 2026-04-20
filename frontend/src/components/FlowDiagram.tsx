@@ -7,7 +7,7 @@ type FlowDiagramProps = {
     title: string;
     role: string;
     detail: string;
-    status: "Ready" | "Cached" | "Pending" | "Running";
+    status: "Ready" | "Cached" | "Pending" | "Running" | "Failed";
   }>;
 };
 
@@ -16,6 +16,7 @@ const statusTone: Record<FlowDiagramProps["nodes"][number]["status"], "lime" | "
   Cached: "sky",
   Pending: "neutral",
   Running: "coral",
+  Failed: "coral",
 };
 
 export function FlowDiagram({ nodes }: FlowDiagramProps) {

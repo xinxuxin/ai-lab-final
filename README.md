@@ -212,6 +212,36 @@ This repository is structured to support all four required questions:
   - evaluation artifact generation
 - Added frontend fetch-layer tests with Vitest.
 
+### Stage 9: Q4 Agentic Workflow
+
+- Added typed workflow-agent contracts for:
+  - `DataCurationAgent`
+  - `RetrievalAgent`
+  - `VisualUnderstandingAgent`
+  - `PromptComposerAgent`
+  - `ImageGenerationAgent`
+  - `EvaluationAgent`
+- Added an end-to-end workflow orchestrator under `backend/src/app/workflow/orchestrator.py`.
+- The orchestrator can now:
+  - run one product or all products
+  - reuse saved artifacts by default
+  - recompute only missing or explicitly refreshed downstream stages
+- Added durable workflow trace artifacts under `outputs/workflow_runs/<run_id>/`:
+  - `trace.json`
+  - `stage_status.json`
+  - `artifact_links.json`
+- Added workflow documentation in `docs/agentic_workflow.md` including a Mermaid diagram and agent-role explanation.
+- Updated the frontend workflow page to visualize:
+  - an animated stage diagram
+  - clickable stage inspection
+  - artifact handoffs
+  - the latest saved workflow run
+  - success and failure states
+- Added tests for:
+  - workflow contract validation
+  - orchestrator smoke execution with mocked agents
+  - latest-trace loading
+
 ## Repository Structure
 
 ```text
@@ -356,6 +386,17 @@ PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --product <produc
 PYTHONPATH=src ../.venv/bin/python -m cli.main evaluate-images --all --vision-assisted
 ```
 
+Q4 workflow orchestration now supports:
+
+```bash
+cd /Users/macbook/Desktop/ai-lab-final
+source .venv/bin/activate
+cd backend
+PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow --product <product-slug>
+PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow --all
+PYTHONPATH=src ../.venv/bin/python -m cli.main run-workflow --all --vision-assisted
+```
+
 ## Frontend Overview
 
 Implemented routes:
@@ -468,6 +509,7 @@ npm run build
 - Human-scoring templates and dual-provider comparison panels are available for all three products.
 - Vision-assisted evaluation is optional and currently sensitive to OpenAI rate limiting. In the current artifact snapshot it completed for the desk lamp product, while the other two products still fall back to `human_scoring_ready` summaries when rate limits interrupt the run.
 - The frontend now reads real artifacts, but pages will still surface explicit missing-artifact or degraded-state messages whenever a downstream stage has not been run or vision-assisted scoring did not complete.
+- The Q4 workflow trace is now implemented and saved to `outputs/workflow_runs/`, but if upstream one-time scrape artifacts are missing the orchestrator will fail clearly instead of fabricating or re-discovering hidden inputs.
 
 ## Next Recommended Stage
 

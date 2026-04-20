@@ -4,7 +4,7 @@ import { ArtifactBadge } from "./ArtifactBadge";
 type StageCardProps = {
   title: string;
   description: string;
-  status: "Ready" | "Pending" | "Cached" | "Running";
+  status: "Ready" | "Pending" | "Cached" | "Running" | "Failed";
   chips: string[];
 };
 
@@ -13,6 +13,7 @@ const statusClasses: Record<StageCardProps["status"], string> = {
   Pending: "bg-slate-200 text-slate-700",
   Cached: "bg-glow/70 text-ink",
   Running: "bg-coral/70 text-ink",
+  Failed: "bg-coral/80 text-ink",
 };
 
 export function StageCard({ title, description, status, chips }: StageCardProps) {

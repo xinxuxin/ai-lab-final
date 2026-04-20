@@ -4,7 +4,7 @@ type TimelineProps = {
   items: Array<{
     stage: string;
     detail: string;
-    status: "done" | "active" | "pending";
+    status: "done" | "active" | "pending" | "failed";
   }>;
 };
 
@@ -13,6 +13,7 @@ export function Timeline({ items }: TimelineProps) {
     done: "bg-lime",
     active: "bg-coral",
     pending: "bg-slate-300",
+    failed: "bg-coral",
   };
 
   return (

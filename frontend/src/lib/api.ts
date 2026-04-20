@@ -172,20 +172,44 @@ export type EvaluationResponse = {
 
 export type WorkflowResponse = {
   status: ApiStatus;
+  latestRun: null | {
+    runId: string;
+    createdAt: string;
+    scope: "single" | "all";
+    status: "completed" | "partial_success" | "failed";
+    products: string[];
+    tracePath: string;
+    stageStatusPath: string;
+    artifactLinksPath: string;
+  };
   stages: Array<{
     stage: string;
-    status: "Ready" | "Cached" | "Pending" | "Running";
-    timelineStatus: "done" | "active" | "pending";
+    label?: string;
+    agentName?: string;
+    status: "Ready" | "Cached" | "Pending" | "Running" | "Failed";
+    timelineStatus: "done" | "active" | "pending" | "failed";
     artifact: string;
     completedCount: number;
     totalCount: number;
     detail: string;
+    products?: string[];
   }>;
   traces: Array<{
+    traceId: string;
     stage: string;
-    artifact: string;
-    owner: string;
-    note: string;
+    status: string;
+    startedAt: string | null;
+    finishedAt: string | null;
+    inputs: Record<string, string>;
+    outputs: Record<string, string>;
+    notes: string[];
+  }>;
+  handoffs: Array<{
+    fromStage: string;
+    toStage: string;
+    label: string;
+    productSlug: string | null;
+    artifactPaths: string[];
   }>;
 };
 

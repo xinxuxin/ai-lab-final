@@ -1,0 +1,86 @@
+[
+  {
+    "stage_key": "data_curation",
+    "label": "Q1 Data Curation",
+    "agent_name": "DataCurationAgent",
+    "status": "completed",
+    "completed_count": 3,
+    "total_count": 3,
+    "products": [
+      "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "levoit-core-300-air-purifier-white-81910071"
+    ],
+    "detail": "Completed for all 3 products."
+  },
+  {
+    "stage_key": "retrieval",
+    "label": "Q2 Retrieval",
+    "agent_name": "RetrievalAgent",
+    "status": "completed",
+    "completed_count": 3,
+    "total_count": 3,
+    "products": [
+      "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "levoit-core-300-air-purifier-white-81910071"
+    ],
+    "detail": "Completed for all 3 products."
+  },
+  {
+    "stage_key": "visual_understanding",
+    "label": "Q2 Visual Understanding",
+    "agent_name": "VisualUnderstandingAgent",
+    "status": "completed",
+    "completed_count": 3,
+    "total_count": 3,
+    "products": [
+      "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "levoit-core-300-air-purifier-white-81910071"
+    ],
+    "detail": "Completed for all 3 products."
+  },
+  {
+    "stage_key": "prompt_composition",
+    "label": "Q3 Prompt Composition",
+    "agent_name": "PromptComposerAgent",
+    "status": "completed",
+    "completed_count": 3,
+    "total_count": 3,
+    "products": [
+      "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "levoit-core-300-air-purifier-white-81910071"
+    ],
+    "detail": "Completed for all 3 products."
+  },
+  {
+    "stage_key": "image_generation",
+    "label": "Q3 Image Generation",
+    "agent_name": "ImageGenerationAgent",
+    "status": "completed",
+    "completed_count": 3,
+    "total_count": 3,
+    "products": [
+      "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "levoit-core-300-air-purifier-white-81910071"
+    ],
+    "detail": "Completed for all 3 products."
+  },
+  {
+    "stage_key": "evaluation",
+    "label": "Q3 Comparison and Evaluation",
+    "agent_name": "EvaluationAgent",
+    "status": "completed",
+    "completed_count": 3,
+    "total_count": 3,
+    "products": [
+      "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997",
+      "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002",
+      "levoit-core-300-air-purifier-white-81910071"
+    ],
+    "detail": "Completed for all 3 products."
+  }
+]

@@ -445,3 +445,160 @@ class WorkflowTrace(BaseModel):
     inputs: dict[str, str] = Field(default_factory=dict)
     outputs: dict[str, str] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
+
+
+class AgentExecutionInput(BaseModel):
+    """Shared execution input used by workflow agents."""
+
+    product_slug: str
+    reuse_existing: bool = True
+    refresh: bool = False
+
+
+class DataCurationAgentInput(AgentExecutionInput):
+    """Typed input contract for the data-curation agent."""
+
+    selected_products_path: str
+    raw_root: str
+    processed_root: str
+
+
+class DataCurationAgentOutput(BaseModel):
+    """Typed output contract for the data-curation agent."""
+
+    product_slug: str
+    selected_category: str
+    raw_product_dir: str
+    processed_product_dir: str
+    q1_validation_passed: bool
+    review_count: int
+    image_count: int
+    artifact_links: dict[str, str] = Field(default_factory=dict)
+    reused_existing: bool = True
+
+
+class RetrievalAgentInput(AgentExecutionInput):
+    """Typed input contract for the retrieval agent."""
+
+    processed_product_dir: str
+    output_dir: str
+
+
+class RetrievalAgentOutput(BaseModel):
+    """Typed output contract for the retrieval agent."""
+
+    product_slug: str
+    retrieval_evidence_path: str
+    llm_trace_path: str
+    aspect_count: int
+    reused_existing: bool = True
+    artifact_links: dict[str, str] = Field(default_factory=dict)
+
+
+class VisualUnderstandingAgentInput(AgentExecutionInput):
+    """Typed input contract for the visual-understanding agent."""
+
+    processed_product_dir: str
+    output_dir: str
+
+
+class VisualUnderstandingAgentOutput(BaseModel):
+    """Typed output contract for the visual-understanding agent."""
+
+    product_slug: str
+    baseline_profile_path: str
+    review_profile_path: str
+    prompt_ready_description: str
+    negative_constraints: list[str] = Field(default_factory=list)
+    reused_existing: bool = True
+    artifact_links: dict[str, str] = Field(default_factory=dict)
+
+
+class PromptComposerAgentInput(AgentExecutionInput):
+    """Typed input contract for the prompt-composer agent."""
+
+    visual_profile_dir: str
+    generation_root: str
+    providers: list[str] = Field(default_factory=list)
+
+
+class PromptComposerAgentOutput(BaseModel):
+    """Typed output contract for the prompt-composer agent."""
+
+    product_slug: str
+    prompt_sources: dict[str, str] = Field(default_factory=dict)
+    prompt_previews: dict[str, dict[str, str]] = Field(default_factory=dict)
+    reused_existing: bool = True
+    artifact_links: dict[str, str] = Field(default_factory=dict)
+
+
+class ImageGenerationAgentInput(AgentExecutionInput):
+    """Typed input contract for the image-generation agent."""
+
+    providers: list[str] = Field(default_factory=list)
+    count: int = 4
+
+
+class ImageGenerationAgentOutput(BaseModel):
+    """Typed output contract for the image-generation agent."""
+
+    product_slug: str
+    generated_models: list[str] = Field(default_factory=list)
+    generation_manifest_paths: dict[str, str] = Field(default_factory=dict)
+    reused_existing: bool = True
+    artifact_links: dict[str, str] = Field(default_factory=dict)
+
+
+class EvaluationAgentInput(AgentExecutionInput):
+    """Typed input contract for the evaluation agent."""
+
+    vision_assisted: bool = False
+
+
+class EvaluationAgentOutput(BaseModel):
+    """Typed output contract for the evaluation agent."""
+
+    product_slug: str
+    summary_path: str
+    comparison_panels_manifest_path: str
+    human_score_sheet_path: str
+    vision_assisted_eval_path: str
+    evaluation_status: str
+    reused_existing: bool = True
+    artifact_links: dict[str, str] = Field(default_factory=dict)
+
+
+class WorkflowStageStatus(BaseModel):
+    """Aggregate status for one workflow stage in a run."""
+
+    stage_key: str
+    label: str
+    agent_name: str
+    status: Literal["pending", "running", "completed", "failed"]
+    completed_count: int
+    total_count: int
+    products: list[str] = Field(default_factory=list)
+    detail: str
+
+
+class WorkflowArtifactHandoff(BaseModel):
+    """Artifact handoff between two workflow stages."""
+
+    from_stage: str
+    to_stage: str
+    label: str
+    artifact_paths: list[str] = Field(default_factory=list)
+    product_slug: str | None = None
+
+
+class WorkflowRunSummary(BaseModel):
+    """Top-level summary for one workflow run."""
+
+    run_id: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    scope: Literal["single", "all"]
+    products: list[str] = Field(default_factory=list)
+    status: Literal["completed", "partial_success", "failed"]
+    stages: list[WorkflowStageStatus] = Field(default_factory=list)
+    traces: list[WorkflowTrace] = Field(default_factory=list)
+    artifact_handoffs: list[WorkflowArtifactHandoff] = Field(default_factory=list)

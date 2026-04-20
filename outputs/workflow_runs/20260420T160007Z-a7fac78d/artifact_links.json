@@ -1,0 +1,161 @@
+[
+  {
+    "from_stage": "data_curation",
+    "to_stage": "retrieval",
+    "label": "Cleaned corpus and validated Q1 artifacts",
+    "artifact_paths": [
+      "data/processed/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/product.json",
+      "data/processed/manifest.json",
+      "data/raw/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/product_meta.json",
+      "data/raw/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/reviews.jsonl"
+    ],
+    "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997"
+  },
+  {
+    "from_stage": "retrieval",
+    "to_stage": "visual_understanding",
+    "label": "Aspect-specific review evidence",
+    "artifact_paths": [
+      "outputs/visual_profiles/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/llm_trace.json",
+      "outputs/visual_profiles/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/retrieval_evidence.json",
+      "outputs/visual_profiles/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/review_informed_rag.json"
+    ],
+    "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997"
+  },
+  {
+    "from_stage": "visual_understanding",
+    "to_stage": "prompt_composition",
+    "label": "Structured visual profile",
+    "artifact_paths": [
+      "outputs/visual_profiles/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/baseline_description_only.json",
+      "outputs/visual_profiles/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/review_informed_rag.json"
+    ],
+    "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997"
+  },
+  {
+    "from_stage": "prompt_composition",
+    "to_stage": "image_generation",
+    "label": "Pilot and final prompt plans",
+    "artifact_paths": [
+      "outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/prompt_versions.json",
+      "outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/stability/prompt_versions.json"
+    ],
+    "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997"
+  },
+  {
+    "from_stage": "image_generation",
+    "to_stage": "evaluation",
+    "label": "Generated product image manifests",
+    "artifact_paths": [
+      "outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/openai/generation_manifest.json",
+      "outputs/generated_images/desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997/stability/generation_manifest.json"
+    ],
+    "product_slug": "desk-lamp-with-usb-ports-includes-led-light-bulb-threshold-8482-80705997"
+  },
+  {
+    "from_stage": "data_curation",
+    "to_stage": "retrieval",
+    "label": "Cleaned corpus and validated Q1 artifacts",
+    "artifact_paths": [
+      "data/processed/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/product.json",
+      "data/processed/manifest.json",
+      "data/raw/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/product_meta.json",
+      "data/raw/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/reviews.jsonl"
+    ],
+    "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002"
+  },
+  {
+    "from_stage": "retrieval",
+    "to_stage": "visual_understanding",
+    "label": "Aspect-specific review evidence",
+    "artifact_paths": [
+      "outputs/visual_profiles/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/llm_trace.json",
+      "outputs/visual_profiles/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/retrieval_evidence.json",
+      "outputs/visual_profiles/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/review_informed_rag.json"
+    ],
+    "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002"
+  },
+  {
+    "from_stage": "visual_understanding",
+    "to_stage": "prompt_composition",
+    "label": "Structured visual profile",
+    "artifact_paths": [
+      "outputs/visual_profiles/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/baseline_description_only.json",
+      "outputs/visual_profiles/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/review_informed_rag.json"
+    ],
+    "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002"
+  },
+  {
+    "from_stage": "prompt_composition",
+    "to_stage": "image_generation",
+    "label": "Pilot and final prompt plans",
+    "artifact_paths": [
+      "outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/prompt_versions.json",
+      "outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/stability/prompt_versions.json"
+    ],
+    "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002"
+  },
+  {
+    "from_stage": "image_generation",
+    "to_stage": "evaluation",
+    "label": "Generated product image manifests",
+    "artifact_paths": [
+      "outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/openai/generation_manifest.json",
+      "outputs/generated_images/jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002/stability/generation_manifest.json"
+    ],
+    "product_slug": "jbl-tour-one-m2-wireless-over-ear-adaptive-noise-cancelling-headphones-black-89301002"
+  },
+  {
+    "from_stage": "data_curation",
+    "to_stage": "retrieval",
+    "label": "Cleaned corpus and validated Q1 artifacts",
+    "artifact_paths": [
+      "data/processed/levoit-core-300-air-purifier-white-81910071/product.json",
+      "data/processed/manifest.json",
+      "data/raw/levoit-core-300-air-purifier-white-81910071/product_meta.json",
+      "data/raw/levoit-core-300-air-purifier-white-81910071/reviews.jsonl"
+    ],
+    "product_slug": "levoit-core-300-air-purifier-white-81910071"
+  },
+  {
+    "from_stage": "retrieval",
+    "to_stage": "visual_understanding",
+    "label": "Aspect-specific review evidence",
+    "artifact_paths": [
+      "outputs/visual_profiles/levoit-core-300-air-purifier-white-81910071/llm_trace.json",
+      "outputs/visual_profiles/levoit-core-300-air-purifier-white-81910071/retrieval_evidence.json",
+      "outputs/visual_profiles/levoit-core-300-air-purifier-white-81910071/review_informed_rag.json"
+    ],
+    "product_slug": "levoit-core-300-air-purifier-white-81910071"
+  },
+  {
+    "from_stage": "visual_understanding",
+    "to_stage": "prompt_composition",
+    "label": "Structured visual profile",
+    "artifact_paths": [
+      "outputs/visual_profiles/levoit-core-300-air-purifier-white-81910071/baseline_description_only.json",
+      "outputs/visual_profiles/levoit-core-300-air-purifier-white-81910071/review_informed_rag.json"
+    ],
+    "product_slug": "levoit-core-300-air-purifier-white-81910071"
+  },
+  {
+    "from_stage": "prompt_composition",
+    "to_stage": "image_generation",
+    "label": "Pilot and final prompt plans",
+    "artifact_paths": [
+      "outputs/generated_images/levoit-core-300-air-purifier-white-81910071/openai/prompt_versions.json",
+      "outputs/generated_images/levoit-core-300-air-purifier-white-81910071/stability/prompt_versions.json"
+    ],
+    "product_slug": "levoit-core-300-air-purifier-white-81910071"
+  },
+  {
+    "from_stage": "image_generation",
+    "to_stage": "evaluation",
+    "label": "Generated product image manifests",
+    "artifact_paths": [
+      "outputs/generated_images/levoit-core-300-air-purifier-white-81910071/openai/generation_manifest.json",
+      "outputs/generated_images/levoit-core-300-air-purifier-white-81910071/stability/generation_manifest.json"
+    ],
+    "product_slug": "levoit-core-300-air-purifier-white-81910071"
+  }
+]

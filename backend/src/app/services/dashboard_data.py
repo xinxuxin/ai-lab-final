@@ -18,6 +18,7 @@ from app.utils.artifacts import (
     artifact_api_url,
     artifact_updated_at,
 )
+from app.workflow.orchestrator import load_latest_workflow_run
 
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
@@ -317,6 +318,75 @@ def evaluation_payload(slug: str) -> dict[str, Any]:
 
 def workflow_latest_payload() -> dict[str, Any]:
     """Return current stage progress derived from on-disk artifacts."""
+    latest_run = load_latest_workflow_run()
+    if latest_run is not None:
+        return {
+            "status": "ok",
+            "latestRun": {
+                "runId": latest_run.summary.run_id,
+                "createdAt": latest_run.summary.created_at.isoformat(),
+                "scope": latest_run.summary.scope,
+                "status": latest_run.summary.status,
+                "products": latest_run.summary.products,
+                "tracePath": artifact_api_url(latest_run.trace_path),
+                "stageStatusPath": artifact_api_url(latest_run.stage_status_path),
+                "artifactLinksPath": artifact_api_url(latest_run.artifact_links_path),
+            },
+            "stages": [
+                {
+                    "stage": stage.stage_key,
+                    "label": stage.label,
+                    "agentName": stage.agent_name,
+                    "status": {
+                        "completed": "Ready",
+                        "running": "Running",
+                        "failed": "Failed",
+                        "pending": "Pending",
+                    }[stage.status],
+                    "timelineStatus": {
+                        "completed": "done",
+                        "running": "active",
+                        "failed": "failed",
+                        "pending": "pending",
+                    }[stage.status],
+                    "artifact": ", ".join(
+                        handoff.artifact_paths[0]
+                        for handoff in latest_run.summary.artifact_handoffs
+                        if handoff.from_stage == stage.stage_key and handoff.artifact_paths
+                    )
+                    or stage.label,
+                    "completedCount": stage.completed_count,
+                    "totalCount": stage.total_count,
+                    "detail": stage.detail,
+                    "products": stage.products,
+                }
+                for stage in latest_run.summary.stages
+            ],
+            "traces": [
+                {
+                    "traceId": trace.trace_id,
+                    "stage": trace.stage,
+                    "status": trace.status,
+                    "startedAt": trace.started_at.isoformat(),
+                    "finishedAt": trace.finished_at.isoformat() if trace.finished_at else None,
+                    "inputs": trace.inputs,
+                    "outputs": trace.outputs,
+                    "notes": trace.notes,
+                }
+                for trace in latest_run.summary.traces
+            ],
+            "handoffs": [
+                {
+                    "fromStage": handoff.from_stage,
+                    "toStage": handoff.to_stage,
+                    "label": handoff.label,
+                    "productSlug": handoff.product_slug,
+                    "artifactPaths": handoff.artifact_paths,
+                }
+                for handoff in latest_run.summary.artifact_handoffs
+            ],
+        }
+
     products = list_products_payload().get("items", [])
     total_products = len(products)
     profile_complete = sum(
@@ -379,16 +449,22 @@ def workflow_latest_payload() -> dict[str, Any]:
 
     return {
         "status": "ok",
+        "latestRun": None,
         "stages": stages,
         "traces": [
             {
+                "traceId": stage["stage"],
                 "stage": stage["stage"],
-                "artifact": stage["artifact"],
-                "owner": "Artifact-backed workflow",
-                "note": stage["detail"],
+                "status": stage["timelineStatus"],
+                "startedAt": None,
+                "finishedAt": None,
+                "inputs": {},
+                "outputs": {"artifact": stage["artifact"]},
+                "notes": [stage["detail"]],
             }
             for stage in stages
         ],
+        "handoffs": [],
     }
 
 
