@@ -54,7 +54,7 @@ class OpenAITextAnalysisClient:
         model: str | None = None,
     ) -> JSONCompletionResult:
         """Request a JSON-only chat completion."""
-        payload = {
+        payload: dict[str, object] = {
             "model": model or self._settings.llm_analysis_model,
             "messages": [
                 {"role": "system", "content": system_prompt},
@@ -96,7 +96,7 @@ class OpenAITextAnalysisClient:
                     "image_url": {"url": self._build_image_data_url(image_path)},
                 }
             )
-        payload = {
+        payload: dict[str, object] = {
             "model": model or self._settings.llm_analysis_model,
             "messages": [
                 {"role": "system", "content": system_prompt},
@@ -128,7 +128,7 @@ class OpenAITextAnalysisClient:
         model: str | None = None,
     ) -> list[list[float]]:
         """Create embedding vectors for the supplied texts."""
-        payload = {
+        payload: dict[str, object] = {
             "model": model or self._settings.embedding_model,
             "input": texts,
         }
@@ -184,10 +184,7 @@ class OpenAITextAnalysisClient:
                 image_path=image_path,
             )
 
-        return (
-            f"data:{media_type};base64,"
-            f"{base64.b64encode(image_bytes).decode('utf-8')}"
-        )
+        return f"data:{media_type};base64,{base64.b64encode(image_bytes).decode('utf-8')}"
 
     def _convert_image_bytes_to_png(
         self,

@@ -28,7 +28,7 @@ from app.workflow.agents import (
     RetrievalAgent,
     VisualUnderstandingAgent,
 )
-from app.workflow.orchestrator import WORKFLOW_RUNS_DIR, load_latest_workflow_run
+from app.workflow.orchestrator import load_latest_workflow_run
 
 VerificationStage = Literal["q1", "q2", "q3", "q4", "full"]
 
@@ -118,6 +118,15 @@ def build_submission_package(*, output_dir: Path | None = None) -> SubmissionPac
     if resolved_output_dir.exists():
         shutil.rmtree(resolved_output_dir)
     resolved_output_dir.mkdir(parents=True, exist_ok=True)
+    ignore_generated = shutil.ignore_patterns(
+        ".DS_Store",
+        ".mypy_cache",
+        ".pytest_cache",
+        ".ruff_cache",
+        "__pycache__",
+        "dist",
+        "node_modules",
+    )
 
     copy_targets = [
         REPO_ROOT / "README.md",
@@ -128,6 +137,7 @@ def build_submission_package(*, output_dir: Path | None = None) -> SubmissionPac
         REPO_ROOT / "outputs",
         REPO_ROOT / "prompts",
         REPO_ROOT / "docs",
+        REPO_ROOT / "reports",
         REPO_ROOT / "scripts",
         REPO_ROOT / ".env.example",
         REPO_ROOT / "Makefile",
@@ -136,7 +146,7 @@ def build_submission_package(*, output_dir: Path | None = None) -> SubmissionPac
     for source in copy_targets:
         destination = resolved_output_dir / source.name
         if source.is_dir():
-            shutil.copytree(source, destination)
+            shutil.copytree(source, destination, ignore=ignore_generated)
         elif source.exists():
             shutil.copy2(source, destination)
         copied_paths.append(destination)
@@ -200,7 +210,8 @@ def _verify_q2(*, processed_dir: Path) -> dict[str, Any]:
             try:
                 VisualProfile.model_validate_json(baseline_path.read_text(encoding="utf-8"))
             except ValidationError as exc:
-                issues.append(f"Q2 baseline profile is invalid for {slug}: {exc.errors()[0]['msg']}")
+                message = exc.errors()[0]["msg"]
+                issues.append(f"Q2 baseline profile is invalid for {slug}: {message}")
         if not review_path.exists():
             issues.append(f"Q2 review-informed profile is missing for {slug}.")
         else:
@@ -231,7 +242,9 @@ def _verify_q3(*, processed_dir: Path) -> dict[str, Any]:
         slug = entry.product_slug
         products_checked.append(slug)
         for provider in ("openai", "stability"):
-            manifest_path = OUTPUTS_DIR / "generated_images" / slug / provider / "generation_manifest.json"
+            manifest_path = (
+                OUTPUTS_DIR / "generated_images" / slug / provider / "generation_manifest.json"
+            )
             if not manifest_path.exists():
                 issues.append(f"Q3 generation manifest is missing for {slug}/{provider}.")
                 continue
@@ -240,15 +253,15 @@ def _verify_q3(*, processed_dir: Path) -> dict[str, Any]:
                     manifest_path.read_text(encoding="utf-8")
                 )
             except ValidationError as exc:
-                issues.append(
-                    f"Q3 generation manifest is invalid for {slug}/{provider}: {exc.errors()[0]['msg']}"
-                )
+                message = exc.errors()[0]["msg"]
+                issues.append(f"Q3 generation manifest is invalid for {slug}/{provider}: {message}")
                 continue
             providers_used.add(provider)
             final_count = len(generation_manifest.final_generation.images)
             if final_count < 3 or final_count > 5:
                 issues.append(
-                    f"Q3 final image count for {slug}/{provider} must be between 3 and 5; got {final_count}."
+                    f"Q3 final image count for {slug}/{provider} must be "
+                    f"between 3 and 5; got {final_count}."
                 )
             for image in generation_manifest.final_generation.images:
                 _verify_image(Path(image.local_path), issues, f"{slug}/{provider}/{image.filename}")
@@ -256,7 +269,9 @@ def _verify_q3(*, processed_dir: Path) -> dict[str, Any]:
         if not evaluation_summary.exists():
             issues.append(f"Q3 evaluation summary is missing for {slug}.")
     if len(providers_used) < 2:
-        issues.append("Q3 requires at least two image-generation providers across the selected products.")
+        issues.append(
+            "Q3 requires at least two image-generation providers across the selected products."
+        )
     return {
         "passed": not issues,
         "products_checked": products_checked,

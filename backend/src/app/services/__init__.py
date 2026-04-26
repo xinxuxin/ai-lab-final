@@ -19,17 +19,17 @@ from app.services.image_generation import (
     generate_images_for_product,
     list_generation_ready_products,
 )
-from app.services.visual_profiles import (
-    ExtractVisualProfileResult,
-    VisualProfileError,
-    chunk_reviews,
-    extract_visual_profile,
-)
 from app.services.verification import (
     SubmissionPackageResult,
     VerificationResult,
     build_submission_package,
     verify_repository,
+)
+from app.services.visual_profiles import (
+    ExtractVisualProfileResult,
+    VisualProfileError,
+    chunk_reviews,
+    extract_visual_profile,
 )
 
 __all__ = [

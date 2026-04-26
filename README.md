@@ -18,6 +18,7 @@ This repository is in its completed submission state.
 The most detailed project reference is:
 
 - [docs/master_guide.md](/Users/macbook/Desktop/ai-lab-final/docs/master_guide.md)
+- [reports/final_report.pdf](/Users/macbook/Desktop/ai-lab-final/reports/final_report.pdf)
 
 Use that document for:
 

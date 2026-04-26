@@ -22,14 +22,11 @@ from app.models.schemas import (
     VisualUnderstandingAgentInput,
     VisualUnderstandingAgentOutput,
 )
-from app.services import (
-    build_processed_corpus,
-    evaluate_images_for_product,
-    extract_visual_profile,
-    generate_images_for_product,
-    validate_q1_from_disk,
-)
-from app.utils.artifacts import DATA_DIR, OUTPUTS_DIR, PROMPTS_DIR, relative_repo_artifact_path
+from app.services.corpus import build_processed_corpus, validate_q1_from_disk
+from app.services.evaluation import evaluate_images_for_product
+from app.services.image_generation import generate_images_for_product
+from app.services.visual_profiles import extract_visual_profile
+from app.utils.artifacts import OUTPUTS_DIR, PROMPTS_DIR, relative_repo_artifact_path
 
 
 def _relative(path: Path) -> str:
@@ -50,7 +47,9 @@ class DataCurationAgent:
             )
 
         product_json_path = processed_root / payload.product_slug / "product.json"
-        reused_existing = payload.reuse_existing and not payload.refresh and product_json_path.exists()
+        reused_existing = (
+            payload.reuse_existing and not payload.refresh and product_json_path.exists()
+        )
         if not reused_existing:
             build_processed_corpus(
                 raw_dir=raw_root,
@@ -213,7 +212,9 @@ class PromptComposerAgent:
             product_slug=payload.product_slug,
             prompt_sources=prompt_sources,
             prompt_previews=prompt_previews,
-            reused_existing=all(source == "saved_prompt_versions" for source in prompt_sources.values()),
+            reused_existing=all(
+                source == "saved_prompt_versions" for source in prompt_sources.values()
+            ),
             artifact_links=artifact_links,
         )
 
@@ -243,7 +244,9 @@ class ImageGenerationAgent:
             generated_models=generated_models,
             generation_manifest_paths=manifest_paths,
             reused_existing=reused_existing,
-            artifact_links={provider: _relative(Path(path)) for provider, path in manifest_paths.items()},
+            artifact_links={
+                provider: _relative(Path(path)) for provider, path in manifest_paths.items()
+            },
         )
 
 
@@ -310,12 +313,19 @@ def _load_q3_prompt(name: str) -> tuple[Path, str]:
 
 
 def _render_prompt_preview(template: str, profile: VisualProfile) -> str:
-    top_attributes = "; ".join(
-        attribute.attribute for attribute in profile.high_confidence_visual_attributes[:4]
-    ) or "Use only grounded product details."
-    mismatch_avoidance = "; ".join(
-        mismatch.mismatch for mismatch in profile.common_mismatches_between_expectation_and_reality[:3]
-    ) or "Avoid unsupported mismatches."
+    top_attributes = (
+        "; ".join(
+            attribute.attribute for attribute in profile.high_confidence_visual_attributes[:4]
+        )
+        or "Use only grounded product details."
+    )
+    mismatch_avoidance = (
+        "; ".join(
+            mismatch.mismatch
+            for mismatch in profile.common_mismatches_between_expectation_and_reality[:3]
+        )
+        or "Avoid unsupported mismatches."
+    )
     negative_constraints = "; ".join(profile.negative_constraints) or "Avoid unsupported extras."
     return template.format(
         product_name=profile.product_name,

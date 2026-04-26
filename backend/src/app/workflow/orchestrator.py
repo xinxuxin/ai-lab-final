@@ -3,18 +3,29 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from functools import partial
 from pathlib import Path
+from typing import Literal, TypeVar
 from uuid import uuid4
+
+from pydantic import BaseModel
 
 from app.models.schemas import (
     DataCurationAgentInput,
+    DataCurationAgentOutput,
     EvaluationAgentInput,
+    EvaluationAgentOutput,
     ImageGenerationAgentInput,
+    ImageGenerationAgentOutput,
     PromptComposerAgentInput,
+    PromptComposerAgentOutput,
     RetrievalAgentInput,
+    RetrievalAgentOutput,
     VisualUnderstandingAgentInput,
+    VisualUnderstandingAgentOutput,
     WorkflowArtifactHandoff,
     WorkflowRunSummary,
     WorkflowStageStatus,
@@ -45,6 +56,9 @@ STAGE_DEFINITIONS = [
     ("image_generation", "ImageGenerationAgent", "Q3 Image Generation"),
     ("evaluation", "EvaluationAgent", "Q3 Comparison and Evaluation"),
 ]
+WorkflowRunStatus = Literal["completed", "partial_success", "failed"]
+WorkflowStageState = Literal["pending", "running", "completed", "failed"]
+StageOutput = TypeVar("StageOutput", bound=BaseModel)
 
 
 class WorkflowExecutionError(RuntimeError):
@@ -106,15 +120,12 @@ def run_workflow(
                 "product_slug": slug,
                 "selected_products_path": str(SELECTED_PRODUCTS_PATH),
             },
-            runner=lambda: data_curation_agent.run(
-                DataCurationAgentInput(
-                    product_slug=slug,
-                    selected_products_path=str(SELECTED_PRODUCTS_PATH),
-                    raw_root=str(RAW_DIR),
-                    processed_root=str(PROCESSED_DIR),
-                    refresh=refresh,
-                    reuse_existing=reuse_existing,
-                )
+            runner=partial(
+                _run_data_curation_agent,
+                data_curation_agent,
+                slug,
+                refresh,
+                reuse_existing,
             ),
         )
         _handoff(
@@ -134,14 +145,13 @@ def run_workflow(
                 "product_slug": slug,
                 "processed_product_dir": curation_output.processed_product_dir,
             },
-            runner=lambda: retrieval_agent.run(
-                RetrievalAgentInput(
-                    product_slug=slug,
-                    processed_product_dir=curation_output.processed_product_dir,
-                    output_dir=str(VISUAL_PROFILES_DIR / slug),
-                    refresh=refresh,
-                    reuse_existing=reuse_existing,
-                )
+            runner=partial(
+                _run_retrieval_agent,
+                retrieval_agent,
+                slug,
+                curation_output.processed_product_dir,
+                refresh,
+                reuse_existing,
             ),
         )
         _handoff(
@@ -161,14 +171,13 @@ def run_workflow(
                 "product_slug": slug,
                 "processed_product_dir": curation_output.processed_product_dir,
             },
-            runner=lambda: visual_understanding_agent.run(
-                VisualUnderstandingAgentInput(
-                    product_slug=slug,
-                    processed_product_dir=curation_output.processed_product_dir,
-                    output_dir=str(VISUAL_PROFILES_DIR / slug),
-                    refresh=refresh,
-                    reuse_existing=reuse_existing,
-                )
+            runner=partial(
+                _run_visual_understanding_agent,
+                visual_understanding_agent,
+                slug,
+                curation_output.processed_product_dir,
+                refresh,
+                reuse_existing,
             ),
         )
         _handoff(
@@ -188,15 +197,12 @@ def run_workflow(
                 "product_slug": slug,
                 "visual_profile_dir": str(VISUAL_PROFILES_DIR / slug),
             },
-            runner=lambda: prompt_composer_agent.run(
-                PromptComposerAgentInput(
-                    product_slug=slug,
-                    visual_profile_dir=str(VISUAL_PROFILES_DIR / slug),
-                    generation_root=str(GENERATED_IMAGES_DIR),
-                    providers=["openai", "stability"],
-                    refresh=refresh,
-                    reuse_existing=reuse_existing,
-                )
+            runner=partial(
+                _run_prompt_composer_agent,
+                prompt_composer_agent,
+                slug,
+                refresh,
+                reuse_existing,
             ),
         )
         _handoff(
@@ -216,14 +222,13 @@ def run_workflow(
                 "product_slug": slug,
                 "providers": "openai,stability",
             },
-            runner=lambda: image_generation_agent.run(
-                ImageGenerationAgentInput(
-                    product_slug=slug,
-                    providers=["openai", "stability"],
-                    count=count,
-                    refresh=refresh,
-                    reuse_existing=reuse_existing,
-                )
+            runner=partial(
+                _run_image_generation_agent,
+                image_generation_agent,
+                slug,
+                count,
+                refresh,
+                reuse_existing,
             ),
         )
         _handoff(
@@ -243,13 +248,13 @@ def run_workflow(
                 "product_slug": slug,
                 "vision_assisted": str(vision_assisted),
             },
-            runner=lambda: evaluation_agent.run(
-                EvaluationAgentInput(
-                    product_slug=slug,
-                    vision_assisted=vision_assisted,
-                    refresh=refresh,
-                    reuse_existing=reuse_existing,
-                )
+            runner=partial(
+                _run_evaluation_agent,
+                evaluation_agent,
+                slug,
+                vision_assisted,
+                refresh,
+                reuse_existing,
             ),
         )
 
@@ -307,11 +312,18 @@ def load_latest_workflow_run() -> WorkflowRunResult | None:
     trace_path = latest_dir / "trace.json"
     stage_status_path = latest_dir / "stage_status.json"
     artifact_links_path = latest_dir / "artifact_links.json"
-    if not trace_path.exists() or not stage_status_path.exists() or not artifact_links_path.exists():
+    if (
+        not trace_path.exists()
+        or not stage_status_path.exists()
+        or not artifact_links_path.exists()
+    ):
         return None
 
     traces = [WorkflowTrace.model_validate(item) for item in json.loads(trace_path.read_text())]
-    stages = [WorkflowStageStatus.model_validate(item) for item in json.loads(stage_status_path.read_text())]
+    stages = [
+        WorkflowStageStatus.model_validate(item)
+        for item in json.loads(stage_status_path.read_text())
+    ]
     handoffs = [
         WorkflowArtifactHandoff.model_validate(item)
         for item in json.loads(artifact_links_path.read_text())
@@ -325,7 +337,9 @@ def load_latest_workflow_run() -> WorkflowRunResult | None:
     )
     summary = WorkflowRunSummary(
         run_id=latest_dir.name,
-        created_at=traces[0].started_at if traces else datetime.fromtimestamp(latest_dir.stat().st_mtime, tz=UTC),
+        created_at=traces[0].started_at
+        if traces
+        else datetime.fromtimestamp(latest_dir.stat().st_mtime, tz=UTC),
         scope="single" if len(products) == 1 else "all",
         products=products,
         status=_workflow_status_from_traces(traces),
@@ -342,7 +356,121 @@ def load_latest_workflow_run() -> WorkflowRunResult | None:
     )
 
 
-def _execute_stage(*, traces: list[WorkflowTrace], stage_key: str, agent_name: str, inputs: dict[str, str], runner):
+def _run_data_curation_agent(
+    agent: DataCurationAgent,
+    slug: str,
+    refresh: bool,
+    reuse_existing: bool,
+) -> DataCurationAgentOutput:
+    return agent.run(
+        DataCurationAgentInput(
+            product_slug=slug,
+            selected_products_path=str(SELECTED_PRODUCTS_PATH),
+            raw_root=str(RAW_DIR),
+            processed_root=str(PROCESSED_DIR),
+            refresh=refresh,
+            reuse_existing=reuse_existing,
+        )
+    )
+
+
+def _run_retrieval_agent(
+    agent: RetrievalAgent,
+    slug: str,
+    processed_product_dir: str,
+    refresh: bool,
+    reuse_existing: bool,
+) -> RetrievalAgentOutput:
+    return agent.run(
+        RetrievalAgentInput(
+            product_slug=slug,
+            processed_product_dir=processed_product_dir,
+            output_dir=str(VISUAL_PROFILES_DIR / slug),
+            refresh=refresh,
+            reuse_existing=reuse_existing,
+        )
+    )
+
+
+def _run_visual_understanding_agent(
+    agent: VisualUnderstandingAgent,
+    slug: str,
+    processed_product_dir: str,
+    refresh: bool,
+    reuse_existing: bool,
+) -> VisualUnderstandingAgentOutput:
+    return agent.run(
+        VisualUnderstandingAgentInput(
+            product_slug=slug,
+            processed_product_dir=processed_product_dir,
+            output_dir=str(VISUAL_PROFILES_DIR / slug),
+            refresh=refresh,
+            reuse_existing=reuse_existing,
+        )
+    )
+
+
+def _run_prompt_composer_agent(
+    agent: PromptComposerAgent,
+    slug: str,
+    refresh: bool,
+    reuse_existing: bool,
+) -> PromptComposerAgentOutput:
+    return agent.run(
+        PromptComposerAgentInput(
+            product_slug=slug,
+            visual_profile_dir=str(VISUAL_PROFILES_DIR / slug),
+            generation_root=str(GENERATED_IMAGES_DIR),
+            providers=["openai", "stability"],
+            refresh=refresh,
+            reuse_existing=reuse_existing,
+        )
+    )
+
+
+def _run_image_generation_agent(
+    agent: ImageGenerationAgent,
+    slug: str,
+    count: int,
+    refresh: bool,
+    reuse_existing: bool,
+) -> ImageGenerationAgentOutput:
+    return agent.run(
+        ImageGenerationAgentInput(
+            product_slug=slug,
+            providers=["openai", "stability"],
+            count=count,
+            refresh=refresh,
+            reuse_existing=reuse_existing,
+        )
+    )
+
+
+def _run_evaluation_agent(
+    agent: EvaluationAgent,
+    slug: str,
+    vision_assisted: bool,
+    refresh: bool,
+    reuse_existing: bool,
+) -> EvaluationAgentOutput:
+    return agent.run(
+        EvaluationAgentInput(
+            product_slug=slug,
+            vision_assisted=vision_assisted,
+            refresh=refresh,
+            reuse_existing=reuse_existing,
+        )
+    )
+
+
+def _execute_stage(
+    *,
+    traces: list[WorkflowTrace],
+    stage_key: str,
+    agent_name: str,
+    inputs: dict[str, str],
+    runner: Callable[[], StageOutput],
+) -> StageOutput:
     started_at = datetime.now(tz=UTC)
     try:
         output = runner()
@@ -359,7 +487,9 @@ def _execute_stage(*, traces: list[WorkflowTrace], stage_key: str, agent_name: s
                 notes=[agent_name, str(exc)],
             )
         )
-        raise WorkflowExecutionError(f"{agent_name} failed for {inputs.get('product_slug')}: {exc}") from exc
+        raise WorkflowExecutionError(
+            f"{agent_name} failed for {inputs.get('product_slug')}: {exc}"
+        ) from exc
 
     outputs = {
         key: value
@@ -428,7 +558,7 @@ def _aggregate_stage_status(
             }
         )
         if failed_products:
-            status = "failed"
+            status: WorkflowStageState = "failed"
             detail = f"Failed for {', '.join(failed_products)}."
         elif len(completed_products) == total_count and total_count > 0:
             status = "completed"
@@ -454,7 +584,7 @@ def _aggregate_stage_status(
     return statuses
 
 
-def _workflow_status_from_traces(traces: list[WorkflowTrace]) -> str:
+def _workflow_status_from_traces(traces: list[WorkflowTrace]) -> WorkflowRunStatus:
     if any(trace.status == "failed" for trace in traces):
         return "failed"
     if traces:
@@ -465,13 +595,17 @@ def _workflow_status_from_traces(traces: list[WorkflowTrace]) -> str:
 def _discover_products_from_artifacts() -> list[str]:
     if PROCESSED_DIR.exists():
         slugs = sorted(
-            path.name for path in PROCESSED_DIR.iterdir() if path.is_dir() and (path / "product.json").exists()
+            path.name
+            for path in PROCESSED_DIR.iterdir()
+            if path.is_dir() and (path / "product.json").exists()
         )
         if slugs:
             return slugs
     if RAW_DIR.exists():
         slugs = sorted(
-            path.name for path in RAW_DIR.iterdir() if path.is_dir() and (path / "product_meta.json").exists()
+            path.name
+            for path in RAW_DIR.iterdir()
+            if path.is_dir() and (path / "product_meta.json").exists()
         )
         if slugs:
             return slugs

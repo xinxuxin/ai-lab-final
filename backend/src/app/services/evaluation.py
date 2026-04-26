@@ -403,7 +403,8 @@ def _build_evaluation_summary(
         status = "human_scoring_ready"
         summary_text = (
             "Comparison panels and the human scoring sheet were generated. "
-            "Vision-assisted scoring completed for a subset of panels before the run was interrupted."
+            "Vision-assisted scoring completed for a subset of panels before "
+            "the run was interrupted."
         )
     else:
         status = "human_scoring_ready"

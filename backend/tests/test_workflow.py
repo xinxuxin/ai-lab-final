@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from pytest import MonkeyPatch
+
 from app.models.schemas import (
     DataCurationAgentInput,
     DataCurationAgentOutput,
@@ -80,7 +82,9 @@ def test_workflow_contract_models_round_trip() -> None:
     image_output = ImageGenerationAgentOutput(
         product_slug="sample-product",
         generated_models=["openai", "stability"],
-        generation_manifest_paths={"openai": "outputs/generated_images/sample-product/openai/generation_manifest.json"},
+        generation_manifest_paths={
+            "openai": "outputs/generated_images/sample-product/openai/generation_manifest.json"
+        },
     )
     evaluation_input = EvaluationAgentInput(product_slug="sample-product", vision_assisted=False)
     evaluation_output = EvaluationAgentOutput(
@@ -96,11 +100,12 @@ def test_workflow_contract_models_round_trip() -> None:
     assert retrieval_input.product_slug == retrieval_output.product_slug
     assert visual_input.product_slug == visual_output.product_slug
     assert prompt_input.providers == ["openai", "stability"]
+    assert prompt_output.prompt_sources["openai"] == "saved_prompt_versions"
     assert image_input.providers == image_output.generated_models
     assert evaluation_input.product_slug == evaluation_output.product_slug
 
 
-def test_run_workflow_smoke_with_mocked_agents(tmp_path: Path, monkeypatch) -> None:
+def test_run_workflow_smoke_with_mocked_agents(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
     """The orchestrator should write trace, stage status, and handoff artifacts."""
 
     class FakeDataCurationAgent:
@@ -120,27 +125,62 @@ def test_run_workflow_smoke_with_mocked_agents(tmp_path: Path, monkeypatch) -> N
         def run(self, payload: RetrievalAgentInput) -> RetrievalAgentOutput:
             return RetrievalAgentOutput(
                 product_slug=payload.product_slug,
-                retrieval_evidence_path=str(tmp_path / "outputs" / "visual_profiles" / payload.product_slug / "retrieval_evidence.json"),
-                llm_trace_path=str(tmp_path / "outputs" / "visual_profiles" / payload.product_slug / "llm_trace.json"),
+                retrieval_evidence_path=str(
+                    tmp_path
+                    / "outputs"
+                    / "visual_profiles"
+                    / payload.product_slug
+                    / "retrieval_evidence.json"
+                ),
+                llm_trace_path=str(
+                    tmp_path
+                    / "outputs"
+                    / "visual_profiles"
+                    / payload.product_slug
+                    / "llm_trace.json"
+                ),
                 aspect_count=5,
-                artifact_links={"retrieval_evidence": "outputs/visual_profiles/sample-product/retrieval_evidence.json"},
+                artifact_links={
+                    "retrieval_evidence": (
+                        "outputs/visual_profiles/sample-product/retrieval_evidence.json"
+                    )
+                },
             )
 
     class FakeVisualUnderstandingAgent:
         def run(self, payload: VisualUnderstandingAgentInput) -> VisualUnderstandingAgentOutput:
             return VisualUnderstandingAgentOutput(
                 product_slug=payload.product_slug,
-                baseline_profile_path=str(tmp_path / "outputs" / "visual_profiles" / payload.product_slug / "baseline_description_only.json"),
-                review_profile_path=str(tmp_path / "outputs" / "visual_profiles" / payload.product_slug / "review_informed_rag.json"),
+                baseline_profile_path=str(
+                    tmp_path
+                    / "outputs"
+                    / "visual_profiles"
+                    / payload.product_slug
+                    / "baseline_description_only.json"
+                ),
+                review_profile_path=str(
+                    tmp_path
+                    / "outputs"
+                    / "visual_profiles"
+                    / payload.product_slug
+                    / "review_informed_rag.json"
+                ),
                 prompt_ready_description="Prompt-ready description",
-                artifact_links={"review_profile": "outputs/visual_profiles/sample-product/review_informed_rag.json"},
+                artifact_links={
+                    "review_profile": (
+                        "outputs/visual_profiles/sample-product/review_informed_rag.json"
+                    )
+                },
             )
 
     class FakePromptComposerAgent:
         def run(self, payload: PromptComposerAgentInput) -> PromptComposerAgentOutput:
             return PromptComposerAgentOutput(
                 product_slug=payload.product_slug,
-                prompt_sources={"openai": "visual_profile_templates", "stability": "visual_profile_templates"},
+                prompt_sources={
+                    "openai": "visual_profile_templates",
+                    "stability": "visual_profile_templates",
+                },
                 prompt_previews={"openai": {"pilot": "pilot", "final": "final"}},
             )
 
@@ -150,11 +190,17 @@ def test_run_workflow_smoke_with_mocked_agents(tmp_path: Path, monkeypatch) -> N
                 product_slug=payload.product_slug,
                 generated_models=payload.providers,
                 generation_manifest_paths={
-                    provider: f"outputs/generated_images/{payload.product_slug}/{provider}/generation_manifest.json"
+                    provider: (
+                        f"outputs/generated_images/{payload.product_slug}/"
+                        f"{provider}/generation_manifest.json"
+                    )
                     for provider in payload.providers
                 },
                 artifact_links={
-                    provider: f"outputs/generated_images/{payload.product_slug}/{provider}/generation_manifest.json"
+                    provider: (
+                        f"outputs/generated_images/{payload.product_slug}/"
+                        f"{provider}/generation_manifest.json"
+                    )
                     for provider in payload.providers
                 },
             )
@@ -168,20 +214,31 @@ def test_run_workflow_smoke_with_mocked_agents(tmp_path: Path, monkeypatch) -> N
                 human_score_sheet_path=f"outputs/evaluations/{payload.product_slug}/human_score_sheet.csv",
                 vision_assisted_eval_path=f"outputs/evaluations/{payload.product_slug}/vision_assisted_eval.json",
                 evaluation_status="human_scoring_ready",
-                artifact_links={"summary": f"outputs/evaluations/{payload.product_slug}/summary.json"},
+                artifact_links={
+                    "summary": f"outputs/evaluations/{payload.product_slug}/summary.json"
+                },
             )
 
-    monkeypatch.setattr("app.workflow.orchestrator.WORKFLOW_RUNS_DIR", tmp_path / "outputs" / "workflow_runs")
+    monkeypatch.setattr(
+        "app.workflow.orchestrator.WORKFLOW_RUNS_DIR", tmp_path / "outputs" / "workflow_runs"
+    )
     monkeypatch.setattr("app.workflow.orchestrator.PROCESSED_DIR", tmp_path / "data" / "processed")
     monkeypatch.setattr("app.workflow.orchestrator.RAW_DIR", tmp_path / "data" / "raw")
     monkeypatch.setattr(
-        "app.workflow.orchestrator.SELECTED_PRODUCTS_PATH", tmp_path / "data" / "selected_products.jsonl"
+        "app.workflow.orchestrator.SELECTED_PRODUCTS_PATH",
+        tmp_path / "data" / "selected_products.jsonl",
     )
-    monkeypatch.setattr("app.workflow.orchestrator.VISUAL_PROFILES_DIR", tmp_path / "outputs" / "visual_profiles")
-    monkeypatch.setattr("app.workflow.orchestrator.GENERATED_IMAGES_DIR", tmp_path / "outputs" / "generated_images")
+    monkeypatch.setattr(
+        "app.workflow.orchestrator.VISUAL_PROFILES_DIR", tmp_path / "outputs" / "visual_profiles"
+    )
+    monkeypatch.setattr(
+        "app.workflow.orchestrator.GENERATED_IMAGES_DIR", tmp_path / "outputs" / "generated_images"
+    )
     monkeypatch.setattr("app.workflow.orchestrator.DataCurationAgent", FakeDataCurationAgent)
     monkeypatch.setattr("app.workflow.orchestrator.RetrievalAgent", FakeRetrievalAgent)
-    monkeypatch.setattr("app.workflow.orchestrator.VisualUnderstandingAgent", FakeVisualUnderstandingAgent)
+    monkeypatch.setattr(
+        "app.workflow.orchestrator.VisualUnderstandingAgent", FakeVisualUnderstandingAgent
+    )
     monkeypatch.setattr("app.workflow.orchestrator.PromptComposerAgent", FakePromptComposerAgent)
     monkeypatch.setattr("app.workflow.orchestrator.ImageGenerationAgent", FakeImageGenerationAgent)
     monkeypatch.setattr("app.workflow.orchestrator.EvaluationAgent", FakeEvaluationAgent)
@@ -200,7 +257,7 @@ def test_run_workflow_smoke_with_mocked_agents(tmp_path: Path, monkeypatch) -> N
     assert len(traces) == 6
 
 
-def test_latest_workflow_trace_generation(tmp_path: Path, monkeypatch) -> None:
+def test_latest_workflow_trace_generation(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
     """Latest workflow payload should expose saved stage and handoff data."""
     run_dir = tmp_path / "outputs" / "workflow_runs" / "20260420T120000Z-test"
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -241,8 +298,14 @@ def test_latest_workflow_trace_generation(tmp_path: Path, monkeypatch) -> None:
     (run_dir / "stage_status.json").write_text(json.dumps(stage_payload), encoding="utf-8")
     (run_dir / "artifact_links.json").write_text(json.dumps(handoff_payload), encoding="utf-8")
 
-    monkeypatch.setattr("app.workflow.orchestrator.WORKFLOW_RUNS_DIR", tmp_path / "outputs" / "workflow_runs")
-    monkeypatch.setattr("app.services.dashboard_data.WORKFLOW_RUNS_DIR", tmp_path / "outputs" / "workflow_runs", raising=False)
+    monkeypatch.setattr(
+        "app.workflow.orchestrator.WORKFLOW_RUNS_DIR", tmp_path / "outputs" / "workflow_runs"
+    )
+    monkeypatch.setattr(
+        "app.services.dashboard_data.WORKFLOW_RUNS_DIR",
+        tmp_path / "outputs" / "workflow_runs",
+        raising=False,
+    )
     monkeypatch.setattr(
         "app.services.dashboard_data.artifact_api_url",
         lambda path: f"/api/assets/{Path(path).name}",

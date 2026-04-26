@@ -256,7 +256,7 @@ def generation_payload(slug: str) -> dict[str, Any]:
             models[provider] = {
                 "status": "missing_artifact",
                 "message": (
-                    f"{provider} generation artifacts are missing. " "Run generate-images first."
+                    f"{provider} generation artifacts are missing. Run generate-images first."
                 ),
             }
             missing.append(provider)

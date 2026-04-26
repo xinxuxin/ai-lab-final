@@ -560,7 +560,7 @@ def build_submission_package_command(
     output_dir: str = typer.Option(
         "../submission_package",
         help="Directory where the submission package should be assembled.",
-    )
+    ),
 ) -> None:
     """Build a submission-ready package with the required code and artifacts."""
     configure_logging()
@@ -592,7 +592,7 @@ def serve_api() -> None:
                 "stage": "serve-api",
                 "api_base_url": settings.frontend_api_base_url,
                 "message": (
-                    "Run `uvicorn app.main:app --reload --port 8000` " "to start the API server."
+                    "Run `uvicorn app.main:app --reload --port 8000` to start the API server."
                 ),
             },
             indent=2,

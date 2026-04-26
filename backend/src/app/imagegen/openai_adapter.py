@@ -75,7 +75,9 @@ class OpenAIImageAdapter(ImageGenerationAdapter):
                 time.sleep(min(2**attempt, 5))
 
         if response is None:
-            raise ImageGenerationError("OpenAI image generation returned no response.") from last_error
+            raise ImageGenerationError(
+                "OpenAI image generation returned no response."
+            ) from last_error
 
         data = response.json()
         raw_items = data.get("data", [])

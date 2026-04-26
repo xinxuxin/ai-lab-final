@@ -264,7 +264,13 @@ def test_cli_verify_artifacts_q1_smoke(tmp_path: Path, monkeypatch: MonkeyPatch)
         frontend_root: Path | None = None,
         run_frontend_build: bool = True,
     ) -> VerificationResult:
-        del processed_dir, selected_products_path, min_review_count, frontend_root, run_frontend_build
+        del (
+            processed_dir,
+            selected_products_path,
+            min_review_count,
+            frontend_root,
+            run_frontend_build,
+        )
         return VerificationResult(
             stage=stage,  # type: ignore[arg-type]
             passed=True,
@@ -505,7 +511,13 @@ def test_cli_verify_artifacts_full_smoke(tmp_path: Path, monkeypatch: MonkeyPatc
         frontend_root: Path | None = None,
         run_frontend_build: bool = True,
     ) -> VerificationResult:
-        del processed_dir, selected_products_path, min_review_count, frontend_root, run_frontend_build
+        del (
+            processed_dir,
+            selected_products_path,
+            min_review_count,
+            frontend_root,
+            run_frontend_build,
+        )
         return VerificationResult(
             stage=stage,  # type: ignore[arg-type]
             passed=True,

@@ -395,8 +395,7 @@ def _run_structured_step(
 ) -> T:
     """Execute one JSON-only step with parse validation retries."""
     base_prompt = (
-        f"{prompt_template}\n\nContext JSON:\n"
-        f"{json.dumps(context, indent=2, ensure_ascii=False)}"
+        f"{prompt_template}\n\nContext JSON:\n{json.dumps(context, indent=2, ensure_ascii=False)}"
     )
     raw_response_text = ""
     last_error = "no response"

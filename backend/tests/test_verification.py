@@ -40,10 +40,7 @@ def test_verify_repository_q2_fails_when_profile_missing(
     _patch_verification_roots(monkeypatch, fixture)
 
     missing_path = (
-        fixture["outputs_dir"]
-        / "visual_profiles"
-        / "sample-product-1"
-        / "review_informed_rag.json"
+        fixture["outputs_dir"] / "visual_profiles" / "sample-product-1" / "review_informed_rag.json"
     )
     missing_path.unlink()
 
@@ -81,10 +78,6 @@ def _patch_verification_roots(monkeypatch: MonkeyPatch, fixture: dict[str, Path]
     monkeypatch.setattr("app.services.verification.PROMPTS_DIR", fixture["prompts_dir"])
     monkeypatch.setattr("app.services.verification.DOCS_DIR", fixture["docs_dir"])
     monkeypatch.setattr("app.services.verification.REPO_ROOT", fixture["repo_root"])
-    monkeypatch.setattr(
-        "app.services.verification.WORKFLOW_RUNS_DIR",
-        fixture["outputs_dir"] / "workflow_runs",
-    )
     monkeypatch.setattr(
         "app.workflow.orchestrator.WORKFLOW_RUNS_DIR",
         fixture["outputs_dir"] / "workflow_runs",
@@ -337,7 +330,9 @@ def _write_verification_fixture(tmp_path: Path) -> dict[str, Path]:
                                     "sha256": "pilot",
                                     "width": 4,
                                     "height": 4,
-                                    "byte_size": len((provider_dir / "pilot" / "image_01.png").read_bytes()),
+                                    "byte_size": len(
+                                        (provider_dir / "pilot" / "image_01.png").read_bytes()
+                                    ),
                                     "content_type": "image/png",
                                     "metadata": {},
                                 }

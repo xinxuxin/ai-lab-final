@@ -10,6 +10,7 @@ The submission package should contain the following repository sections:
 - `outputs/`
 - `prompts/`
 - `docs/`
+- `reports/`
 - `scripts/`
 - `.env.example`
 - `Makefile`
@@ -22,6 +23,7 @@ The submission package should contain the following repository sections:
 - `outputs/`: Q2, Q3, and Q4 artifacts including profiles, generations, evaluations, and workflow traces
 - `prompts/`: editable prompt templates for Q2, Q3, and evaluation
 - `docs/`: report support, rationale templates, workflow explanation, and final checklist
+- `reports/`: final written report PDF and report-facing notes
 - `scripts/`: one-command reproducibility helpers for pipeline and demo setup
 
 ## Build Command
